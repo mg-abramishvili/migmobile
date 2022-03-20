@@ -22,32 +22,34 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col header-top-logo">
-                                @hasSection('lang')
-                                    <a href="/@yield('lang', 'ru')"><img src="img/logo.svg" alt="Паритет-Телеком"></a>
-                                @else
-                                    <a href="/ru"><img src="img/logo.svg" alt="Паритет-Телеком"></a>
+                                @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                    <a href="/"><img src="/img/logo.svg" alt="Паритет-Телеком"></a>
+                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                    <a href="/uz"><img src="/img/logo.svg" alt="Паритет-Телеком"></a>
+                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                    <a href="/tj"><img src="/img/logo.svg" alt="Паритет-Телеком"></a>
                                 @endif
                             </div>
                             <div class="col header-top-socials">
                                 <ul>
                                     <li>
                                         <a href="https://instagram.com/migrant_mobile" target="_blank">
-                                            <img src="img/instagram.svg" alt="">
+                                            <img src="/img/instagram.svg" alt="">
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://t.me/Migrant_mobile_bot" target="_blank">
-                                            <img src="img/telegram.svg" alt="">
+                                            <img src="/img/telegram.svg" alt="">
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://youtube.com/channel/UCUyiF6u7V9gASr5wBEeqiKw" target="_blank">
-                                            <img src="img/youtube.svg" alt="">
+                                            <img src="/img/youtube.svg" alt="">
                                         </a>
                                     </li>
                                     <li>
                                         <a href="https://www.facebook.com/migrant.mobile" target="_blank">
-                                            <img src="img/facebook.svg" alt="">
+                                            <img src="/img/facebook.svg" alt="">
                                         </a>
                                     </li>
                                 </ul>
@@ -58,20 +60,20 @@
                             <div class="col header-top-lang">
                                 <ul class="header-top-flags">
                                     <li>
-                                        <a href="{{ route('home', ['lang' => 'ru']) }}">
-                                            <img src="img/flag_rus.svg" alt="Русский язык">
+                                        <a href="{{ route('homeRu') }}">
+                                            <img src="/img/flag_rus.svg" alt="Русский язык">
                                             RU
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('home', ['lang' => 'uz']) }}">
-                                            <img src="img/flag_uzb.svg" alt="Узбекский язык">
+                                        <a href="{{ route('homeUz') }}">
+                                            <img src="/img/flag_uzb.svg" alt="Узбекский язык">
                                             UZ
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('home', ['lang' => 'tj']) }}">
-                                            <img src="img/flag_taj.svg" alt="Таджикский язык">
+                                        <a href="{{ route('homeTj') }}">
+                                            <img src="/img/flag_taj.svg" alt="Таджикский язык">
                                             TJ
                                         </a>
                                     </li>
@@ -94,67 +96,67 @@
                                         <ul class="navbar-nav">
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link">
-                                                    @if(request()->lang == 'uz')
-                                                        Янгиликлар
-                                                    @elseif(request()->lang == 'tj')
-                                                        Хабарҳо
-                                                    @else
+                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
                                                         Новости
+                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                        Янгиликлар
+                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                        Хабарҳо
                                                     @endif
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link">
-                                                    @if(request()->lang == 'uz')
-                                                        Авиачипталар
-                                                    @elseif(request()->lang == 'tj')
-                                                        Чиптаҳои ҳавопаймо
-                                                    @else
+                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
                                                         Авиабилеты
+                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                        Авиачипталар
+                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                        Чиптаҳои ҳавопаймо
                                                     @endif
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link">
-                                                    @if(request()->lang == 'uz')
-                                                        SIM-карталар
-                                                    @elseif(request()->lang == 'tj')
-                                                        SIM-кортҳо
-                                                    @else
+                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
                                                         SIM-карты
+                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                        SIM-карталар
+                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                        SIM-кортҳо
                                                     @endif
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link">
-                                                    @if(request()->lang == 'uz')
-                                                        Банк карталари
-                                                    @elseif(request()->lang == 'tj')
-                                                        Кортҳои бонкӣ
-                                                    @else
+                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
                                                         Банковские карты
+                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                        Банк карталари
+                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                        Кортҳои бонкӣ
                                                     @endif
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link">
-                                                    @if(request()->lang == 'uz')
-                                                        Қарзга пул
-                                                    @elseif(request()->lang == 'tj')
-                                                        Қарзҳои пулӣ
-                                                    @else
+                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
                                                         Денежные займы
+                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                        Қарзга пул
+                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                        Қарзҳои пулӣ
                                                     @endif
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link">
-                                                    @if(request()->lang == 'uz')
-                                                        Биз ҳақимизда
-                                                    @elseif(request()->lang == 'tj')
-                                                        Дар бораи мо
-                                                    @else
+                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
                                                         О нас
+                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                        Биз ҳақимизда
+                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                        Дар бораи мо
                                                     @endif
                                                 </a>
                                             </li>
@@ -176,7 +178,7 @@
                     <div class="row">
                         <div class="col footer-logo">
                             <a href="#">
-                                <img src="img/logo-w.svg" alt="Паритет-Телеком">
+                                <img src="/img/logo-w.svg" alt="Паритет-Телеком">
                             </a>
                             <a href="#">
                                 @if(request()->lang == 'uz')
@@ -271,22 +273,22 @@
                             <ul>
                                 <li>
                                     <a href="https://instagram.com/migrant_mobile" target="_blank">
-                                        <img src="img/instagram.svg" alt="">
+                                        <img src="/img/instagram.svg" alt="">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://t.me/Migrant_mobile_bot" target="_blank">
-                                        <img src="img/telegram.svg" alt="">
+                                        <img src="/img/telegram.svg" alt="">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://youtube.com/channel/UCUyiF6u7V9gASr5wBEeqiKw" target="_blank">
-                                        <img src="img/youtube.svg" alt="">
+                                        <img src="/img/youtube.svg" alt="">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.facebook.com/migrant.mobile" target="_blank">
-                                        <img src="img/facebook.svg" alt="">
+                                        <img src="/img/facebook.svg" alt="">
                                     </a>
                                 </li>
                             </ul>

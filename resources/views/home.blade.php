@@ -1,15 +1,14 @@
 @extends('layouts.front')
 @section('title', 'Migrant Mobile')
 @section('description', 'Migrant Mobile')
-@section('lang', request()->lang)
 
 @section('content')
     <div class="main-news">
         <div class="container">
             <h5 class="title-head">
-                @if(request()->lang == 'uz')
+                @if(Route::is('homeUz'))
                     Янгиликлар
-                @elseif(request()->lang == 'tj')
+                @elseif(Route::is('homeTj'))
                     Хабарҳо
                 @else
                     Новости
@@ -34,18 +33,18 @@
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-8">
                         <h2 class="title-head title-head-white">
-                            @if(request()->lang == 'uz')
-                                Ортиқча тўловсиз авиачипта қидиряпсизми?
-                            @elseif(request()->lang == 'tj')
-                                Чиптаи ҳавопайморо бидуни пардохти изофагӣ меҷуед?
-                            @else
+                            @if(Route::is('homeRu'))
                                 Ищете авиабилет без переплат?
+                            @elseif(Route::is('homeUz'))
+                                Ортиқча тўловсиз авиачипта қидиряпсизми?
+                            @elseif(Route::is('homeTj'))
+                                Чиптаи ҳавопайморо бидуни пардохти изофагӣ меҷуед?
                             @endif
                         </h2>
                         <p>
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Бизда сиз арзон авиачипталарни сотиб олишингиз мумкин
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Шумо хамчунин метавонед аз мо чиптаҳои арзон харед
                             @else
                                 У нас вы также можете купить дешевые авиабилеты
@@ -53,10 +52,18 @@
                         </p>
                     </div>
                     <div class="col-12 col-lg-4 text-center">
-                        <a class="btn btn-primary btn-white">
-                            @if(request()->lang == 'uz')
+                        <a
+                        @if(Route::is('homeRu'))
+                            href="{{ route('aviaRu') }}"
+                        @elseif(Route::is('homeUz'))
+                            href="{{ route('aviaUz') }}"
+                        @elseif(Route::is('homeTj'))
+                            href="{{ route('aviaTj') }}"
+                        @endif
+                        class="btn btn-primary btn-white">
+                            @if(Route::is('homeUz'))
                                 Чипта сотиб олиш
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Хариди чипта
                             @else
                                 Купить билет
@@ -71,9 +78,9 @@
     <div class="main-sim">
         <div class="container">
             <h5 class="title-head">
-                @if(request()->lang == 'uz')
+                @if(Route::is('homeUz'))
                     SIM-карталар
-                @elseif(request()->lang == 'tj')
+                @elseif(Route::is('homeTj'))
                     SIM-кортҳо
                 @else
                     SIM-карты
@@ -82,9 +89,9 @@
             <div class="main-sim-slider">
                 <div class="main-sim-item main-sim-item-beeline">
                     <p>
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Билайн-дан тариф
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Тарофа аз Билайн
                         @else
                             Тариф от Билайн
@@ -96,9 +103,9 @@
                         <li>30 дней</li>
                     </ul>
                     <button class="btn btn-primary">
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Буюртма бериш
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Фармоиш додан
                         @else
                             Заказать
@@ -107,9 +114,9 @@
                 </div>
                 <div class="main-sim-item main-sim-item-mts">
                     <p>
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             МТС-дан тариф
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Тарофа аз МТС
                         @else
                             Тариф от МТС
@@ -121,9 +128,9 @@
                         <li>30 дней</li>
                     </ul>
                     <button class="btn btn-primary">
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Буюртма бериш
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Фармоиш додан
                         @else
                             Заказать
@@ -132,9 +139,9 @@
                 </div>
                 <div class="main-sim-item main-sim-item-megafon">
                     <p>
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Мегафон-дан тариф
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Тарофа аз Мегафон
                         @else
                             Тариф от Мегафон
@@ -146,9 +153,9 @@
                         <li>30 дней</li>
                     </ul>
                     <button class="btn btn-primary">
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Буюртма бериш
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Фармоиш додан
                         @else
                             Заказать
@@ -157,9 +164,9 @@
                 </div>
                 <div class="main-sim-item main-sim-item-tele2">
                     <p>
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Теле2-дан тариф
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Тарофа аз Теле2
                         @else
                             Тариф от Теле2
@@ -171,9 +178,9 @@
                         <li>30 дней</li>
                     </ul>
                     <button class="btn btn-primary">
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Буюртма бериш
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Фармоиш додан
                         @else
                             Заказать
@@ -190,18 +197,18 @@
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-8">
                         <h2 class="title-head title-head-white">
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Чиройли рақам истайсизми?
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Мехоҳед рақами зебо дошта бошед?
                             @else
                                 Хотите красивый номер?
                             @endif
                         </h2>
                         <p>
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Бизда сиз чиройли телефон рақамини сотиб олишингиз мумкин
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Шумо метавонед рақами телефони зебо аз мо харед
                             @else
                                 У нас вы можете приобрести красивый номер телефона
@@ -210,9 +217,9 @@
                     </div>
                     <div class="col-12 col-lg-4 text-center">
                         <a class="btn btn-primary btn-white">
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Рақамни танлаш
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Интихоб намудани рақам
                             @else
                                 Выбрать номер
@@ -229,9 +236,9 @@
             <div class="row align-items-center">
                 <div class="col-12 col-lg-7">
                     <h5 class="title-head">
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Банк картаси
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Корти бонкӣ
                         @else
                             Банковская карта
@@ -240,27 +247,27 @@
                     
                     <ul>
                         <li>
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Россия VISA дебет картаси махсус чет эл фуқаролари учун.
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Корти дебетии русӣ VISA махсусан барои шаҳрвандони хориҷӣ.
                             @else
                                 Российская дебетовая карта VISA специально для иностранных граждан.
                             @endif
                         </li>
                         <li>
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Халқаро ўтказмалари учун имтиёзли комиссия – фақат 1,15%.
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Комиссияи имтиёзнок барои интиқолҳои байналмилалӣ - ҳамагӣ 1,15%.
                             @else
                                 Льготная комиссия на международные переводы - всего 1,15%.
                             @endif
                         </li>
                         <li>
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Картани етказиб бериш бепул.
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Расонидани корт ройгон аст.
                             @else
                                 Доставка карты бесплатно.
@@ -269,9 +276,9 @@
                     </ul>
                     
                     <p>
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Россия банкининг банк картасини олиш учун ариза беринг.
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Барои гирифтани корти бонкии бонки Россия дархост пешниҳод кунед.
                         @else
                             Оформите заявку на получение банковской карты российского банка.
@@ -281,18 +288,18 @@
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label>
-                                    @if(request()->lang == 'uz')
+                                    @if(Route::is('homeUz'))
                                         Исм
-                                    @elseif(request()->lang == 'tj')
+                                    @elseif(Route::is('homeTj'))
                                         Ном
                                     @else
                                         Имя
                                     @endif
                                 </label>
                                 <input type="text" class="form-control" placeholder="
-                                    @if(request()->lang == 'uz')
+                                    @if(Route::is('homeUz'))
                                         Сизнинг исмингиз нима?
-                                    @elseif(request()->lang == 'tj')
+                                    @elseif(Route::is('homeTj'))
                                         Номи Шумо чист
                                     @else
                                         Как вас зовут
@@ -301,18 +308,18 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label>
-                                    @if(request()->lang == 'uz')
+                                    @if(Route::is('homeUz'))
                                         Телефон
-                                    @elseif(request()->lang == 'tj')
+                                    @elseif(Route::is('homeTj'))
                                         Телефон
                                     @else
                                         Телефон
                                     @endif
                                 </label>
                                 <input type="text" class="form-control" placeholder="
-                                    @if(request()->lang == 'uz')
+                                    @if(Route::is('homeUz'))
                                         Ваш номер телефона
-                                    @elseif(request()->lang == 'tj')
+                                    @elseif(Route::is('homeTj'))
                                         Сизнинг телефон рақамингиз
                                     @else
                                         Рақами телефони Шумо
@@ -323,9 +330,9 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
-                                @if(request()->lang == 'uz')
+                                @if(Route::is('homeUz'))
                                     Шахсий маълумотларни қайта ишлашга розиман
-                                @elseif(request()->lang == 'tj')
+                                @elseif(Route::is('homeTj'))
                                     Ман барои коркарди маълумоти шахсӣ розӣ ҳастам
                                 @else
                                     Согласен с обработкой персональных данных
@@ -333,9 +340,9 @@
                             </label>
                         </div>
                         <button class="btn btn-primary">
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Расмийлаштириш
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Дархост намудан
                             @else
                                 Оформить
@@ -359,9 +366,9 @@
                 <div class="col-12 col-lg-7">
                     <div class="main-loan-info">
                         <h5 class="title-head">
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 Қарзга пул
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Қарзи пулӣ
                             @else
                                 Денежный займ
@@ -370,27 +377,27 @@
 
                         <ul>
                             <li>
-                                @if(request()->lang == 'uz')
+                                @if(Route::is('homeUz'))
                                     Ҳар қандай мақсадлар учун қарзга пул махсус чет эл фуқаролари учун
-                                @elseif(request()->lang == 'tj')
+                                @elseif(Route::is('homeTj'))
                                     Қарзҳо барои ҳама гуна мақсад махсус барои шаҳрвандони хориҷӣ
                                 @else
                                     Займы на любые цели специально для иностранных граждан
                                 @endif
                             </li>
                             <li>
-                                @if(request()->lang == 'uz')
+                                @if(Route::is('homeUz'))
                                     Пул ҳар қандай Россия банкининг картасига ўтказилади
-                                @elseif(request()->lang == 'tj')
+                                @elseif(Route::is('homeTj'))
                                     Маблағ ба дилхоҳ корти бонки Россия онлайн пардохт карда мешавад
                                 @else
                                     Деньги зачисляются онлайн на карту любого российского банка
                                 @endif
                             </li>
                             <li>
-                                @if(request()->lang == 'uz')
+                                @if(Route::is('homeUz'))
                                     Қарз «Азия Кредит» микрофинанс ташқилоти томонидан такдим этилади
-                                @elseif(request()->lang == 'tj')
+                                @elseif(Route::is('homeTj'))
                                     Қарз аз ҷониби ташкилоти маблағгузории хурди «Азия Кредит» дода мешавад.
                                 @else
                                     Займ предоставляется микрофинансовой организацией «Азия Кредит»
@@ -399,9 +406,9 @@
                         </ul>
 
                         <p>
-                            @if(request()->lang == 'uz')
+                            @if(Route::is('homeUz'))
                                 30 минг рублгача қарзга пул олиш учун ариза беринг
-                            @elseif(request()->lang == 'tj')
+                            @elseif(Route::is('homeTj'))
                                 Барои гирифтани қарзи нақдӣ то 30 ҳазор рубл муроҷиат намоед.
                             @else
                                 Оформите заявку на получение денежного займа до 30 000 руб.
@@ -411,18 +418,18 @@
                             <div class="row">
                                 <div class="col-12 col-lg-6">
                                     <label>
-                                        @if(request()->lang == 'uz')
+                                        @if(Route::is('homeUz'))
                                             Исм
-                                        @elseif(request()->lang == 'tj')
+                                        @elseif(Route::is('homeTj'))
                                             Ном
                                         @else
                                             Имя
                                         @endif
                                     </label>
                                     <input type="text" class="form-control" placeholder="
-                                        @if(request()->lang == 'uz')
+                                        @if(Route::is('homeUz'))
                                             Сизнинг исмингиз нима?
-                                        @elseif(request()->lang == 'tj')
+                                        @elseif(Route::is('homeTj'))
                                             Номи Шумо чист
                                         @else
                                             Как вас зовут
@@ -431,18 +438,18 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <label>
-                                        @if(request()->lang == 'uz')
+                                        @if(Route::is('homeUz'))
                                             Телефон
-                                        @elseif(request()->lang == 'tj')
+                                        @elseif(Route::is('homeTj'))
                                             Телефон
                                         @else
                                             Телефон
                                         @endif
                                     </label>
                                     <input type="text" class="form-control" placeholder="
-                                        @if(request()->lang == 'uz')
+                                        @if(Route::is('homeUz'))
                                             Ваш номер телефона
-                                        @elseif(request()->lang == 'tj')
+                                        @elseif(Route::is('homeTj'))
                                             Сизнинг телефон рақамингиз
                                         @else
                                             Рақами телефони Шумо
@@ -453,9 +460,9 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    @if(request()->lang == 'uz')
+                                    @if(Route::is('homeUz'))
                                         Шахсий маълумотларни қайта ишлашга розиман
-                                    @elseif(request()->lang == 'tj')
+                                    @elseif(Route::is('homeTj'))
                                         Ман барои коркарди маълумоти шахсӣ розӣ ҳастам
                                     @else
                                         Согласен с обработкой персональных данных
@@ -463,9 +470,9 @@
                                 </label>
                             </div>
                             <button class="btn btn-primary">
-                                @if(request()->lang == 'uz')
+                                @if(Route::is('homeUz'))
                                     Расмийлаштириш
-                                @elseif(request()->lang == 'tj')
+                                @elseif(Route::is('homeTj'))
                                     Дархост намудан
                                 @else
                                     Оформить
@@ -483,9 +490,9 @@
             <div class="row align-items-center">
                 <div class="col-12 col-lg-12">
                     <h5 class="title-head">
-                        @if(request()->lang == 'uz')
+                        @if(Route::is('homeUz'))
                             Компания хақида
-                        @elseif(request()->lang == 'tj')
+                        @elseif(Route::is('homeTj'))
                             Дар бораи ширкат
                         @else
                             О компании
