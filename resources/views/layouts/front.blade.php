@@ -93,22 +93,70 @@
                                     <div class="navbar-collapse justify-content-md-center collapse" id="navbarsExample10" style="">
                                         <ul class="navbar-nav">
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">Новости</a>
+                                                <a href="#" class="nav-link">
+                                                    @if(request()->lang == 'uz')
+                                                        Янгиликлар
+                                                    @elseif(request()->lang == 'tj')
+                                                        Хабарҳо
+                                                    @else
+                                                        Новости
+                                                    @endif
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">Авиабилеты</a>
+                                                <a href="#" class="nav-link">
+                                                    @if(request()->lang == 'uz')
+                                                        Авиачипталар
+                                                    @elseif(request()->lang == 'tj')
+                                                        Чиптаҳои ҳавопаймо
+                                                    @else
+                                                        Авиабилеты
+                                                    @endif
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">SIM-карты</a>
+                                                <a href="#" class="nav-link">
+                                                    @if(request()->lang == 'uz')
+                                                        SIM-карталар
+                                                    @elseif(request()->lang == 'tj')
+                                                        SIM-кортҳо
+                                                    @else
+                                                        SIM-карты
+                                                    @endif
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">Банковские карты</a>
+                                                <a href="#" class="nav-link">
+                                                    @if(request()->lang == 'uz')
+                                                        Банк карталари
+                                                    @elseif(request()->lang == 'tj')
+                                                        Кортҳои бонкӣ
+                                                    @else
+                                                        Банковские карты
+                                                    @endif
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">Денежные займы</a>
+                                                <a href="#" class="nav-link">
+                                                    @if(request()->lang == 'uz')
+                                                        Қарзга пул
+                                                    @elseif(request()->lang == 'tj')
+                                                        Қарзҳои пулӣ
+                                                    @else
+                                                        Денежные займы
+                                                    @endif
+                                                </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">О нас</a>
+                                                <a href="#" class="nav-link">
+                                                    @if(request()->lang == 'uz')
+                                                        Биз ҳақимизда
+                                                    @elseif(request()->lang == 'tj')
+                                                        Дар бораи мо
+                                                    @else
+                                                        О нас
+                                                    @endif
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -130,32 +178,96 @@
                             <a href="#">
                                 <img src="img/logo-w.svg" alt="Паритет-Телеком">
                             </a>
-                            <a href="#">Политика конфиденциальности</a>
+                            <a href="#">
+                                @if(request()->lang == 'uz')
+                                    Махфийлик сиёсати
+                                @elseif(request()->lang == 'tj')
+                                    Сиёсати корбурди маълумоти шахсӣ
+                                @else
+                                    Политика конфиденциальности
+                                @endif
+                            </a>
                         </div>
                         <div class="col footer-menu">
                             <ul>
                                 <li>
-                                    <a href="#">SIM-карты</a>
+                                    <a href="#">
+                                        @if(request()->lang == 'uz')
+                                            Янгиликлар
+                                        @elseif(request()->lang == 'tj')
+                                            Хабарҳо
+                                        @else
+                                            Новости
+                                        @endif
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#">Банковская карта</a>
+                                    <a href="#">
+                                        @if(request()->lang == 'uz')
+                                            Авиачипталар
+                                        @elseif(request()->lang == 'tj')
+                                            Чиптаҳои ҳавопаймо
+                                        @else
+                                            Авиабилеты
+                                        @endif
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#">Денежный займ</a>
+                                    <a href="#">
+                                        @if(request()->lang == 'uz')
+                                            SIM-карталар
+                                        @elseif(request()->lang == 'tj')
+                                            SIM-кортҳо
+                                        @else
+                                            SIM-карты
+                                        @endif
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#">Авиабилеты</a>
+                                    <a href="#">
+                                        @if(request()->lang == 'uz')
+                                            Банк карталари
+                                        @elseif(request()->lang == 'tj')
+                                            Кортҳои бонкӣ
+                                        @else
+                                            Банковские карты
+                                        @endif
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#">Новости</a>
+                                    <a href="#">
+                                        @if(request()->lang == 'uz')
+                                            Қарзга пул
+                                        @elseif(request()->lang == 'tj')
+                                            Қарзҳои пулӣ
+                                        @else
+                                            Денежные займы
+                                        @endif
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#">О компании</a>
+                                    <a href="#">
+                                        @if(request()->lang == 'uz')
+                                            Биз ҳақимизда
+                                        @elseif(request()->lang == 'tj')
+                                            Дар бораи мо
+                                        @else
+                                            О нас
+                                        @endif
+                                    </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-12 footer-social">
-                            <p>Следите за нами в соцсетях:</p>
+                            <p>
+                                @if(request()->lang == 'uz')
+                                    Ижтимоий тармоқларда бизни кузатинг
+                                @elseif(request()->lang == 'tj')
+                                    Моро дар шабакаҳои иҷтимоӣ пайгирӣ кунед
+                                @else
+                                    Следите за нами в соцсетях:
+                                @endif
+                            </p>
                             <ul>
                                 <li>
                                     <a href="https://instagram.com/migrant_mobile" target="_blank">
