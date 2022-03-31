@@ -3,7 +3,7 @@
 @section('description', 'Migrant Mobile')
 
 @section('content')
-    <div class="main-news">
+    <div class="main-news" id="news">
         <div class="container">
             <h5 class="title-head">
                 @if(Route::is('homeUz'))
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <div class="main-sim">
+    <div class="main-sim" id="sim">
         <div class="container">
             <h5 class="title-head">
                 @if(Route::is('homeUz'))
@@ -231,7 +231,7 @@
         </div>
     </div>
 
-    <div class="main-bank-card">
+    <div class="main-bank-card" id="bank-card">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-7">
@@ -351,17 +351,17 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-5">
-                    <img src="img/cards.png" alt="Банковская карта">
+                    <img src="/img/cards.png" alt="Банковская карта">
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="main-loan">
+    <div class="main-loan" id="loan">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-5">
-                    <img src="img/rub.png" alt="Денежный займ">
+                    <img src="/img/rub.png" alt="Денежный займ">
                 </div>
                 <div class="col-12 col-lg-7">
                     <div class="main-loan-info">
@@ -485,7 +485,7 @@
         </div>
     </div>
 
-    <div class="main-about">
+    <div class="main-about" id="about">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-12">

@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="{{ mix('/css/front.css') }}"/>
     </head>
     <body>
-        <div id="app">
+        <div id="front">
             <header class="header">
                 <div class="header-top">
                     <div class="container">
@@ -66,13 +66,13 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('homeUz') }}">
+                                        <a href="{{ route('homeUz') }}/">
                                             <img src="/img/flag_uzb.svg" alt="Узбекский язык">
                                             UZ
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('homeTj') }}">
+                                        <a href="{{ route('homeTj') }}/">
                                             <img src="/img/flag_taj.svg" alt="Таджикский язык">
                                             TJ
                                         </a>
@@ -95,70 +95,58 @@
                                     <div class="navbar-collapse justify-content-md-center collapse" id="navbarsExample10" style="">
                                         <ul class="navbar-nav">
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                        Новости
-                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                        Янгиликлар
-                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                        Хабарҳо
-                                                    @endif
-                                                </a>
+                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                                    <a href="/#news" class="nav-link">Новости<a/>
+                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                    <a href="/uz/#news" class="nav-link">Янгиликлар<a/>
+                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                    <a href="/tj/#news" class="nav-link">Хабарҳо<a/>
+                                                @endif
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                        Авиабилеты
-                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                        Авиачипталар
-                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                        Чиптаҳои ҳавопаймо
-                                                    @endif
-                                                </a>
+                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                                    <a href="{{ route('aviaRu') }}" class="nav-link">Авиабилеты<a/>
+                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                    <a href="{{ route('aviaUz') }}" class="nav-link">Авиачипталар<a/>
+                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                    <a href="{{ route('aviaTj') }}" class="nav-link">Чиптаҳои ҳавопаймо<a/>
+                                                @endif
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                        SIM-карты
-                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                        SIM-карталар
-                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                        SIM-кортҳо
-                                                    @endif
-                                                </a>
+                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                                    <a href="/#sim" class="nav-link">SIM-карты</a>
+                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                    <a href="/#sim" class="nav-link">SIM-карталар</a>
+                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                    <a href="/#sim" class="nav-link">SIM-кортҳо</a>
+                                                @endif
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                        Банковские карты
-                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                        Банк карталари
-                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                        Кортҳои бонкӣ
-                                                    @endif
-                                                </a>
+                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                                    <a href="/#bank-card" class="nav-link">Банковские карты</a>
+                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                    <a href="/uz/#bank-card" class="nav-link">Банк карталари</a>
+                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                    <a href="/tj/#bank-card" class="nav-link">Кортҳои бонкӣ</a>
+                                                @endif
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                        Денежные займы
-                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                        Қарзга пул
-                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                        Қарзҳои пулӣ
-                                                    @endif
-                                                </a>
+                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                                    <a href="/#loan" class="nav-link">Денежные займы</a>
+                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                    <a href="/uz/#loan" class="nav-link">Қарзга пул</a>
+                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                    <a href="/tj/#loan" class="nav-link">Қарзҳои пулӣ</a>
+                                                @endif
                                             </li>
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                        О нас
-                                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                        Биз ҳақимизда
-                                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                        Дар бораи мо
-                                                    @endif
-                                                </a>
+                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                                    <a href="/#about" class="nav-link">О нас</a>
+                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                                    <a href="/uz/#about" class="nav-link">Биз ҳақимизда</a>
+                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                                    <a href="/tj/#about" class="nav-link">Дар бораи мо</a>
+                                                @endif
                                             </li>
                                         </ul>
                                     </div>
@@ -193,70 +181,58 @@
                         <div class="col footer-menu">
                             <ul>
                                 <li>
-                                    <a href="#">
-                                        @if(request()->lang == 'uz')
-                                            Янгиликлар
-                                        @elseif(request()->lang == 'tj')
-                                            Хабарҳо
-                                        @else
-                                            Новости
-                                        @endif
-                                    </a>
+                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                        <a href="/#news">Новости<a/>
+                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                        <a href="/uz/#news">Янгиликлар<a/>
+                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                        <a href="/tj/#news">Хабарҳо<a/>
+                                    @endif
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        @if(request()->lang == 'uz')
-                                            Авиачипталар
-                                        @elseif(request()->lang == 'tj')
-                                            Чиптаҳои ҳавопаймо
-                                        @else
-                                            Авиабилеты
-                                        @endif
-                                    </a>
+                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                        <a href="{{ route('aviaRu') }}">Авиабилеты<a/>
+                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                        <a href="{{ route('aviaUz') }}">Авиачипталар<a/>
+                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                        <a href="{{ route('aviaTj') }}">Чиптаҳои ҳавопаймо<a/>
+                                    @endif
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        @if(request()->lang == 'uz')
-                                            SIM-карталар
-                                        @elseif(request()->lang == 'tj')
-                                            SIM-кортҳо
-                                        @else
-                                            SIM-карты
-                                        @endif
-                                    </a>
+                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                        <a href="/#sim">SIM-карты</a>
+                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                        <a href="/#sim">SIM-карталар</a>
+                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                        <a href="/#sim">SIM-кортҳо</a>
+                                    @endif
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        @if(request()->lang == 'uz')
-                                            Банк карталари
-                                        @elseif(request()->lang == 'tj')
-                                            Кортҳои бонкӣ
-                                        @else
-                                            Банковские карты
-                                        @endif
-                                    </a>
+                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                        <a href="/#bank-card">Банковские карты</a>
+                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                        <a href="/uz/#bank-card">Банк карталари</a>
+                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                        <a href="/tj/#bank-card">Кортҳои бонкӣ</a>
+                                    @endif
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        @if(request()->lang == 'uz')
-                                            Қарзга пул
-                                        @elseif(request()->lang == 'tj')
-                                            Қарзҳои пулӣ
-                                        @else
-                                            Денежные займы
-                                        @endif
-                                    </a>
+                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                        <a href="/#loan">Денежные займы</a>
+                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                        <a href="/uz/#loan">Қарзга пул</a>
+                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                        <a href="/tj/#loan">Қарзҳои пулӣ</a>
+                                    @endif
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        @if(request()->lang == 'uz')
-                                            Биз ҳақимизда
-                                        @elseif(request()->lang == 'tj')
-                                            Дар бораи мо
-                                        @else
-                                            О нас
-                                        @endif
-                                    </a>
+                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                        <a href="/#about">О нас</a>
+                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                        <a href="/uz/#about">Биз ҳақимизда</a>
+                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                        <a href="/tj/#about">Дар бораи мо</a>
+                                    @endif
                                 </li>
                             </ul>
                         </div>
