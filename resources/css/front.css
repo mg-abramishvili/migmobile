@@ -50,6 +50,10 @@ html, body {
     color: #fff;
 }
 
+.title-head-center {
+    text-align: center;
+}
+
 /* HEADER */
 .header {
     background-color: #fff;
@@ -859,6 +863,9 @@ html, body {
 /* AVIA */
 .avia-page {
     background-color: #fff;
+}
+.avia-page .title-head {
+    margin-bottom: 30px;
 }
 
 .present {

@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="avia-page">
-        <div class="present b-lazy b-loaded" style="background-image: url(&quot;img/present-bg.jpg&quot;);">
-            <div class="container">
-                <h1>Дешевые авиабилеты от крупнейших авиакомпаний и агентств</h1>
+        <div class="present" style="background-image: url(/img/present-bg.jpg);">
+            <div class="container avia-container">
+                <h1 class="title-head title-head-center">Дешевые авиабилеты от крупнейших авиакомпаний и агентств</h1>
                 <span class="subtitle">Сэкономьте до 30% средств на покупке авиабилетов без наценок</span>
                 <div class="present__fix-height-wrap">
                     <div class="present__form" id="present__form">
@@ -18,11 +18,8 @@
 
         <div class="calendar">
             <div class="container">
-                <h2>Календарь низких цен</h2>
+                <h2 class="title-head title-head-center">Календарь низких цен</h2>
                 <span class="subtitle">Самые выгодные перелёты на год вперед!</span>
-                <div class="calendar__tooltip">
-                    <div class="tooltip">Для изменения параметров календаря нажмите тут</div>
-                </div>
                 <div class="calendar__form" id="calendar__form">
                     <script src="https://tp.media/content?currency=rub&promo_id=4041&shmarker=349676&campaign_id=100&trs=162992&searchUrl=www.aviasales.ru%2Fsearch&locale=ru&powered_by=true&one_way=false&only_direct=false&period=year&range=7%2C14&primary=%23FFDD2D&color_background=%23ffffff&achieve=%23FFDD2D&dark=%23000000&light=%23151515" charset="utf-8"></script>
                 </div>
@@ -31,7 +28,7 @@
 
         <div class="popular">
             <div class="container">
-                <h2>Самые популярные направления перелётов</h2>
+                <h2 class="title-head title-head-center">Самые популярные направления перелётов</h2>
                 <ul class="popular__list">
                     <li id="popular__list__item-1">
                         <script src="//tp.media/content?currency=rub&promo_id=4044&shmarker=349676&campaign_id=100&trs=162992&target_host=www.aviasales.ru%2Fsearch&locale=ru&limit=6&powered_by=true&destination=MOW" charset="utf-8"></script>
