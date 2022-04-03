@@ -32,11 +32,16 @@
                             </div>
                             <div class="col header-top-socials">
                                 <ul>
-                                    <li>
+                                    <!-- <li>
                                         <a href="https://instagram.com/migrant_mobile" target="_blank">
                                             <img src="/img/instagram.svg" alt="">
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="https://www.facebook.com/migrant.mobile" target="_blank">
+                                            <img src="/img/facebook.svg" alt="">
+                                        </a>
+                                    </li> -->
                                     <li>
                                         <a href="https://t.me/Migrant_mobile_bot" target="_blank">
                                             <img src="/img/telegram.svg" alt="">
@@ -48,8 +53,13 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.facebook.com/migrant.mobile" target="_blank">
-                                            <img src="/img/facebook.svg" alt="">
+                                        <a href="https://vm.tiktok.com/ZSd28C4HB/" target="_blank">
+                                            <img src="/img/tiktok.svg" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://ok.ru/group/61666975613007" target="_blank">
+                                            <img src="/img/ok.svg" alt="">
                                         </a>
                                     </li>
                                 </ul>
@@ -247,11 +257,16 @@
                                 @endif
                             </p>
                             <ul>
-                                <li>
+                                <!-- <li>
                                     <a href="https://instagram.com/migrant_mobile" target="_blank">
                                         <img src="/img/instagram.svg" alt="">
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="https://www.facebook.com/migrant.mobile" target="_blank">
+                                        <img src="/img/facebook.svg" alt="">
+                                    </a>
+                                </li> -->
                                 <li>
                                     <a href="https://t.me/Migrant_mobile_bot" target="_blank">
                                         <img src="/img/telegram.svg" alt="">
@@ -263,8 +278,13 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://www.facebook.com/migrant.mobile" target="_blank">
-                                        <img src="/img/facebook.svg" alt="">
+                                    <a href="https://vm.tiktok.com/ZSd28C4HB/" target="_blank">
+                                        <img src="/img/tiktok.svg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://ok.ru/group/61666975613007" target="_blank">
+                                        <img src="/img/ok.svg" alt="">
                                     </a>
                                 </li>
                             </ul>
