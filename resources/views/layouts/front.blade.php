@@ -68,26 +68,52 @@
                                 <a href="#">+7 999 123-45-67</a>
                             </div>
                             <div class="col header-top-lang">
-                                <ul class="header-top-flags">
-                                    <li>
-                                        <a href="{{ route('homeRu') }}">
-                                            <img src="/img/flag_rus.svg" alt="Русский язык">
-                                            RU
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('homeUz') }}/">
-                                            <img src="/img/flag_uzb.svg" alt="Узбекский язык">
-                                            UZ
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('homeTj') }}/">
-                                            <img src="/img/flag_taj.svg" alt="Таджикский язык">
-                                            TJ
-                                        </a>
-                                    </li>
-                                </ul>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @if(Route::is('homeRu') || Route::is('aviaRu'))
+                                            <div class="dropdown-item header-top-flags-item">
+                                                <a href="{{ route('homeRu') }}">
+                                                    <img src="/img/flag_rus.svg" alt="Русский язык">
+                                                    RU
+                                                </a>
+                                            </div>
+                                        @elseif(Route::is('homeUz') || Route::is('aviaUz'))
+                                            <div class="dropdown-item header-top-flags-item">
+                                                <a href="{{ route('homeUz') }}">
+                                                    <img src="/img/flag_uzb.svg" alt="Узбекский язык">
+                                                    UZ
+                                                </a>
+                                            </div>
+                                        @elseif(Route::is('homeTj') || Route::is('aviaTj'))
+                                            <div class="dropdown-item header-top-flags-item">
+                                                <a href="{{ route('homeTj') }}">
+                                                    <img src="/img/flag_taj.svg" alt="Таджикский язык">
+                                                    TJ
+                                                </a>
+                                            </div>
+                                        @endif
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li class="dropdown-item header-top-flags-item">
+                                            <a href="{{ route('homeRu') }}">
+                                                <img src="/img/flag_rus.svg" alt="Русский язык">
+                                                RU
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-item header-top-flags-item">
+                                            <a href="{{ route('homeUz') }}/">
+                                                <img src="/img/flag_uzb.svg" alt="Узбекский язык">
+                                                UZ
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-item header-top-flags-item">
+                                            <a href="{{ route('homeTj') }}/">
+                                                <img src="/img/flag_taj.svg" alt="Таджикский язык">
+                                                TJ
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="col header-top-nav-button">
                                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
@@ -294,7 +320,7 @@
             </footer>
         </div>
         
-        <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('/js/flickity.pkgd.min.js') }}"></script>
         <script src="{{ mix('/js/front.js') }}"></script>
         @yield('scripts')
