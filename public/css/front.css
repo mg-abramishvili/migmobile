@@ -753,7 +753,7 @@ html, body {
 }
 .header-top-socials {
     flex: 0 0 auto;
-    width: 50%;
+    width: 65%;
     text-align: right;
     justify-content: flex-end;
     display: flex;
@@ -816,7 +816,7 @@ html, body {
 }
 .header-top-lang {
     flex: 0 0 auto;
-    width: 50%;
+    width: 35%;
     order: 3;
     margin-top: 20px;
 }
@@ -833,7 +833,7 @@ html, body {
     height: 100%;
     color: #151515;
     text-decoration: none;
-    font-size: 10px;
+    font-size: 12px;
     text-align: left;
     font-weight: 600;
 }
@@ -848,7 +848,7 @@ html, body {
     /* color: #ffdd2d; */
 }
 .header-top-flags-item a img {
-    width: 30%;
+    width: 50%;
     border: 2px solid #bbdaff;
     border-radius: 5px;
     margin-right: 5px;
