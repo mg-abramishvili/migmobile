@@ -284,71 +284,17 @@
                             Оформите заявку на получение банковской карты российского банка.
                         @endif
                     </p>
-                    <div class="main-bank-card-form">
-                        <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <label>
-                                    @if(Route::is('homeUz'))
-                                        Исм
-                                    @elseif(Route::is('homeTj'))
-                                        Ном
-                                    @else
-                                        Имя
-                                    @endif
-                                </label>
-                                <input type="text" class="form-control" placeholder="
-                                    @if(Route::is('homeUz'))
-                                        Сизнинг исмингиз нима?
-                                    @elseif(Route::is('homeTj'))
-                                        Номи Шумо чист
-                                    @else
-                                        Как вас зовут
-                                    @endif
-                                ">
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label>
-                                    @if(Route::is('homeUz'))
-                                        Телефон
-                                    @elseif(Route::is('homeTj'))
-                                        Телефон
-                                    @else
-                                        Телефон
-                                    @endif
-                                </label>
-                                <input type="text" class="form-control" placeholder="
-                                    @if(Route::is('homeUz'))
-                                        Ваш номер телефона
-                                    @elseif(Route::is('homeTj'))
-                                        Сизнинг телефон рақамингиз
-                                    @else
-                                        Рақами телефони Шумо
-                                    @endif
-                                ">
-                            </div>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                @if(Route::is('homeUz'))
-                                    Шахсий маълумотларни қайта ишлашга розиман
-                                @elseif(Route::is('homeTj'))
-                                    Ман барои коркарди маълумоти шахсӣ розӣ ҳастам
-                                @else
-                                    Согласен с обработкой персональных данных
-                                @endif
-                            </label>
-                        </div>
-                        <button class="btn btn-primary">
-                            @if(Route::is('homeUz'))
-                                Расмийлаштириш
-                            @elseif(Route::is('homeTj'))
-                                Дархост намудан
-                            @else
-                                Оформить
-                            @endif
-                        </button>
-                    </div>
+                    <create-lead
+                        service="bank_card"
+
+                        @if(Route::is('homeUz'))
+                            lang="uz"
+                        @elseif(Route::is('homeTj'))
+                            lang="tj"
+                        @else
+                            lang="ru"
+                        @endif
+                    ></create-lead>
                 </div>
                 <div class="col-12 col-lg-5">
                     <img src="/img/cards.png" alt="Банковская карта">
@@ -414,71 +360,17 @@
                                 Оформите заявку на получение денежного займа до 30 000 руб.
                             @endif
                         </p>
-                        <div class="main-loan-form">
-                            <div class="row">
-                                <div class="col-12 col-lg-6">
-                                    <label>
-                                        @if(Route::is('homeUz'))
-                                            Исм
-                                        @elseif(Route::is('homeTj'))
-                                            Ном
-                                        @else
-                                            Имя
-                                        @endif
-                                    </label>
-                                    <input type="text" class="form-control" placeholder="
-                                        @if(Route::is('homeUz'))
-                                            Сизнинг исмингиз нима?
-                                        @elseif(Route::is('homeTj'))
-                                            Номи Шумо чист
-                                        @else
-                                            Как вас зовут
-                                        @endif
-                                    ">
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <label>
-                                        @if(Route::is('homeUz'))
-                                            Телефон
-                                        @elseif(Route::is('homeTj'))
-                                            Телефон
-                                        @else
-                                            Телефон
-                                        @endif
-                                    </label>
-                                    <input type="text" class="form-control" placeholder="
-                                        @if(Route::is('homeUz'))
-                                            Ваш номер телефона
-                                        @elseif(Route::is('homeTj'))
-                                            Сизнинг телефон рақамингиз
-                                        @else
-                                            Рақами телефони Шумо
-                                        @endif
-                                    ">
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    @if(Route::is('homeUz'))
-                                        Шахсий маълумотларни қайта ишлашга розиман
-                                    @elseif(Route::is('homeTj'))
-                                        Ман барои коркарди маълумоти шахсӣ розӣ ҳастам
-                                    @else
-                                        Согласен с обработкой персональных данных
-                                    @endif
-                                </label>
-                            </div>
-                            <button class="btn btn-primary">
-                                @if(Route::is('homeUz'))
-                                    Расмийлаштириш
-                                @elseif(Route::is('homeTj'))
-                                    Дархост намудан
-                                @else
-                                    Оформить
-                                @endif
-                            </button>
-                        </div>
+                        <create-lead
+                            service="loan"
+
+                            @if(Route::is('homeUz'))
+                                lang="uz"
+                            @elseif(Route::is('homeTj'))
+                                lang="tj"
+                            @else
+                                lang="ru"
+                            @endif
+                        ></create-lead>
                     </div>
                 </div>
             </div>
