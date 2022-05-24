@@ -46,9 +46,14 @@ Route::prefix("admin")->middleware(['auth'])->group(function() {
     })->where('any', '.*');
 });
 
-// ADMIN PRODUCTS
+// ADMIN LEADS
 Route::get('_admin/leads', [App\Http\Controllers\Admin\LeadController::class, 'index']);
 Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class, 'lead']);
+
+// ADMIN NUMBERS
+Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index']);
+Route::get('_admin/number/{id}', [App\Http\Controllers\Admin\NumberController::class, 'number']);
+
 
 // AUTH
 require __DIR__.'/auth.php';
