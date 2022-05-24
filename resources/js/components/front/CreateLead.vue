@@ -47,8 +47,8 @@
             </div>
         </div>
         <div class="form-check">
-            <input v-model="policy" class="form-check-input" type="checkbox" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
+            <input v-model="policy" class="form-check-input" type="checkbox" :id="'check_' + service">
+            <label class="form-check-label" :for="'check_' + service">
                 <template v-if="lang == 'uz'">
                     Шахсий маълумотларни қайта ишлашга розиман
                 </template>
@@ -113,15 +113,22 @@ export default {
                 return
             }
 
-            this.name = ''
-            this.phone = ''
-            this.policy = false
-
-            this.views.success = true
-
-            setTimeout(() => {
-                this.views.success = false
-            }, 3000)
+            axios.post('/_leads', {
+                name: this.name,
+                phone: this.phone,
+                subject: this.service,
+            })
+            .then(response => {
+                this.name = ''
+                this.phone = ''
+                this.policy = false
+    
+                this.views.success = true
+    
+                setTimeout(() => {
+                    this.views.success = false
+                }, 3000)
+            })
         }
     }
 }

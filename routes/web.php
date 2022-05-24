@@ -33,6 +33,8 @@ Route::get('/tj/avia', function() {
     return view('avia');
 })->name('aviaTj');
 
+Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
+
 // ADMIN
 Route::get('admin', function () {
     return view('layouts.admin');
@@ -43,6 +45,10 @@ Route::prefix("admin")->middleware(['auth'])->group(function() {
         return view('layouts.admin');
     })->where('any', '.*');
 });
+
+// ADMIN PRODUCTS
+Route::get('_admin/leads', [App\Http\Controllers\Admin\LeadController::class, 'index']);
+Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class, 'lead']);
 
 // AUTH
 require __DIR__.'/auth.php';
