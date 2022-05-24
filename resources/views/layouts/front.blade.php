@@ -321,7 +321,11 @@
         
         <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('/js/flickity.pkgd.min.js') }}"></script>
-        <script src="{{ mix('/js/front.js') }}"></script>
         @yield('scripts')
+
+        @if(Route::is('aviaRu') || Route::is('aviaUz') || Route::is('aviaTj'))
+        @else
+            <script src="{{ mix('/js/front.js') }}"></script>
+        @endif
     </body>
 </html>
