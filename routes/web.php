@@ -32,3 +32,17 @@ Route::get('/uz/avia', function() {
 Route::get('/tj/avia', function() {
     return view('avia');
 })->name('aviaTj');
+
+// ADMIN
+Route::get('admin', function () {
+    return view('layouts.admin');
+})->middleware(['auth']);
+
+Route::prefix("admin")->middleware(['auth'])->group(function() {
+    Route::get('{any}', function () {
+        return view('layouts.admin');
+    })->where('any', '.*');
+});
+
+// AUTH
+require __DIR__.'/auth.php';

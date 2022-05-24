@@ -1,7 +1,11 @@
-import Vue from 'vue'
+require('./bootstrap');
 
-Vue.component('create-lead', require('./components/CreateLead.vue').default);
+import { createApp } from 'vue'
 
-const app = new Vue({
-    el: '#front'
-});
+import CreateLead from './components/front/CreateLead'
+
+const app = createApp({})
+
+app.component('create-lead', CreateLead)
+
+app.mount('#front')
