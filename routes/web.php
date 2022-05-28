@@ -52,6 +52,7 @@ Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class
 
 // ADMIN NUMBERS
 Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index']);
+Route::post('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'store']);
 Route::get('_admin/number/{id}', [App\Http\Controllers\Admin\NumberController::class, 'number']);
 
 

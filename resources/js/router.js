@@ -5,6 +5,7 @@ import Home from './components/admin/Home'
 import Leads from './components/admin/leads/Index'
 
 import Numbers from './components/admin/numbers/Index'
+import NumberCreate from './components/admin/numbers/Create'
 
 const routes = [
     {
@@ -21,6 +22,11 @@ const routes = [
         path: '/admin/numbers',
         name: 'Numbers',
         component: Numbers
+    },
+    {
+        path: '/admin/numbers/create',
+        name: 'NumberCreate',
+        component: NumberCreate
     },
 ];
 

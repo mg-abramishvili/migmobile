@@ -5,6 +5,9 @@
                 <div class="col-12 col-md-6">
                     <h1>Номера</h1>
                 </div>
+                <div class="col-12 col-md-6 text-end">
+                    <router-link :to="{ name: 'NumberCreate' }" class="btn btn-primary">Добавить</router-link>
+                </div>
             </div>
         </div>
 
@@ -18,12 +21,14 @@
                             <tr>
                                 <th>Номер</th>
                                 <th>Оператор</th>
+                                <th>Серийный номер</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="number in numbers" :key="number.id">
                                 <td>{{ number.number }}</td>
                                 <td>{{ number.provider }}</td>
+                                <td>{{ number.serial_number }}</td>
                             </tr>
                         </tbody>
                     </table>

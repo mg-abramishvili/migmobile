@@ -15,18 +15,22 @@ class NumberController extends Controller
 
     public function store(Request $request)
     {
+        $numbers = $request->numbers;
+        
         $this->validate($request, [
-            'number' => 'required',
-            'provider' => 'required',
-            'is_pretty' => 'required',
+            'numbers' => 'required',
         ]);
 
-        $number = new Number();
-
-        $number->number = $request->number;
-        $number->provider = $request->provider;
-        $number->is_pretty = $request->is_pretty;
-
-        $number->save();
+        foreach($numbers as $nm)
+        {
+            $number = new Number();
+    
+            $number->number = $nm['number'];
+            $number->provider = $nm['provider'];
+            $number->serial_number = $nm['serial_number'];
+            $number->is_pretty = false;
+    
+            $number->save();
+        }
     }
 }
