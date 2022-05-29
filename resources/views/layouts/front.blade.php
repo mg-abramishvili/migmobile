@@ -21,13 +21,9 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col header-top-logo">
-                                @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                    <a href="/"><img src="/img/logo.svg" alt="Паритет-Телеком"></a>
-                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                    <a href="/uz"><img src="/img/logo.svg" alt="Паритет-Телеком"></a>
-                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                    <a href="/tj"><img src="/img/logo.svg" alt="Паритет-Телеком"></a>
-                                @endif
+                                <a href="/">
+                                    <img src="/img/logo.svg" alt="Паритет-Телеком">
+                                </a>
                             </div>
                             <div class="col header-top-socials">
                                 <ul>
@@ -70,7 +66,7 @@
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <div class="dropdown-item header-top-flags-item">
-                                            <a href="{{ route('homeRu') }}">
+                                            <a href="{{ route('home') }}">
                                                 <img src="/img/flag_{{ app()->getLocale() }}.svg" alt="Русский язык">
                                                 {{ strtoupper(app()->getLocale()) }}
                                             </a>
