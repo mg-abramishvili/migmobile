@@ -5,15 +5,7 @@
 @section('content')
     <div class="main-news" id="news">
         <div class="container">
-            <h5 class="title-head">
-                @if(Route::is('homeUz'))
-                    Янгиликлар
-                @elseif(Route::is('homeTj'))
-                    Хабарҳо
-                @else
-                    Новости
-                @endif
-            </h5>
+            <h5 class="title-head">{{ __('News') }}</h5>
             <div class="main-news-slider">
                 @foreach($news as $newsItem)
                     <div class="main-news-item">
@@ -32,43 +24,11 @@
             <div class="main-form-inner">
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-8">
-                        <h2 class="title-head title-head-white">
-                            @if(Route::is('homeRu'))
-                                Ищете авиабилет без переплат?
-                            @elseif(Route::is('homeUz'))
-                                Ортиқча тўловсиз авиачипта қидиряпсизми?
-                            @elseif(Route::is('homeTj'))
-                                Чиптаи ҳавопайморо бидуни пардохти изофагӣ меҷуед?
-                            @endif
-                        </h2>
-                        <p>
-                            @if(Route::is('homeUz'))
-                                Бизда сиз арзон авиачипталарни сотиб олишингиз мумкин
-                            @elseif(Route::is('homeTj'))
-                                Шумо хамчунин метавонед аз мо чиптаҳои арзон харед
-                            @else
-                                У нас вы также можете купить дешевые авиабилеты
-                            @endif
-                        </p>
+                        <h2 class="title-head title-head-white">{{ __('Looking for a ticket without overpayments?') }}</h2>
+                        <p>{{ __('You can also buy cheap flights from us') }}</p>
                     </div>
                     <div class="col-12 col-lg-4 text-center">
-                        <a
-                        @if(Route::is('homeRu'))
-                            href="{{ route('aviaRu') }}"
-                        @elseif(Route::is('homeUz'))
-                            href="{{ route('aviaUz') }}"
-                        @elseif(Route::is('homeTj'))
-                            href="{{ route('aviaTj') }}"
-                        @endif
-                        class="btn btn-primary btn-white">
-                            @if(Route::is('homeUz'))
-                                Чипта сотиб олиш
-                            @elseif(Route::is('homeTj'))
-                                Хариди чипта
-                            @else
-                                Купить билет
-                            @endif
-                        </a>
+                        <a href="{{ route('avia') }}" class="btn btn-primary btn-white">{{ __('Buy a ticket') }}</a>
                     </div>
                 </div>
             </div>
@@ -77,115 +37,43 @@
 
     <div class="main-sim" id="sim">
         <div class="container">
-            <h5 class="title-head">
-                @if(Route::is('homeUz'))
-                    SIM-карталар
-                @elseif(Route::is('homeTj'))
-                    SIM-кортҳо
-                @else
-                    SIM-карты
-                @endif
-            </h5>
+            <h5 class="title-head">{{ __('SIM cards') }}</h5>
             <div class="main-sim-slider">
                 <div class="main-sim-item main-sim-item-beeline">
-                    <p>
-                        @if(Route::is('homeUz'))
-                            Билайн-дан тариф
-                        @elseif(Route::is('homeTj'))
-                            Тарофа аз Билайн
-                        @else
-                            Тариф от Билайн
-                        @endif
-                    </p>
+                    <p>{{ __('Beeline plan') }}</p>
                     <ul>
                         <li>100 MIN</li>
                         <li>10 GB</li>
                         <li>30 дней</li>
                     </ul>
-                    <button class="btn btn-primary">
-                        @if(Route::is('homeUz'))
-                            Буюртма бериш
-                        @elseif(Route::is('homeTj'))
-                            Фармоиш додан
-                        @else
-                            Заказать
-                        @endif
-                    </button>
+                    <button class="btn btn-primary">{{ __('Order') }}</button>
                 </div>
                 <div class="main-sim-item main-sim-item-mts">
-                    <p>
-                        @if(Route::is('homeUz'))
-                            МТС-дан тариф
-                        @elseif(Route::is('homeTj'))
-                            Тарофа аз МТС
-                        @else
-                            Тариф от МТС
-                        @endif
-                    </p>
+                    <p>{{ __('MTS plan') }}</p>
                     <ul>
                         <li>100 MIN</li>
                         <li>10 GB</li>
                         <li>30 дней</li>
                     </ul>
-                    <button class="btn btn-primary">
-                        @if(Route::is('homeUz'))
-                            Буюртма бериш
-                        @elseif(Route::is('homeTj'))
-                            Фармоиш додан
-                        @else
-                            Заказать
-                        @endif
-                    </button>
+                    <button class="btn btn-primary">{{ __('Order') }}</button>
                 </div>
                 <div class="main-sim-item main-sim-item-megafon">
-                    <p>
-                        @if(Route::is('homeUz'))
-                            Мегафон-дан тариф
-                        @elseif(Route::is('homeTj'))
-                            Тарофа аз Мегафон
-                        @else
-                            Тариф от Мегафон
-                        @endif
-                    </p>
+                    <p>{{ __('Megafon plan') }}</p>
                     <ul>
                         <li>100 MIN</li>
                         <li>10 GB</li>
                         <li>30 дней</li>
                     </ul>
-                    <button class="btn btn-primary">
-                        @if(Route::is('homeUz'))
-                            Буюртма бериш
-                        @elseif(Route::is('homeTj'))
-                            Фармоиш додан
-                        @else
-                            Заказать
-                        @endif
-                    </button>
+                    <button class="btn btn-primary">{{ __('Order') }}</button>
                 </div>
                 <div class="main-sim-item main-sim-item-tele2">
-                    <p>
-                        @if(Route::is('homeUz'))
-                            Теле2-дан тариф
-                        @elseif(Route::is('homeTj'))
-                            Тарофа аз Теле2
-                        @else
-                            Тариф от Теле2
-                        @endif
-                    </p>
+                    <p>{{ __('Tele2 plan') }}</p>
                     <ul>
                         <li>100 MIN</li>
                         <li>10 GB</li>
                         <li>30 дней</li>
                     </ul>
-                    <button class="btn btn-primary">
-                        @if(Route::is('homeUz'))
-                            Буюртма бериш
-                        @elseif(Route::is('homeTj'))
-                            Фармоиш додан
-                        @else
-                            Заказать
-                        @endif
-                    </button>
+                    <button class="btn btn-primary">{{ __('Order') }}</button>
                 </div>
             </div>
         </div>
@@ -235,44 +123,12 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-7">
-                    <h5 class="title-head">
-                        @if(Route::is('homeUz'))
-                            Банк картаси
-                        @elseif(Route::is('homeTj'))
-                            Корти бонкӣ
-                        @else
-                            Банковская карта
-                        @endif
-                    </h5>
+                    <h5 class="title-head">{{ __('Bank cards') }}</h5>
                     
                     <ul>
-                        <li>
-                            @if(Route::is('homeUz'))
-                                Россия VISA дебет картаси махсус чет эл фуқаролари учун.
-                            @elseif(Route::is('homeTj'))
-                                Корти дебетии русӣ VISA махсусан барои шаҳрвандони хориҷӣ.
-                            @else
-                                Российская дебетовая карта VISA специально для иностранных граждан.
-                            @endif
-                        </li>
-                        <li>
-                            @if(Route::is('homeUz'))
-                                Халқаро ўтказмалари учун имтиёзли комиссия – фақат 1,15%.
-                            @elseif(Route::is('homeTj'))
-                                Комиссияи имтиёзнок барои интиқолҳои байналмилалӣ - ҳамагӣ 1,15%.
-                            @else
-                                Льготная комиссия на международные переводы - всего 1,15%.
-                            @endif
-                        </li>
-                        <li>
-                            @if(Route::is('homeUz'))
-                                Картани етказиб бериш бепул.
-                            @elseif(Route::is('homeTj'))
-                                Расонидани корт ройгон аст.
-                            @else
-                                Доставка карты бесплатно.
-                            @endif
-                        </li>
+                        <li>{{ __('Russian VISA debit card specially for foreign citizens') }}.</li>
+                        <li>{{ __('The preferential commission for international transfers is only 1.15%') }}.</li>
+                        <li>{{ __('Card delivery is free of charge') }}.</li>
                     </ul>
                     
                     <p>
@@ -394,31 +250,6 @@
                     <p>В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.</p>
                     <p>Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.</p>
                 </div>
-                <!-- <div class="col-12 col-lg-6">
-                    <div class="main-about-form">
-                        <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <label class="form-label">Имя</label>
-                                <input type="text" class="form-control" placeholder="Как вас зовут">
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label class="form-label">Телефон</label>
-                                <input type="text" class="form-control" placeholder="Ваш номер телефона">
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <label>Сообщение</label>
-                            <textarea class="form-control"></textarea>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Согласен с обработкой персональных данных
-                            </label>
-                        </div>
-                        <button class="btn btn-primary">Отправить</button>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
