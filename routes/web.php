@@ -33,6 +33,10 @@ Route::get('/tj/avia', function() {
     return view('avia');
 })->name('aviaTj');
 
+Route::get('/order', function() {
+    return view('order');
+})->name('orderRu');
+
 Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
 
 // ADMIN

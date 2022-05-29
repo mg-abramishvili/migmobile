@@ -216,7 +216,7 @@
                         </p>
                     </div>
                     <div class="col-12 col-lg-4 text-center">
-                        <a class="btn btn-primary btn-white">
+                        <a href="/order/" class="btn btn-primary btn-white">
                             @if(Route::is('homeUz'))
                                 Рақамни танлаш
                             @elseif(Route::is('homeTj'))

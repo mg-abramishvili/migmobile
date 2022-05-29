@@ -69,48 +69,22 @@
                             <div class="col header-top-lang">
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                            <div class="dropdown-item header-top-flags-item">
-                                                <a href="{{ route('homeRu') }}">
-                                                    <img src="/img/flag_rus.svg" alt="Русский язык">
-                                                    RU
-                                                </a>
-                                            </div>
-                                        @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                            <div class="dropdown-item header-top-flags-item">
-                                                <a href="{{ route('homeUz') }}">
-                                                    <img src="/img/flag_uzb.svg" alt="Узбекский язык">
-                                                    UZ
-                                                </a>
-                                            </div>
-                                        @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                            <div class="dropdown-item header-top-flags-item">
-                                                <a href="{{ route('homeTj') }}">
-                                                    <img src="/img/flag_taj.svg" alt="Таджикский язык">
-                                                    TJ
-                                                </a>
-                                            </div>
-                                        @endif
+                                        <div class="dropdown-item header-top-flags-item">
+                                            <a href="{{ route('homeRu') }}">
+                                                <img src="/img/flag_{{ app()->getLocale() }}.svg" alt="Русский язык">
+                                                {{ strtoupper(app()->getLocale()) }}
+                                            </a>
+                                        </div>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li class="dropdown-item header-top-flags-item">
-                                            <a href="{{ route('homeRu') }}">
-                                                <img src="/img/flag_rus.svg" alt="Русский язык">
-                                                RU
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item header-top-flags-item">
-                                            <a href="{{ route('homeUz') }}/">
-                                                <img src="/img/flag_uzb.svg" alt="Узбекский язык">
-                                                UZ
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item header-top-flags-item">
-                                            <a href="{{ route('homeTj') }}/">
-                                                <img src="/img/flag_taj.svg" alt="Таджикский язык">
-                                                TJ
-                                            </a>
-                                        </li>
+                                        @foreach(config('app.languages') as $langLocale => $langName)
+                                            <li class="dropdown-item header-top-flags-item">
+                                                <a href="{{ url()->current() }}?lang={{ $langLocale }}">
+                                                    <img src="/img/flag_{{ $langName }}.svg" alt="{{ $langName }}">
+                                                    {{ $langName }}
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -130,58 +104,22 @@
                                     <div class="navbar-collapse justify-content-md-center collapse" id="navbarsExample10" style="">
                                         <ul class="navbar-nav">
                                             <li class="nav-item">
-                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                    <a href="/#news" class="nav-link">Новости<a/>
-                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                    <a href="/uz/#news" class="nav-link">Янгиликлар<a/>
-                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                    <a href="/tj/#news" class="nav-link">Хабарҳо<a/>
-                                                @endif
+                                                <a href="/#news" class="nav-link">{{ __('News') }}<a/>
                                             </li>
                                             <li class="nav-item">
-                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                    <a href="{{ route('aviaRu') }}" class="nav-link">Авиабилеты<a/>
-                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                    <a href="{{ route('aviaUz') }}" class="nav-link">Авиачипталар<a/>
-                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                    <a href="{{ route('aviaTj') }}" class="nav-link">Чиптаҳои ҳавопаймо<a/>
-                                                @endif
+                                                <a href="/avia/" class="nav-link">{{ __('Avia Tickets') }}<a/>
                                             </li>
                                             <li class="nav-item">
-                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                    <a href="/#sim" class="nav-link">SIM-карты</a>
-                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                    <a href="/#sim" class="nav-link">SIM-карталар</a>
-                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                    <a href="/#sim" class="nav-link">SIM-кортҳо</a>
-                                                @endif
+                                                <a href="/#sim" class="nav-link">{{ __('SIM cards') }}</a>
                                             </li>
                                             <li class="nav-item">
-                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                    <a href="/#bank-card" class="nav-link">Банковские карты</a>
-                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                    <a href="/uz/#bank-card" class="nav-link">Банк карталари</a>
-                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                    <a href="/tj/#bank-card" class="nav-link">Кортҳои бонкӣ</a>
-                                                @endif
+                                                <a href="/#bank-card" class="nav-link">{{ __('Bank cards') }}</a>
                                             </li>
                                             <li class="nav-item">
-                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                    <a href="/#loan" class="nav-link">Денежные займы</a>
-                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                    <a href="/uz/#loan" class="nav-link">Қарзга пул</a>
-                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                    <a href="/tj/#loan" class="nav-link">Қарзҳои пулӣ</a>
-                                                @endif
+                                                <a href="/#loan" class="nav-link">{{ __('Loans') }}</a>
                                             </li>
                                             <li class="nav-item">
-                                                @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                                    <a href="/#about" class="nav-link">О нас</a>
-                                                @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                                    <a href="/uz/#about" class="nav-link">Биз ҳақимизда</a>
-                                                @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                                    <a href="/tj/#about" class="nav-link">Дар бораи мо</a>
-                                                @endif
+                                                <a href="/#about" class="nav-link">{{ __('About Us') }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -203,95 +141,33 @@
                             <a href="#">
                                 <img src="/img/logo-w.svg" alt="Паритет-Телеком">
                             </a>
-                            <a href="#">
-                                @if(request()->lang == 'uz')
-                                    Махфийлик сиёсати
-                                @elseif(request()->lang == 'tj')
-                                    Сиёсати корбурди маълумоти шахсӣ
-                                @else
-                                    Политика конфиденциальности
-                                @endif
-                            </a>
+                            <a href="#">{{ __('Privacy policy') }}</a>
                         </div>
                         <div class="col footer-menu">
                             <ul>
                                 <li>
-                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                        <a href="/#news">Новости<a/>
-                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                        <a href="/uz/#news">Янгиликлар<a/>
-                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                        <a href="/tj/#news">Хабарҳо<a/>
-                                    @endif
+                                    <a href="/#news">{{ __('News') }}<a/>
                                 </li>
                                 <li>
-                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                        <a href="{{ route('aviaRu') }}">Авиабилеты<a/>
-                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                        <a href="{{ route('aviaUz') }}">Авиачипталар<a/>
-                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                        <a href="{{ route('aviaTj') }}">Чиптаҳои ҳавопаймо<a/>
-                                    @endif
+                                    <a href="/avia/">{{ __('Avia Tickets') }}<a/>
                                 </li>
                                 <li>
-                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                        <a href="/#sim">SIM-карты</a>
-                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                        <a href="/#sim">SIM-карталар</a>
-                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                        <a href="/#sim">SIM-кортҳо</a>
-                                    @endif
+                                    <a href="/#sim">{{ __('SIM cards') }}</a>
                                 </li>
                                 <li>
-                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                        <a href="/#bank-card">Банковские карты</a>
-                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                        <a href="/uz/#bank-card">Банк карталари</a>
-                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                        <a href="/tj/#bank-card">Кортҳои бонкӣ</a>
-                                    @endif
+                                    <a href="/#bank-card">{{ __('Bank cards') }}</a>
                                 </li>
                                 <li>
-                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                        <a href="/#loan">Денежные займы</a>
-                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                        <a href="/uz/#loan">Қарзга пул</a>
-                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                        <a href="/tj/#loan">Қарзҳои пулӣ</a>
-                                    @endif
+                                    <a href="/#loan">{{ __('Loans') }}</a>
                                 </li>
                                 <li>
-                                    @if(Route::is('homeRu') || Route::is('aviaRu'))
-                                        <a href="/#about">О нас</a>
-                                    @elseif(Route::is('homeUz') || Route::is('aviaUz'))
-                                        <a href="/uz/#about">Биз ҳақимизда</a>
-                                    @elseif(Route::is('homeTj') || Route::is('aviaTj'))
-                                        <a href="/tj/#about">Дар бораи мо</a>
-                                    @endif
+                                    <a href="/#about">{{ __('About Us') }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-12 footer-social">
-                            <p>
-                                @if(request()->lang == 'uz')
-                                    Ижтимоий тармоқларда бизни кузатинг
-                                @elseif(request()->lang == 'tj')
-                                    Моро дар шабакаҳои иҷтимоӣ пайгирӣ кунед
-                                @else
-                                    Следите за нами в соцсетях:
-                                @endif
-                            </p>
+                            <p>{{ __('Follow us on social media') }}</p>
                             <ul>
-                                <!-- <li>
-                                    <a href="https://instagram.com/migrant_mobile" target="_blank">
-                                        <img src="/img/instagram.svg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.facebook.com/migrant.mobile" target="_blank">
-                                        <img src="/img/facebook.svg" alt="">
-                                    </a>
-                                </li> -->
                                 <li>
                                     <a href="https://t.me/Migrant_mobile_bot" target="_blank">
                                         <img src="/img/telegram.svg" alt="">

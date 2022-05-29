@@ -21,11 +21,15 @@
                 <h2 class="title-head title-head-center">Календарь низких цен</h2>
                 <span class="subtitle">Самые выгодные перелёты на год вперед!</span>
                 <div class="calendar__form" id="calendar__form">
-                    @if(Route::is('aviaRu'))
+                    @if(session()->get('language') == 'ru')
                         <script src="https://tp.media/content?currency=rub&promo_id=4041&shmarker=349676&campaign_id=100&trs=162992&searchUrl=www.aviasales.ru%2Fsearch&locale=ru&powered_by=true&one_way=false&only_direct=false&period=year&range=7%2C14&primary=%23FFDD2D&color_background=%23ffffff&achieve=%23FFDD2D&dark=%23000000&light=%23151515&origin=MOW&destination=TAS" charset="utf-8"></script>
-                    @elseif(Route::is('aviaUz'))
+                    @endif
+
+                    @if(session()->get('language') == 'uz')
                         <script src="https://tp.media/content?currency=uzs&promo_id=4041&shmarker=349676&campaign_id=100&trs=162992&searchUrl=www.aviasales.ru%2Fsearch&locale=ru&powered_by=true&one_way=false&only_direct=false&period=year&range=7%2C14&primary=%230C73FE&color_background=%23ffffff&achieve=%2345AD35&dark=%23000000&light=%23FFFFFF&origin=MOW&destination=TAS" charset="utf-8"></script>
-                    @elseif(Route::is('aviaTj'))
+                    @endif
+
+                    @if(session()->get('language') == 'tj')
                         <script src="https://tp.media/content?currency=tjs&promo_id=4041&shmarker=349676&campaign_id=100&trs=162992&searchUrl=www.aviasales.ru%2Fsearch&locale=ru&powered_by=true&one_way=false&only_direct=false&period=year&range=7%2C14&primary=%230C73FE&color_background=%23ffffff&achieve=%2345AD35&dark=%23000000&light=%23FFFFFF&origin=MOW&destination=DYU" charset="utf-8"></script>
                     @endif
                 </div>
