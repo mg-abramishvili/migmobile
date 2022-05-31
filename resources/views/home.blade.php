@@ -84,24 +84,8 @@
             <div class="main-form-inner">
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-8">
-                        <h2 class="title-head title-head-white">
-                            @if(Route::is('homeUz'))
-                                Чиройли рақам истайсизми?
-                            @elseif(Route::is('homeTj'))
-                                Мехоҳед рақами зебо дошта бошед?
-                            @else
-                                Хотите красивый номер?
-                            @endif
-                        </h2>
-                        <p>
-                            @if(Route::is('homeUz'))
-                                Бизда сиз чиройли телефон рақамини сотиб олишингиз мумкин
-                            @elseif(Route::is('homeTj'))
-                                Шумо метавонед рақами телефони зебо аз мо харед
-                            @else
-                                У нас вы можете приобрести красивый номер телефона
-                            @endif
-                        </p>
+                        <h2 class="title-head title-head-white">{{ __('Do you want a beautiful phone number?') }}</h2>
+                        <p>{{ __('You can buy a beautiful phone number from us') }}</p>
                     </div>
                     <div class="col-12 col-lg-4 text-center">
                         <a href="/order/" class="btn btn-primary btn-white">
