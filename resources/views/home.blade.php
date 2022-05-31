@@ -88,15 +88,7 @@
                         <p>{{ __('You can buy a beautiful phone number from us') }}</p>
                     </div>
                     <div class="col-12 col-lg-4 text-center">
-                        <a href="/order/" class="btn btn-primary btn-white">
-                            @if(Route::is('homeUz'))
-                                Рақамни танлаш
-                            @elseif(Route::is('homeTj'))
-                                Интихоб намудани рақам
-                            @else
-                                Выбрать номер
-                            @endif
-                        </a>
+                        <a href="/order/" class="btn btn-primary btn-white">{{ __('Choose a number') }}</a>
                     </div>
                 </div>
             </div>
@@ -142,15 +134,8 @@
                             <li>{{ __('The loan is provided by the microfinance organization Asia Credit') }}</li>
                         </ul>
 
-                        <p>
-                            @if(Route::is('homeUz'))
-                                30 минг рублгача қарзга пул олиш учун ариза беринг
-                            @elseif(Route::is('homeTj'))
-                                Барои гирифтани қарзи нақдӣ то 30 ҳазор рубл муроҷиат намоед.
-                            @else
-                                Оформите заявку на получение денежного займа до 30 000 руб.
-                            @endif
-                        </p>
+                        <p>{{ __('Apply for a cash loan of up to 30,000 rubles') }}</p>
+                        
                         <create-lead service="loan" lang="{{ app()->getLocale() }}"></create-lead>
                     </div>
                 </div>
@@ -162,15 +147,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-12">
-                    <h5 class="title-head">
-                        @if(Route::is('homeUz'))
-                            Компания хақида
-                        @elseif(Route::is('homeTj'))
-                            Дар бораи ширкат
-                        @else
-                            О компании
-                        @endif
-                    </h5>
+                    <h5 class="title-head">{{ __('About Us') }}</h5>
                     <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.</p>
                     <p>В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.</p>
                     <p>Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн.</p>
