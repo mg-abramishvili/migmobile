@@ -131,26 +131,9 @@
                         <li>{{ __('Card delivery is free of charge') }}.</li>
                     </ul>
                     
-                    <p>
-                        @if(Route::is('homeUz'))
-                            Россия банкининг банк картасини олиш учун ариза беринг.
-                        @elseif(Route::is('homeTj'))
-                            Барои гирифтани корти бонкии бонки Россия дархост пешниҳод кунед.
-                        @else
-                            Оформите заявку на получение банковской карты российского банка.
-                        @endif
-                    </p>
-                    <create-lead
-                        service="bank_card"
+                    <p>{{ __('Apply for a bank card of a Russian bank') }}</p>
 
-                        @if(Route::is('homeUz'))
-                            lang="uz"
-                        @elseif(Route::is('homeTj'))
-                            lang="tj"
-                        @else
-                            lang="ru"
-                        @endif
-                    ></create-lead>
+                    <create-lead service="bank_card" lang="{{ app()->getLocale() }}"></create-lead>
                 </div>
                 <div class="col-12 col-lg-5">
                     <img src="/img/cards.png" alt="Банковская карта">
@@ -167,44 +150,12 @@
                 </div>
                 <div class="col-12 col-lg-7">
                     <div class="main-loan-info">
-                        <h5 class="title-head">
-                            @if(Route::is('homeUz'))
-                                Қарзга пул
-                            @elseif(Route::is('homeTj'))
-                                Қарзи пулӣ
-                            @else
-                                Денежный займ
-                            @endif
-                        </h5>
+                        <h5 class="title-head">{{ __('Loans') }}</h5>
 
                         <ul>
-                            <li>
-                                @if(Route::is('homeUz'))
-                                    Ҳар қандай мақсадлар учун қарзга пул махсус чет эл фуқаролари учун
-                                @elseif(Route::is('homeTj'))
-                                    Қарзҳо барои ҳама гуна мақсад махсус барои шаҳрвандони хориҷӣ
-                                @else
-                                    Займы на любые цели специально для иностранных граждан
-                                @endif
-                            </li>
-                            <li>
-                                @if(Route::is('homeUz'))
-                                    Пул ҳар қандай Россия банкининг картасига ўтказилади
-                                @elseif(Route::is('homeTj'))
-                                    Маблағ ба дилхоҳ корти бонки Россия онлайн пардохт карда мешавад
-                                @else
-                                    Деньги зачисляются онлайн на карту любого российского банка
-                                @endif
-                            </li>
-                            <li>
-                                @if(Route::is('homeUz'))
-                                    Қарз «Азия Кредит» микрофинанс ташқилоти томонидан такдим этилади
-                                @elseif(Route::is('homeTj'))
-                                    Қарз аз ҷониби ташкилоти маблағгузории хурди «Азия Кредит» дода мешавад.
-                                @else
-                                    Займ предоставляется микрофинансовой организацией «Азия Кредит»
-                                @endif
-                            </li>
+                            <li>{{ __('Loans for any purpose specifically for foreign citizens') }}</li>
+                            <li>{{ __('Money is credited online to the card of any Russian bank') }}</li>
+                            <li>{{ __('The loan is provided by the microfinance organization Asia Credit') }}</li>
                         </ul>
 
                         <p>
@@ -216,17 +167,7 @@
                                 Оформите заявку на получение денежного займа до 30 000 руб.
                             @endif
                         </p>
-                        <create-lead
-                            service="loan"
-
-                            @if(Route::is('homeUz'))
-                                lang="uz"
-                            @elseif(Route::is('homeTj'))
-                                lang="tj"
-                            @else
-                                lang="ru"
-                            @endif
-                        ></create-lead>
+                        <create-lead service="loan" lang="{{ app()->getLocale() }}"></create-lead>
                     </div>
                 </div>
             </div>
