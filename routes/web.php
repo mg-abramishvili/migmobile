@@ -24,6 +24,7 @@ Route::get('/order', function() {
 })->name('order');
 
 Route::get('/numbers/{digits}', [App\Http\Controllers\NumberController::class, 'index']);
+Route::post('_order', [App\Http\Controllers\OrderController::class, 'store']);
 
 Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
 
