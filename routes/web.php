@@ -23,6 +23,8 @@ Route::get('/order', function() {
     return view('order');
 })->name('order');
 
+Route::get('/numbers/{digits}', [App\Http\Controllers\NumberController::class, 'index']);
+
 Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
 
 // ADMIN

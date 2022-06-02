@@ -889,6 +889,31 @@ html, body {
 
 
 
+/* ORDER */
+.order-page {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.order-numbers form .form-control {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+}
+.order-numbers form .btn {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    text-align: center;
+    width: 100%;
+}
+.order-page-cart {
+    border: 4px solid #708CA1;
+    padding: 15px;
+}
+/* ORDER */
+
+
+
 /* FOOTER */
 footer {
     padding: 50px 0;
