@@ -22020,7 +22020,8 @@ __webpack_require__.r(__webpack_exports__);
       yookassa_shop_id: '',
       yookassa_secret_key: '',
       views: {
-        loading: true
+        loading: true,
+        saveButton: true
       }
     };
   },

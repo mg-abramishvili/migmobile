@@ -39,6 +39,7 @@ export default {
 
             views: {
                 loading: true,
+                saveButton: true,
             }
         }
     },
