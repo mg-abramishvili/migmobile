@@ -99,8 +99,6 @@ class OrderController extends Controller
         );
          
         $data = json_encode($data, JSON_UNESCAPED_UNICODE);
-
-        return "$settings->yookassa_shop_id:$settings->yookassa_secret_key";
              
         $ch = curl_init('https://api.yookassa.ru/v3/payments');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
