@@ -29,7 +29,7 @@ Route::get('_cart', [App\Http\Controllers\OrderController::class, 'getCart']);
 Route::post('_cart', [App\Http\Controllers\OrderController::class, 'storeCart']);
 
 Route::post('_order', [App\Http\Controllers\OrderController::class, 'store']);
-Route::get('order-confirmed/{uid}', [App\Http\Controllers\OrderController::class, 'order']);
+Route::get('order-confirmed/{uid}', [App\Http\Controllers\OrderController::class, 'orderConfirmed']);
 
 Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
 
