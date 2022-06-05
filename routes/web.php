@@ -24,7 +24,12 @@ Route::get('/order', function() {
 })->name('order');
 
 Route::get('/numbers/{digits}', [App\Http\Controllers\NumberController::class, 'index']);
+
+Route::get('_cart', [App\Http\Controllers\OrderController::class, 'getCart']);
+Route::post('_cart', [App\Http\Controllers\OrderController::class, 'storeCart']);
+
 Route::post('_order', [App\Http\Controllers\OrderController::class, 'store']);
+Route::get('order-confirmed/{uid}', [App\Http\Controllers\OrderController::class, 'order']);
 
 Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
 

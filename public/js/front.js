@@ -21682,7 +21682,24 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  created: function created() {
+    this.loadCart();
+  },
   methods: {
+    loadCart: function loadCart() {
+      var _this = this;
+
+      axios.get('/_cart').then(function (response) {
+        if (response.data) {
+          _this.order.selectedNumbers = response.data;
+        }
+      });
+    },
+    saveCart: function saveCart() {
+      axios.post('/_cart', {
+        numbers: this.order.selectedNumbers
+      });
+    },
     resultCounter: function resultCounter() {
       var counter = [];
 
@@ -21708,6 +21725,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     addToCart: function addToCart(number) {
       this.order.selectedNumbers.push(number);
+      this.saveCart();
     },
     removeFromCart: function removeFromCart(number) {
       var index = this.order.selectedNumbers.indexOf(number);
@@ -21715,12 +21733,14 @@ __webpack_require__.r(__webpack_exports__);
       if (index > -1) {
         this.order.selectedNumbers.splice(index, 1);
       }
+
+      this.saveCart();
     },
     goToStep: function goToStep(step) {
       this.views.step = step;
     },
     search: function search() {
-      var _this = this;
+      var _this2 = this;
 
       if (!this.searchInput) {
         return;
@@ -21728,13 +21748,13 @@ __webpack_require__.r(__webpack_exports__);
 
       this.views.loading = true;
       axios.get("/numbers/".concat(this.searchInput)).then(function (response) {
-        _this.numbers = response.data;
-        _this.views.loading = false;
-        _this.views.searchResult = true;
+        _this2.numbers = response.data;
+        _this2.views.loading = false;
+        _this2.views.searchResult = true;
       });
     },
     saveOrder: function saveOrder() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.errors = [];
 
@@ -21755,8 +21775,9 @@ __webpack_require__.r(__webpack_exports__);
         name: this.order.name,
         phone: this.order.phone
       }).then(function (response) {
-        _this2.views.step = 'success';
-        _this2.order.id = response.data;
+        window.location.href = response.data;
+      })["catch"](function (errors) {
+        _this3.errors.push(errors.response.data);
       });
     }
   }
@@ -22248,13 +22269,6 @@ var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_55 = {
   "class": "mb-4"
 };
-
-var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "title-head mb-4"
-}, "Заказ успешно оформлен", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$data.views.step == 'searchNumbers' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
@@ -22387,12 +22401,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": "btn btn-primary"
   }, "Перейти к оплате")])])])])], 64
-  /* STABLE_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.views.step == 'success' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    key: 2
-  }, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Номер заказа: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.order.id), 1
-  /* TEXT */
-  )], 64
   /* STABLE_FRAGMENT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }

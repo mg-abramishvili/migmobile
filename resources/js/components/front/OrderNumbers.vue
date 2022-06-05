@@ -131,11 +131,6 @@
                 </div>
             </div>
         </template>
-        <template v-if="views.step == 'success'">
-            <h1 class="title-head mb-4">Заказ успешно оформлен</h1>
-
-            <p>Номер заказа: {{ order.id }}</p>
-        </template>
     </div>
 </template>
 
@@ -164,7 +159,23 @@ export default {
             }
         }
     },
+    created() {
+        this.loadCart()
+    },
     methods: {
+        loadCart() {
+            axios.get('/_cart')
+            .then(response => {
+                if(response.data) {
+                    this.order.selectedNumbers = response.data
+                }
+            })
+        },
+        saveCart() {
+            axios.post('/_cart', {
+                numbers: this.order.selectedNumbers
+            })
+        },
         resultCounter() {
             let counter = []
 
@@ -185,12 +196,15 @@ export default {
         },
         addToCart(number) {
             this.order.selectedNumbers.push(number)
+
+            this.saveCart()
         },
         removeFromCart(number) {
             let index = this.order.selectedNumbers.indexOf(number)
             if (index > -1) {
                 this.order.selectedNumbers.splice(index, 1)
             }
+            this.saveCart()
         },
         goToStep(step) {
             this.views.step = step
@@ -230,8 +244,10 @@ export default {
                 phone: this.order.phone,
             })
             .then(response => {
-                this.views.step = 'success'
-                this.order.id = response.data
+                window.location.href = response.data
+            })
+            .catch(errors => {
+                this.errors.push(errors.response.data)
             })
         },
     }
