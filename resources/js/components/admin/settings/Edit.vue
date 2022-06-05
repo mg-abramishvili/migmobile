@@ -12,7 +12,7 @@
 
         <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="w-100">
-                <div class="box mb-4">
+                <div class="box px-4 py-4 mb-4">
                     <div class="mb-4">
                         <input v-model="yookassa_shop_id" type="text" class="form-control">
                     </div>

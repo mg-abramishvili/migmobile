@@ -22612,7 +22612,7 @@ var _hoisted_3 = {
   "class": "w-100"
 };
 var _hoisted_4 = {
-  "class": "box mb-4"
+  "class": "box px-4 py-4 mb-4"
 };
 var _hoisted_5 = {
   "class": "mb-4"
