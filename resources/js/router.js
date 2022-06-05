@@ -7,6 +7,8 @@ import Leads from './components/admin/leads/Index'
 import Numbers from './components/admin/numbers/Index'
 import NumberCreate from './components/admin/numbers/Create'
 
+import Settings from './components/admin/settings/Edit'
+
 const routes = [
     {
         path: '/admin',
@@ -27,6 +29,11 @@ const routes = [
         path: '/admin/numbers/create',
         name: 'NumberCreate',
         component: NumberCreate
+    },
+    {
+        path: '/admin/settings',
+        name: 'Settings',
+        component: Settings
     },
 ];
 

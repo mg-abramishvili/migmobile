@@ -44,6 +44,10 @@ Route::prefix("admin")->middleware(['auth'])->group(function() {
     })->where('any', '.*');
 });
 
+// ADMIN SETTINGS
+Route::get('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'index']);
+Route::post('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'update']);
+
 // ADMIN LEADS
 Route::get('_admin/leads', [App\Http\Controllers\Admin\LeadController::class, 'index']);
 Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class, 'lead']);
