@@ -22,7 +22,7 @@ class SettingController extends Controller
 
         $settings = Setting::find(1);
 
-        if(!settings)
+        if(!$settings)
         {
             $settings = new Setting();
         }
