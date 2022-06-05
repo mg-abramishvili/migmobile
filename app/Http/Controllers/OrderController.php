@@ -120,6 +120,8 @@ class OrderController extends Controller
     {
         $order = Order::where('uid', $uid)->with('numbers')->first();
 
+        session()->forget('cart');
+
         return view('order-confirmed', compact('order'));
     }
 }
