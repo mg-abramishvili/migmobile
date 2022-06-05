@@ -9,7 +9,7 @@
             <p>Ваш заказ:</p>
             <ul>
                 @foreach($order->numbers as $number)
-                    <li>{{ $number }}</li>
+                    <li>{{ $number->number }}</li>
                 @endforeach
             </ul>
         </div>
