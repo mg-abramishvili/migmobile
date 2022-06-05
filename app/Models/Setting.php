@@ -10,4 +10,9 @@ class Setting extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'yookassa_shop_id',
+        'yookassa_secret_key'
+    ];
 }
