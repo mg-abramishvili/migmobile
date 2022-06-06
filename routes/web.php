@@ -3,11 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 use App\Models\About;
+use App\Models\BankCard;
+use App\Models\Loan;
 
 Route::get('/', function () {
     $lang = session()->get('language');
     
     $about = About::find(1);
+    $bankCard = BankCard::find(1);
+    $loan = Loan::find(1);
 
     if($lang) {
         $news = News::where('lang', $lang)->take(8)->get();
@@ -15,7 +19,7 @@ Route::get('/', function () {
         $news = News::where('lang', 'ru')->take(8)->get();
     }
 
-    return view('home', compact('news', 'about'));
+    return view('home', compact('news', 'about', 'bankCard', 'loan'));
 })->name('home');
 
 Route::get('/avia', function() {

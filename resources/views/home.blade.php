@@ -101,13 +101,13 @@
                 <div class="col-12 col-lg-7">
                     <h5 class="title-head">{{ __('Bank cards') }}</h5>
                     
-                    <ul>
-                        <li>{{ __('Russian VISA debit card specially for foreign citizens') }}.</li>
-                        <li>{{ __('The preferential commission for international transfers is only 1.15%') }}.</li>
-                        <li>{{ __('Card delivery is free of charge') }}.</li>
-                    </ul>
-                    
-                    <p>{{ __('Apply for a bank card of a Russian bank') }}</p>
+                    @if(app()->getLocale() == 'uz')
+                        {!! $bankCard->uz !!}
+                    @elseif(app()->getLocale() == 'tj')
+                        {!! $bankCard->tj !!}
+                    @else
+                        {!! $bankCard->ru !!}
+                    @endif
 
                     <create-lead service="bank_card" lang="{{ app()->getLocale() }}"></create-lead>
                 </div>
@@ -128,13 +128,13 @@
                     <div class="main-loan-info">
                         <h5 class="title-head">{{ __('Loans') }}</h5>
 
-                        <ul>
-                            <li>{{ __('Loans for any purpose specifically for foreign citizens') }}</li>
-                            <li>{{ __('Money is credited online to the card of any Russian bank') }}</li>
-                            <li>{{ __('The loan is provided by the microfinance organization Asia Credit') }}</li>
-                        </ul>
-
-                        <p>{{ __('Apply for a cash loan of up to 30,000 rubles') }}</p>
+                        @if(app()->getLocale() == 'uz')
+                            {!! $loan->uz !!}
+                        @elseif(app()->getLocale() == 'tj')
+                            {!! $loan->tj !!}
+                        @else
+                            {!! $loan->ru !!}
+                        @endif
                         
                         <create-lead service="loan" lang="{{ app()->getLocale() }}"></create-lead>
                     </div>
