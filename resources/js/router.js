@@ -8,6 +8,7 @@ import Numbers from './components/admin/numbers/Index'
 import NumberCreate from './components/admin/numbers/Create'
 
 import Settings from './components/admin/settings/Edit'
+import About from './components/admin/about/Edit'
 
 const routes = [
     {
@@ -34,6 +35,11 @@ const routes = [
         path: '/admin/settings',
         name: 'Settings',
         component: Settings
+    },
+    {
+        path: '/admin/about',
+        name: 'About',
+        component: About
     },
 ];
 

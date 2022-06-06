@@ -18,6 +18,8 @@
         "postcss-import": "^14.0.2"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^34.1.0",
+        "@ckeditor/ckeditor5-vue": "^4.0.1",
         "moment": "^2.29.3",
         "vue": "^3.2.31",
         "vue-loader": "^17.0.0",

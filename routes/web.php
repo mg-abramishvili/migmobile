@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
+use App\Models\About;
 
 Route::get('/', function () {
     $lang = session()->get('language');
+    
+    $about = About::find(1);
 
     if($lang) {
         $news = News::where('lang', $lang)->get();
@@ -12,7 +15,7 @@ Route::get('/', function () {
         $news = News::where('lang', 'ru')->get();
     }
 
-    return view('home', compact('news'));
+    return view('home', compact('news', 'about'));
 })->name('home');
 
 Route::get('/avia', function() {
@@ -47,6 +50,10 @@ Route::prefix("admin")->middleware(['auth'])->group(function() {
 // ADMIN SETTINGS
 Route::get('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'index']);
 Route::post('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'update']);
+
+// ADMIN ABOUT
+Route::get('_admin/about', [App\Http\Controllers\Admin\AboutController::class, 'index']);
+Route::post('_admin/about', [App\Http\Controllers\Admin\AboutController::class, 'update']);
 
 // ADMIN LEADS
 Route::get('_admin/leads', [App\Http\Controllers\Admin\LeadController::class, 'index']);
