@@ -10,9 +10,9 @@ Route::get('/', function () {
     $about = About::find(1);
 
     if($lang) {
-        $news = News::where('lang', $lang)->get();
+        $news = News::where('lang', $lang)->take(8)->get();
     } else {
-        $news = News::where('lang', 'ru')->get();
+        $news = News::where('lang', 'ru')->take(8)->get();
     }
 
     return view('home', compact('news', 'about'));

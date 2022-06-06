@@ -11,8 +11,9 @@ return new class extends Migration
         Schema::create('numbers', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->string('provider');
-            $table->boolean('is_pretty');
+            $table->string('serial_number');
+            $table->string('plan_id');
+            $table->integer('order_id')->nullable();
             $table->timestamps();
         });
     }
