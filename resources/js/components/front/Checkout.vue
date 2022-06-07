@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h1 class="title-head mb-4">Оформление заказа</h1>
 
         <div class="row">
@@ -32,9 +32,11 @@
 
 <script>
 export default {
-    props: ['lang', 'order'],
+    props: ['lang'],
     data() {
         return {
+            order: {},
+
             errors: [],
 
             views: {
@@ -42,7 +44,18 @@ export default {
             }
         }
     },
+    created() {
+        this.loadCart()
+    },
     methods: {
+        loadCart() {
+            axios.get('/_cart')
+            .then(response => {
+                if(response.data) {
+                    this.order = response.data
+                }
+            })
+        },
         saveOrder() {
             this.errors = []
 

@@ -36,12 +36,17 @@ Route::get('/order-pretty', function() {
     return view('order-pretty');
 })->name('order-pretty');
 
+Route::get('/checkout', function() {
+    return view('checkout');
+})->name('checkout');
+
 Route::get('/numbers/{digits}', [App\Http\Controllers\NumberController::class, 'index']);
 Route::get('/_plans', [App\Http\Controllers\PlanController::class, 'index']);
 Route::get('/_prices', [App\Http\Controllers\PriceController::class, 'index']);
 
 Route::get('_cart', [App\Http\Controllers\OrderController::class, 'getCart']);
-Route::post('_cart', [App\Http\Controllers\OrderController::class, 'storeCart']);
+Route::post('_simple-cart', [App\Http\Controllers\OrderController::class, 'storeSimpleCart']);
+Route::post('_pretty-cart', [App\Http\Controllers\OrderController::class, 'storePrettyCart']);
 
 Route::post('_order', [App\Http\Controllers\OrderController::class, 'store']);
 Route::get('order-confirmed/{uid}', [App\Http\Controllers\OrderController::class, 'orderConfirmed']);

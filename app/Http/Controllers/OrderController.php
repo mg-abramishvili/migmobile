@@ -9,27 +9,44 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function getCart()
+    public function getCart(Request $request)
     {
-        $cart = session()->get('cart');
+        if($request->type === 'simple')
+        {
+            $cart = session()->get('simple-cart');
+        }
+        if($request->type === 'pretty')
+        {
+            $cart = session()->get('pretty-cart');
+        }
 
         return $cart;
     }
 
-    public function storeCart(Request $request)
+    public function storeSimpleCart(Request $request)
+    {
+        $plans = $request->plans;
+        
+        session()->put('simple-cart', $plans);
+    }
+
+    public function storePrettyCart(Request $request)
     {
         $numbers = $request->numbers;
-
-        foreach($numbers as $nm)
+        
+        if($numbers)
         {
-            $number = Number::where('number', $nm)->first();
-
-            if(isset($number->order_id)) {
-                return response('Номер ' . $number->number . ' уже был кем-то куплен', 500);
+            foreach($numbers as $nm)
+            {
+                $number = Number::where('number', $nm)->first();
+    
+                if(isset($number->order_id)) {
+                    return response('Номер ' . $number->number . ' уже был кем-то куплен', 500);
+                }
             }
         }
 
-        $cart = session()->put('cart', $numbers);
+        session()->put('pretty-cart', $numbers);
     }
 
     public function store(Request $request)
@@ -120,7 +137,8 @@ class OrderController extends Controller
     {
         $order = Order::where('uid', $uid)->with('numbers')->first();
 
-        session()->forget('cart');
+        session()->forget('simple-cart');
+        session()->forget('pretty-cart');
 
         return view('order-confirmed', compact('order'));
     }
