@@ -10,7 +10,7 @@ class NumberController extends Controller
 {
     public function index()
     {
-        return Number::all();
+        return Number::where('order_id', null)->with('plan')->get();
     }
 
     public function store(Request $request)
@@ -27,7 +27,7 @@ class NumberController extends Controller
     
             $number->number = $nm['number'];
             $number->serial_number = $nm['serial_number'];
-            $number->plan_id = 1;
+            $number->plan_id = $nm['plan_id'];
     
             $number->save();
         }

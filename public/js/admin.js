@@ -22019,19 +22019,28 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       numbers: [],
+      plans: [],
       views: {
         saveButton: true
       }
     };
   },
   created: function created() {
+    this.loadPlans();
     this.addRow();
   },
   methods: {
+    loadPlans: function loadPlans() {
+      var _this = this;
+
+      axios.get('/_plans').then(function (response) {
+        _this.plans = response.data;
+      });
+    },
     addRow: function addRow() {
       this.numbers.push({
         number: '',
-        provider: '',
+        plan_id: '',
         serial_number: ''
       });
     },
@@ -22043,11 +22052,11 @@ __webpack_require__.r(__webpack_exports__);
       this.numbers.splice(index, 1);
     },
     save: function save() {
-      var _this = this;
+      var _this2 = this;
 
       var errors = [];
       this.numbers.forEach(function (number) {
-        if (!number.number || !number.provider || !number.serial_number) {
+        if (!number.number || !number.plan_id || !number.serial_number) {
           errors.push(1);
         }
       });
@@ -22063,14 +22072,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/_admin/numbers', {
         numbers: this.numbers
       }).then(function (response) {
-        _this.views.saveButton = true;
+        _this2.views.saveButton = true;
 
-        _this.$router.push({
+        _this2.$router.push({
           name: 'Numbers'
         });
       })["catch"](function (errors) {
-        _this.views.saveButton = true;
-        return _this.$swal({
+        _this2.views.saveButton = true;
+        return _this2.$swal({
           text: 'Ошибка',
           icon: 'error'
         });
@@ -22731,22 +22740,19 @@ var _hoisted_16 = {
   "class": "col-12 col-lg-4"
 };
 var _hoisted_17 = ["onUpdate:modelValue"];
-
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"\" disabled selected>оператор</option><option value=\"beeline\">Билайн</option><option value=\"megafon\">Мегафон</option><option value=\"tele2\">Теле2</option><option value=\"mts\">МТС</option>", 5);
-
-var _hoisted_23 = [_hoisted_18];
-var _hoisted_24 = {
+var _hoisted_18 = ["value"];
+var _hoisted_19 = {
   "class": "col-12 col-lg-4"
 };
-var _hoisted_25 = ["onUpdate:modelValue"];
-var _hoisted_26 = {
+var _hoisted_20 = ["onUpdate:modelValue"];
+var _hoisted_21 = {
   "class": "col"
 };
-var _hoisted_27 = {
+var _hoisted_22 = {
   "class": "text-center"
 };
-var _hoisted_28 = ["onClick"];
-var _hoisted_29 = ["disabled"];
+var _hoisted_23 = ["onClick"];
+var _hoisted_24 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -22778,12 +22784,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* PROPS */
     , _hoisted_15), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, numberRow.number]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
       "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return numberRow.provider = $event;
+        return numberRow.plan_id = $event;
       },
       "class": "form-select"
-    }, _hoisted_23, 8
+    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.plans, function (plan) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+        value: plan.id
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(plan.name_ru), 9
+      /* TEXT, PROPS */
+      , _hoisted_18);
+    }), 256
+    /* UNKEYED_FRAGMENT */
+    ))], 8
     /* PROPS */
-    , _hoisted_17), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, numberRow.provider]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    , _hoisted_17), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, numberRow.plan_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return numberRow.serial_number = $event;
       },
@@ -22792,14 +22806,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       placeholder: "серийный номер"
     }, null, 8
     /* PROPS */
-    , _hoisted_25), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, numberRow.serial_number]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    , _hoisted_20), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, numberRow.serial_number]])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.deleteRow(index);
       },
       "class": "btn btn-sm btn-outline-danger"
     }, " — ", 8
     /* PROPS */
-    , _hoisted_28)])])])]);
+    , _hoisted_23)])])])]);
   }), 256
   /* UNKEYED_FRAGMENT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -22810,7 +22824,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn btn-primary mt-3"
   }, "Сохранить", 8
   /* PROPS */
-  , _hoisted_29)])])])])], 64
+  , _hoisted_24)])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -22864,7 +22878,7 @@ var _hoisted_9 = {
   "class": "table"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Номер"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Оператор"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Серийный номер")])], -1
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Номер"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Тариф"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Серийный номер")])], -1
 /* HOISTED */
 );
 
@@ -22895,7 +22909,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: number.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(number.number), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(number.provider), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(number.plan.name_ru), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(number.serial_number), 1
     /* TEXT */

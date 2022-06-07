@@ -20,14 +20,14 @@
                         <thead>
                             <tr>
                                 <th>Номер</th>
-                                <th>Оператор</th>
+                                <th>Тариф</th>
                                 <th>Серийный номер</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="number in numbers" :key="number.id">
                                 <td>{{ number.number }}</td>
-                                <td>{{ number.provider }}</td>
+                                <td>{{ number.plan.name_ru }}</td>
                                 <td>{{ number.serial_number }}</td>
                             </tr>
                         </tbody>

@@ -91,9 +91,13 @@ class OrderController extends Controller
 
             foreach($request->cart["simple"]["plans"] as $plan)
             {
-                array_push($plans, $plan['name_ru'] . $plan['quantity']);
+                if($plan["quantity"] > 0)
+                {
+                    array_push($plans, $plan['name_ru'] . ' (' . $plan['quantity'] . ' шт)');
+                }
             }
 
+            $order->description .= ", ";
             $order->description .= implode (", ", $plans);
         }
 
@@ -108,7 +112,7 @@ class OrderController extends Controller
             $number->save();
         }
 
-        // return $this->proceedPayment($order);
+        return $this->proceedPayment($order);
     }
 
     public function proceedPayment($order)
@@ -117,7 +121,7 @@ class OrderController extends Controller
         
         $data = array(
             'amount' => array(
-                'value' => 790,
+                'value' => $order->price,
                 'currency' => 'RUB',
             ),
             'capture' => true,
@@ -151,7 +155,7 @@ class OrderController extends Controller
 
     public function orderConfirmed($uid)
     {
-        $order = Order::where('uid', $uid)->with('numbers')->first();
+        $order = Order::where('uid', $uid)->first();
 
         session()->forget('simple-cart');
         session()->forget('pretty-cart');

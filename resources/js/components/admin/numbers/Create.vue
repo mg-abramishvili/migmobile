@@ -32,12 +32,8 @@
 
                                     <div class="col-12 col-lg-4">
                                         <div>
-                                            <select v-model="numberRow.provider" class="form-select">
-                                                <option value="" disabled selected>оператор</option>
-                                                <option value="beeline">Билайн</option>
-                                                <option value="megafon">Мегафон</option>
-                                                <option value="tele2">Теле2</option>
-                                                <option value="mts">МТС</option>
+                                            <select v-model="numberRow.plan_id" class="form-select">
+                                                <option v-for="plan in plans" :value="plan.id">{{ plan.name_ru }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -71,6 +67,7 @@ export default {
     data() {
         return {
             numbers: [],
+            plans: [],
 
             views: {
                 saveButton: true,
@@ -78,13 +75,20 @@ export default {
         }
     },
     created() {
+        this.loadPlans()
         this.addRow()
     },
     methods: {
+        loadPlans() {
+            axios.get('/_plans')
+            .then(response => {
+                this.plans = response.data
+            })
+        },
         addRow() {
             this.numbers.push({
                 number: '',
-                provider: '',
+                plan_id: '',
                 serial_number: '',
             })
         },
@@ -98,7 +102,7 @@ export default {
             let errors = []
 
             this.numbers.forEach(number => {
-                if(!number.number || !number.provider || !number.serial_number) {
+                if(!number.number || !number.plan_id || !number.serial_number) {
                     errors.push(1)
                 }
             })
