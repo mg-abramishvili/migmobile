@@ -102,7 +102,7 @@
             </div>
         </template>
         
-        <OrderFinish v-if="views.step == 'completeOrder'" />
+        <OrderFinish v-if="views.step == 'completeOrder'" :order="order" />
     </div>
 </template>
 
@@ -223,31 +223,6 @@ export default {
                 this.views.loading = false
 
                 this.views.searchResult = true
-            })
-        },
-        saveOrder() {
-            this.errors = []
-
-            if(!this.order.name) {
-                this.errors.push('Укажите имя')
-            }
-            if(!this.order.phone) {
-                this.errors.push('Укажите телефон')
-            }
-            if(this.errors.length) {
-                return
-            }
-
-            axios.post('/_order', {
-                numbers: this.order.selectedNumbers,
-                name: this.order.name,
-                phone: this.order.phone,
-            })
-            .then(response => {
-                window.location.href = response.data
-            })
-            .catch(errors => {
-                this.errors.push(errors.response.data)
             })
         },
     },

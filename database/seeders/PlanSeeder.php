@@ -14,6 +14,7 @@ class PlanSeeder extends Seeder
         DB::table('plans')->insert([
             [
                 "id" => 1,
+                "name" => "beeline",
                 "name_ru" => "Тариф от Билайн",
                 "name_uz" => "Билайн-дан тариф",
                 "name_tj" => "Тарофа аз Билайн",
@@ -24,6 +25,7 @@ class PlanSeeder extends Seeder
             ],
             [
                 "id" => 2,
+                "name" => "mts",
                 "name_ru" => "Тариф от МТС",
                 "name_uz" => "МТС-дан тариф",
                 "name_tj" => "Тарофа аз МТС",
@@ -34,6 +36,7 @@ class PlanSeeder extends Seeder
             ],
             [
                 "id" => 3,
+                "name" => "megafon",
                 "name_ru" => "Тариф от Мегафон",
                 "name_uz" => "Мегафон-дан тариф",
                 "name_tj" => "Тарофа аз Мегафон",
@@ -44,6 +47,7 @@ class PlanSeeder extends Seeder
             ],
             [
                 "id" => 4,
+                "name" => "tele2",
                 "name_ru" => "Тариф от Теле2",
                 "name_uz" => "Теле2-дан тариф",
                 "name_tj" => "Тарофа аз Теле2",

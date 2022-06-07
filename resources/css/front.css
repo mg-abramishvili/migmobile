@@ -958,8 +958,43 @@ html, body {
     width: 100%;
     height: 100%;
 }
+.order-page-cart .price {
+    font-size: 30px;
+    font-weight: 500;
+}
 /* ORDER */
 
+
+.card-plan {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 15px;
+}
+.card-plan-icon {
+    width: 7%;
+}
+.card-plan-icon img {
+    width: 100%;
+    height: 100%;
+}
+.card-plan-title {
+    width: 68%;
+    padding-left: 20px;
+}
+.card-plan-buy {
+    display: flex;
+    align-items: center;
+    width: 25%;
+    justify-content: flex-end;
+}
+.card-plan-buy button {
+    margin-left: 5px;
+    box-shadow: none;
+}
+.card-plan-buy button svg {
+    display: block;
+}
 
 
 /* FOOTER */

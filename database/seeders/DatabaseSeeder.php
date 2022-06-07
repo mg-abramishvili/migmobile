@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             LoanSeeder::class,
             BankCardSeeder::class,
             PlanSeeder::class,
+            PriceSeeder::class,
         ]);
     }
 }

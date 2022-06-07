@@ -19,9 +19,7 @@
                     </div>
                     <div class="mb-4">
                         <p>Ваш заказ:</p>
-                        <ul>
-                            <li v-for="orderNumItem in order.selectedNumbers">{{ orderNumItem }}</li>
-                        </ul>
+                        {{ order }}
                     </div>
                     <div class="mb-4">
                         <button @click="saveOrder()" :disabled="!views.saveButton" class="btn btn-primary">Перейти к оплате</button>
