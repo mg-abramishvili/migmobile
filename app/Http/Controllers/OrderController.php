@@ -58,7 +58,7 @@ class OrderController extends Controller
 
         $cart = $request->cart;
 
-        if($cart->pretty)
+        if($cart['pretty'])
         {
             foreach($cart->pretty->numbers as $nm)
             {
