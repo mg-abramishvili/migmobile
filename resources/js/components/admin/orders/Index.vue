@@ -25,28 +25,20 @@
                                         <span class="text-muted">Клиент:</span>
                                         {{ order.name }}, {{ order.phone }}
                                     </p>
+    
+                                    <p class="card-text mb-1">
+                                        <span class="text-muted">Стоимость:</span>
+                                        {{ order.price }} руб.
 
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <p class="card-text mb-1">
-                                                <span class="text-muted">Стоимость:</span>
-                                                {{ order.price }} руб.
-                                            </p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p class="card-text mb-1">
-                                                <span class="text-muted">Статус:</span>
-                                                <template v-if="order.is_paid == true">
-                                                    <span class="text-success">оплачен</span>
-                                                </template>
-                                                <template v-if="order.is_paid == false">
-                                                    <span class="text-danger">не оплачен</span>
-                                                </template>
-                                            </p>
-                                        </div>
-                                    </div>
+                                        <template v-if="order.is_paid == true">
+                                            <span class="text-success">оплачен</span>
+                                        </template>
+                                        <template v-if="order.is_paid == false">
+                                            <span class="text-danger">не оплачен</span>
+                                        </template>
+                                    </p>
                                     
-                                    <p v-if="order.payment_id" class="card-text mb-0"><small class="text-muted">{{ order.payment_id }}</small></p>
+                                    <p v-if="order.payment_id" class="card-text mb-0"><small style="font-size: 11px; color: #888;">{{ order.payment_id }}</small></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
