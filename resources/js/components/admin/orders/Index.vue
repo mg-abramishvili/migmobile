@@ -13,7 +13,7 @@
         <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="w-100">
                 <div v-if="orders.length" class="mb-4">
-                    <div v-for="order in orders" :key="order.id" class="card mb-3" style="max-width: 540px;">
+                    <div v-for="order in orders" :key="order.id" class="card mb-3">
                         <div class="row g-0">
                             <div class="col-lg-6">
                                 <div class="card-body">
@@ -45,7 +45,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                {{ order.description }}
+                                <div class="card-body">
+                                    {{ order.description }}
+                                </div>
                             </div>
                         </div>
                     </div>
