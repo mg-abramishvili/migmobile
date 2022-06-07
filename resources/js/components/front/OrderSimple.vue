@@ -39,7 +39,7 @@
                             </template>
                         </ul>
                         <p v-if="priceWithQuantity > 0" class="price">{{ priceWithQuantity }} руб.</p>
-                        <a v-if="priceWithQuantity > 0" @click="procceedToCheckout()" class="btn btn-primary btn-white">Оформить заказ</a>
+                        <a v-if="priceWithQuantity > 0" @click="proceedToCheckout()" class="btn btn-primary btn-white">Оформить заказ</a>
                     </div>
                 </div>
             </div>
