@@ -109,11 +109,14 @@ class OrderController extends Controller
         
         $order->save();
 
-        foreach($cart->pretty->numbers as $nm)
+        if(isset($cart['pretty']))
         {
-            $number = Number::where('number', $nm)->first();
-            $number->order_id = $order->id;
-            $number->save();
+            foreach($cart['pretty']['numbers'] as $nm)
+            {
+                $number = Number::where('number', $nm)->first();
+                $number->order_id = $order->id;
+                $number->save();
+            }
         }
 
         return $this->proceedPayment($order);
