@@ -163,7 +163,7 @@ class OrderController extends Controller
         $order->payment_id = $res['id'];
         $order->save();
 
-        return $res;
+        return $res['confirmation']['confirmation_url'];
     }
 
     public function orderConfirmed($uid)

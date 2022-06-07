@@ -124,8 +124,7 @@ export default {
                 cart: this.cart,
             })
             .then(response => {
-                console.log(response.data)
-                // window.location.href = response.data
+                window.location.href = response.data
             })
             .catch(errors => {
                 this.errors.push(errors.response.data)
