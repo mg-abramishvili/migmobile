@@ -8,6 +8,7 @@ import Numbers from './components/admin/numbers/Index'
 import NumberCreate from './components/admin/numbers/Create'
 
 import News from './components/admin/news/Index'
+import NewsItemEdit from './components/admin/news/Edit'
 
 import Settings from './components/admin/settings/Edit'
 import About from './components/admin/about/Edit'
@@ -37,6 +38,11 @@ const routes = [
         path: '/admin/news',
         name: 'News',
         component: News
+    },
+    {
+        path: '/admin/news-item/:id',
+        name: 'NewsItemEdit',
+        component: NewsItemEdit
     },
     {
         path: '/admin/settings',

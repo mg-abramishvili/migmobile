@@ -12,4 +12,26 @@ class NewsController extends Controller
     {
         return News::orderBy('created_at', 'desc')->get();
     }
+
+    public function newsItem($id)
+    {
+        return News::find($id);
+    }
+
+    public function update($id, Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'lang' => 'required',
+            'text' => 'required',
+        ]);
+
+        $newsItem = News::find($id);
+
+        $newsItem->name = $request->name;
+        $newsItem->lang = $request->lang;
+        $newsItem->text = $request->text;
+
+        $newsItem->save();
+    }
 }

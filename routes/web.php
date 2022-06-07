@@ -78,6 +78,8 @@ Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class
 
 // ADMIN NEWS
 Route::get('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'index']);
+Route::get('_admin/news-item/{id}', [App\Http\Controllers\Admin\NewsController::class, 'newsItem']);
+Route::put('_admin/news-item/{id}/update', [App\Http\Controllers\Admin\NewsController::class, 'update']);
 
 // ADMIN NUMBERS
 Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index']);
