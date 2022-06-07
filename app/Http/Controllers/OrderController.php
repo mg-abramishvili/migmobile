@@ -179,5 +179,7 @@ class OrderController extends Controller
         $order->is_paid = true;
 
         $order->save();
+
+        return response('OK', 200);
     }
 }
