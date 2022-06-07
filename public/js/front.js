@@ -21606,20 +21606,38 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.loadCart();
+    this.loadSimpleCart();
+    this.loadPrettyCart();
   },
   methods: {
-    loadCart: function loadCart() {
+    loadSimpleCart: function loadSimpleCart() {
       var _this = this;
 
-      axios.get('/_cart').then(function (response) {
+      axios.get('/_cart', {
+        params: {
+          type: 'simple'
+        }
+      }).then(function (response) {
         if (response.data) {
-          _this.order = response.data;
+          _this.order.plans = response.data;
+        }
+      });
+    },
+    loadPrettyCart: function loadPrettyCart() {
+      var _this2 = this;
+
+      axios.get('/_cart', {
+        params: {
+          type: 'pretty'
+        }
+      }).then(function (response) {
+        if (response.data) {
+          _this2.order.selectedNumbers = response.data;
         }
       });
     },
     saveOrder: function saveOrder() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.errors = [];
 
@@ -21643,9 +21661,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         window.location.href = response.data;
       })["catch"](function (errors) {
-        _this2.errors.push(errors.response.data);
+        _this3.errors.push(errors.response.data);
 
-        _this2.views.saveButton = true;
+        _this3.views.saveButton = true;
       });
     }
   }

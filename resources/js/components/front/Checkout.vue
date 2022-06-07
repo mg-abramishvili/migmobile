@@ -45,14 +45,23 @@ export default {
         }
     },
     created() {
-        this.loadCart()
+        this.loadSimpleCart()
+        this.loadPrettyCart()
     },
     methods: {
-        loadCart() {
-            axios.get('/_cart')
+        loadSimpleCart() {
+            axios.get('/_cart', { params: { type: 'simple' } })
             .then(response => {
                 if(response.data) {
-                    this.order = response.data
+                    this.order.plans = response.data
+                }
+            })
+        },
+        loadPrettyCart() {
+            axios.get('/_cart', { params: { type: 'pretty' } })
+            .then(response => {
+                if(response.data) {
+                    this.order.selectedNumbers = response.data
                 }
             })
         },
