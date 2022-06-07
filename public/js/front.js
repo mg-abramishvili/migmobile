@@ -21668,6 +21668,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       searchInput: '',
       numbers: {},
+      prices: [],
       order: {
         name: '',
         phone: '',
@@ -21682,8 +21683,24 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  computed: {
+    price: function price() {
+      var quantity = this.order.selectedNumbers.length;
+      var conditions = this.prices.filter(function (price) {
+        return price.type == 'pretty';
+      });
+      var price = 0;
+      conditions.forEach(function (condition) {
+        if (eval(condition.quantity_condition)) {
+          price = condition.price;
+        }
+      });
+      return price;
+    }
+  },
   created: function created() {
     this.loadCart();
+    this.loadPrices();
   },
   methods: {
     loadCart: function loadCart() {
@@ -21692,6 +21709,15 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/_cart').then(function (response) {
         if (response.data) {
           _this.order.selectedNumbers = response.data;
+        }
+      });
+    },
+    loadPrices: function loadPrices() {
+      var _this2 = this;
+
+      axios.get('/_prices').then(function (response) {
+        if (response.data) {
+          _this2.prices = response.data;
         }
       });
     },
@@ -21740,7 +21766,7 @@ __webpack_require__.r(__webpack_exports__);
       this.views.step = step;
     },
     search: function search() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!this.searchInput) {
         return;
@@ -21748,13 +21774,13 @@ __webpack_require__.r(__webpack_exports__);
 
       this.views.loading = true;
       axios.get("/numbers/".concat(this.searchInput)).then(function (response) {
-        _this2.numbers = response.data;
-        _this2.views.loading = false;
-        _this2.views.searchResult = true;
+        _this3.numbers = response.data;
+        _this3.views.loading = false;
+        _this3.views.searchResult = true;
       });
     },
     saveOrder: function saveOrder() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.errors = [];
 
@@ -21777,7 +21803,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         window.location.href = response.data;
       })["catch"](function (errors) {
-        _this3.errors.push(errors.response.data);
+        _this4.errors.push(errors.response.data);
       });
     }
   }
@@ -22358,7 +22384,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_40)]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.price) + " руб.", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.goToStep('completeOrder');
     }),

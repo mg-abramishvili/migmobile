@@ -12,10 +12,10 @@ class NumberController extends Controller
         $numbers = Number::where('number', 'LIKE', '%' . $digits . '%')->where('order_id', null)->get();
 
         return response()->json([
-            'beeline' => $numbers->where('provider', 'beeline')->pluck('number'),
-            'mts' => $numbers->where('provider', 'mts')->pluck('number'),
-            'megafon' => $numbers->where('provider', 'megafon')->pluck('number'),
-            'tele2' => $numbers->where('provider', 'tele2')->pluck('number'),
+            'beeline' => $numbers->pluck('number'),
+            'mts' => $numbers->pluck('number'),
+            'megafon' => $numbers->pluck('number'),
+            'tele2' => $numbers->pluck('number'),
         ]);
     }
 }

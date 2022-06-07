@@ -26,9 +26,8 @@ class NumberController extends Controller
             $number = new Number();
     
             $number->number = $nm['number'];
-            $number->provider = $nm['provider'];
             $number->serial_number = $nm['serial_number'];
-            $number->is_pretty = false;
+            $number->plan_id = 1;
     
             $number->save();
         }

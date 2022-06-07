@@ -31,6 +31,7 @@ Route::get('/order', function() {
 })->name('order');
 
 Route::get('/numbers/{digits}', [App\Http\Controllers\NumberController::class, 'index']);
+Route::get('/_prices', [App\Http\Controllers\PriceController::class, 'index']);
 
 Route::get('_cart', [App\Http\Controllers\OrderController::class, 'getCart']);
 Route::post('_cart', [App\Http\Controllers\OrderController::class, 'storeCart']);

@@ -94,6 +94,7 @@
                                     </button>
                                 </li>
                             </ul>
+                            <p>{{ price }} руб.</p>
                             <button @click="goToStep('completeOrder')" class="btn btn-primary btn-white">Оформить заказ</button>
                         </div>
                     </div>
@@ -143,6 +144,8 @@ export default {
 
             numbers: {},
 
+            prices: [],
+
             order: {
                 name: '',
                 phone: '',
@@ -159,8 +162,24 @@ export default {
             }
         }
     },
+    computed: {
+        price() {
+            let quantity = this.order.selectedNumbers.length
+            let conditions = this.prices.filter(price => price.type == 'pretty')
+            let price = 0
+
+            conditions.forEach((condition) => {
+                if(eval(condition.quantity_condition)) {
+                    price = condition.price
+                }
+            })
+
+            return price
+        },
+    },
     created() {
         this.loadCart()
+        this.loadPrices()
     },
     methods: {
         loadCart() {
@@ -168,6 +187,14 @@ export default {
             .then(response => {
                 if(response.data) {
                     this.order.selectedNumbers = response.data
+                }
+            })
+        },
+        loadPrices() {
+            axios.get('/_prices')
+            .then(response => {
+                if(response.data) {
+                    this.prices = response.data
                 }
             })
         },
