@@ -174,7 +174,7 @@ class OrderController extends Controller
 
     public function notificationFromYookassa(Request $request)
     {
-        $order = Order::where('id', 2)->first();
+        $order = Order::where('uid', $request->id)->first();
 
         $order->is_paid = true;
 
