@@ -119,6 +119,9 @@ class OrderController extends Controller
             }
         }
 
+        session()->forget('simple-cart');
+        session()->forget('pretty-cart');
+
         return $this->proceedPayment($order);
     }
 
@@ -165,9 +168,6 @@ class OrderController extends Controller
         $order = Order::where('uid', $uid)->first();
 
         $order->save();
-
-        session()->forget('simple-cart');
-        session()->forget('pretty-cart');
 
         return view('order-confirmed', compact('order'));
     }
