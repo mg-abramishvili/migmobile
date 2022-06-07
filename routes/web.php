@@ -65,26 +65,30 @@ Route::prefix("admin")->middleware(['auth'])->group(function() {
 });
 
 // ADMIN SETTINGS
-Route::get('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'index']);
-Route::post('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'update']);
+Route::get('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'index'])->middleware(['auth']);
+Route::post('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'update'])->middleware(['auth']);
 
 // ADMIN ABOUT
-Route::get('_admin/about', [App\Http\Controllers\Admin\AboutController::class, 'index']);
-Route::post('_admin/about', [App\Http\Controllers\Admin\AboutController::class, 'update']);
+Route::get('_admin/about', [App\Http\Controllers\Admin\AboutController::class, 'index'])->middleware(['auth']);
+Route::post('_admin/about', [App\Http\Controllers\Admin\AboutController::class, 'update'])->middleware(['auth']);
 
 // ADMIN LEADS
-Route::get('_admin/leads', [App\Http\Controllers\Admin\LeadController::class, 'index']);
-Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class, 'lead']);
+Route::get('_admin/leads', [App\Http\Controllers\Admin\LeadController::class, 'index'])->middleware(['auth']);
+Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class, 'lead'])->middleware(['auth']);
+
+// ADMIN ORDERS
+Route::get('_admin/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->middleware(['auth']);
+Route::get('_admin/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'order'])->middleware(['auth']);
 
 // ADMIN NEWS
-Route::get('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'index']);
-Route::get('_admin/news-item/{id}', [App\Http\Controllers\Admin\NewsController::class, 'newsItem']);
-Route::put('_admin/news-item/{id}/update', [App\Http\Controllers\Admin\NewsController::class, 'update']);
+Route::get('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'index'])->middleware(['auth']);
+Route::get('_admin/news-item/{id}', [App\Http\Controllers\Admin\NewsController::class, 'newsItem'])->middleware(['auth']);
+Route::put('_admin/news-item/{id}/update', [App\Http\Controllers\Admin\NewsController::class, 'update'])->middleware(['auth']);
 
 // ADMIN NUMBERS
-Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index']);
-Route::post('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'store']);
-Route::get('_admin/number/{id}', [App\Http\Controllers\Admin\NumberController::class, 'number']);
+Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index'])->middleware(['auth']);
+Route::post('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'store'])->middleware(['auth']);
+Route::get('_admin/number/{id}', [App\Http\Controllers\Admin\NumberController::class, 'number'])->middleware(['auth']);
 
 
 // AUTH

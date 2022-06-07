@@ -157,6 +157,8 @@ class OrderController extends Controller
     {
         $order = Order::where('uid', $uid)->first();
 
+        $order->save();
+
         session()->forget('simple-cart');
         session()->forget('pretty-cart');
 
