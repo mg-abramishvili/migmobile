@@ -26,12 +26,12 @@
                         </thead>
                         <tbody>
                             <tr v-for="order in orders" :key="order.id">
-                                <td>{{ order.id }}</td>
-                                <td class="w-25">{{ $filters.date(order.created_at) }}</td>
-                                <td>{{ order.name }} <br>{{ order.phone }}</td>
-                                <td>{{ order.description }}</td>
-                                <td>{{ order.price }}</td>
-                                <td>
+                                <td style="width: 5%;">{{ order.id }}</td>
+                                <td style="width: 10%;">{{ $filters.date(order.created_at) }}</td>
+                                <td style="width: 35%;">{{ order.name }} <br>{{ order.phone }}</td>
+                                <td style="width: 35%;">{{ order.description }}</td>
+                                <td style="width: 5%;">{{ order.price }}</td>
+                                <td style="width: 10%;">
                                     <template v-if="order.is_paid == true">
                                         <span class="text-success">оплачен</span>
                                         <span v-if="order.payment_id" class="d-block text-muted" style="font-size: 11px;">{{ order.payment_id }}</span>
