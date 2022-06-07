@@ -17,28 +17,31 @@
                         <label>Телефон</label>
                         <input v-model="order.phone" type="text" class="form-control">
                     </div>
-                    <div class="mb-4">
-                        <p>Ваш заказ:</p>
-                        
-                        <ul v-if="cart.simple">
-                            <template v-for="plan in cart.simple.plans">
-                                <li v-if="plan.quantity > 0">
-                                    {{ plan.quantity }} &times; {{ plan.name_ru }}
-                                </li>
-                            </template>
-                        </ul>
-
-                        <ul v-if="cart.pretty">
-                            <li v-for="number in cart.pretty.numbers">
-                                {{ number }} (красивый номер)
-                            </li>
-                        </ul>
-
-                        {{ price }} руб.
-                    </div>
-                    <div class="mb-4">
+                    <div class="your-order-bottom mb-4">
+                        <div class="price">
+                            Итого: {{ price }} руб.
+                        </div>
                         <button @click="saveOrder()" :disabled="!views.saveButton" class="btn btn-primary">Перейти к оплате</button>
                     </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="your-order mb-4">
+                    <p>Ваш заказ:</p>
+                    
+                    <ul v-if="cart.simple">
+                        <template v-for="plan in cart.simple.plans">
+                            <li v-if="plan.quantity > 0">
+                                {{ plan.quantity }} &times; {{ plan.name_ru }}
+                            </li>
+                        </template>
+                    </ul>
+
+                    <ul v-if="cart.pretty">
+                        <li v-for="number in cart.pretty.numbers">
+                            {{ number }} (красивый номер)
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -116,9 +119,8 @@ export default {
             this.views.saveButton = false
 
             axios.post('/_order', {
-                numbers: this.order.selectedNumbers,
-                name: this.order.name,
-                phone: this.order.phone,
+                order: this.order,
+                cart: this.cart,
             })
             .then(response => {
                 window.location.href = response.data

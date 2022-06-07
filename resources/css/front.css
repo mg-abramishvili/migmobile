@@ -964,6 +964,31 @@ html, body {
 }
 /* ORDER */
 
+.your-order {
+    background-color: rgba(255,255,255,0.5);
+    padding: 25px;
+    color: #777;
+    border-radius: 8px;
+}
+.your-order ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 25px;
+}
+.your-order ul:nth-last-of-type(1) {
+    margin-bottom: 0;
+}
+.your-order-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.your-order-bottom .price {
+    font-size: 30px;
+    margin-right: 20px;
+}
+
 
 .card-plan {
     display: flex;

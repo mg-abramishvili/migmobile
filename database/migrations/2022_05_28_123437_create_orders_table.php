@@ -15,7 +15,9 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->boolean('is_paid')->nullable();
+            $table->boolean('is_paid');
+            $table->longText('description');
+            $table->integer('price');
             $table->timestamps();
         });
     }

@@ -52,19 +52,19 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'phone' => 'required',
-            'numbers' => 'required',
+            'order' => 'required',
+            'cart' => 'required',
         ]);
 
-        $numbers = $request->numbers;
-
-        foreach($numbers as $nm)
+        if($request->cart["pretty"])
         {
-            $number = Number::where('number', $nm)->first();
-
-            if(isset($number->order_id)) {
-                return response('Номер ' . $number->number . ' уже был кем-то куплен', 500);
+            foreach($request->cart["pretty"]["numbers"] as $nm)
+            {
+                $number = Number::where('number', $nm)->first();
+    
+                if(isset($number->order_id)) {
+                    return response('Номер ' . $number->number . ' уже был кем-то куплен', 500);
+                }
             }
         }
 
@@ -79,20 +79,36 @@ class OrderController extends Controller
         }
 
         $order = new Order();
-        $order->name = $request->name;
-        $order->phone = $request->phone;
+        $order->name = $request->order["name"];
+        $order->phone = $request->order["phone"];
+        $order->price = $request->cart["simple"]["price"] + $request->cart["pretty"]["price"];
+
+        $order->description = implode (", ", $request->cart["pretty"]["numbers"]);
+        
+        if($request->cart["simple"]["plans"])
+        {
+            $plans = array();
+
+            foreach($request->cart["simple"]["plans"] as $plan)
+            {
+                array_push($plans, $plan['name_ru'] . $plan['quantity']);
+            }
+
+            $order->description .= implode (", ", $plans);
+        }
+
         $order->uid = gen_uuid();
         $order->is_paid = false;
         $order->save();
 
-        foreach($numbers as $nm)
+        foreach($request->cart["pretty"]["numbers"] as $nm)
         {
             $number = Number::where('number', $nm)->first();
             $number->order_id = $order->id;
             $number->save();
         }
 
-        return $this->proceedPayment($order);
+        // return $this->proceedPayment($order);
     }
 
     public function proceedPayment($order)
