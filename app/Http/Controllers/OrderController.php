@@ -179,7 +179,7 @@ class OrderController extends Controller
     {
         $notification = $request->all();
 
-        $order = Order::where('payment_id', $notification['id'])->first();
+        $order = Order::where('payment_id', $notification['object']['id'])->first();
 
         $order->is_paid = true;
 
