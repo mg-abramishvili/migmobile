@@ -21678,7 +21678,7 @@ __webpack_require__.r(__webpack_exports__);
         order: this.order,
         cart: this.cart
       }).then(function (response) {
-        window.location.href = response.data;
+        console.log(response.data); // window.location.href = response.data
       })["catch"](function (errors) {
         _this3.errors.push(errors.response.data);
 
