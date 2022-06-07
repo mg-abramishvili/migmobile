@@ -1201,7 +1201,7 @@ html, body {
         margin-top: 50px;
     }
 }
-.main-sim-item::before {
+.main-sim-item-icon {
     content: '';
     background-color: #ecf1f5 !important;
     display: block;
@@ -1218,18 +1218,6 @@ html, body {
     left: 0;
     right: 0;
     z-index: 10;
-}
-.main-sim-item-beeline::before {
-    background: url('/img/beeline.svg');
-}
-.main-sim-item-mts::before {
-    background: url('/img/mts.svg');
-}
-.main-sim-item-megafon::before {
-    background: url('/img/megafon.svg');
-}
-.main-sim-item-tele2::before {
-    background: url('/img/tele2.svg');
 }
 .main-sim-item .btn-primary {
     width: 100%;

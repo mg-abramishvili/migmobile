@@ -39,42 +39,26 @@
         <div class="container">
             <h5 class="title-head">{{ __('SIM cards') }}</h5>
             <div class="main-sim-slider">
-                <div class="main-sim-item main-sim-item-beeline">
-                    <p>{{ __('Beeline plan') }}</p>
-                    <ul>
-                        <li>100 MIN</li>
-                        <li>10 GB</li>
-                        <li>30 дней</li>
-                    </ul>
-                    <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
-                </div>
-                <div class="main-sim-item main-sim-item-mts">
-                    <p>{{ __('MTS plan') }}</p>
-                    <ul>
-                        <li>100 MIN</li>
-                        <li>10 GB</li>
-                        <li>30 дней</li>
-                    </ul>
-                    <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
-                </div>
-                <div class="main-sim-item main-sim-item-megafon">
-                    <p>{{ __('Megafon plan') }}</p>
-                    <ul>
-                        <li>100 MIN</li>
-                        <li>10 GB</li>
-                        <li>30 дней</li>
-                    </ul>
-                    <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
-                </div>
-                <div class="main-sim-item main-sim-item-tele2">
-                    <p>{{ __('Tele2 plan') }}</p>
-                    <ul>
-                        <li>100 MIN</li>
-                        <li>10 GB</li>
-                        <li>30 дней</li>
-                    </ul>
-                    <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
-                </div>
+                @foreach($plans as $plan)
+                    <div class="main-sim-item main-sim-item-beeline">
+                        <div class="main-sim-item-icon" style="background-image: url({{ $plan->icon }})"></div>
+                        <p>
+                            @if(app()->getLocale() == 'uz')
+                                {{ $plan->name_uz }}
+                            @elseif(app()->getLocale() == 'tj')
+                                {{ $plan->name_tj }}
+                            @else
+                                {{ $plan->name_ru }}
+                            @endif
+                        </p>
+                        <ul>
+                            <li>{{ $plan->min }} мин</li>
+                            <li>{{ $plan->gb }} Гб</li>
+                            <li>{{ $plan->days }} дней</li>
+                        </ul>
+                        <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
