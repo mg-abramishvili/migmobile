@@ -14,7 +14,7 @@
             <div class="w-100">
                 <div v-if="orders.length" class="mb-4">
                     <div v-for="order in orders" :key="order.id" class="card mb-3">
-                        <div class="row g-0">
+                        <div class="row g-0 align-items-center">
                             <div class="col-lg-6">
                                 <div class="card-body">
                                     <h5 class="card-title mt-0 mb-3">
@@ -38,12 +38,15 @@
                                         </template>
                                     </p>
                                     
-                                    <p v-if="order.payment_id" class="card-text mb-0"><small style="font-size: 11px; color: #888;">{{ order.payment_id }}</small></p>
+                                    <p v-if="order.payment_id" class="card-text mb-1"><small style="font-size: 11px; color: #888;">{{ order.payment_id }}</small></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="card-body">
-                                    {{ order.description }}
+                                    <p class="card-text mb-0">
+                                        <span class="text-muted">Заказ:</span>
+                                        {{ order.description }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
