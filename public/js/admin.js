@@ -23468,7 +23468,7 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_7 = {
   style: {
-    "width": "5%"
+    "width": "7.5%"
   }
 };
 var _hoisted_8 = {
@@ -23478,7 +23478,7 @@ var _hoisted_8 = {
 };
 var _hoisted_9 = {
   style: {
-    "width": "35%"
+    "width": "30%"
   }
 };
 
@@ -23488,17 +23488,17 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_11 = {
   style: {
-    "width": "35%"
+    "width": "30%"
   }
 };
 var _hoisted_12 = {
   style: {
-    "width": "5%"
+    "width": "7.5%"
   }
 };
 var _hoisted_13 = {
   style: {
-    "width": "10%"
+    "width": "15%"
   }
 };
 
