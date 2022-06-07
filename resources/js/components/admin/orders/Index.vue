@@ -17,31 +17,36 @@
                         <div class="row g-0">
                             <div class="col-lg-6">
                                 <div class="card-body">
-                                    <h5 class="card-title">
+                                    <h5 class="card-title mt-0 mb-3">
                                         Заказ №{{ order.id }} от {{ $filters.date(order.created_at) }}
                                     </h5>
                                     
-                                    <p class="card-text">
+                                    <p class="card-text mb-1">
                                         <span class="text-muted">Клиент:</span>
                                         {{ order.name }}, {{ order.phone }}
                                     </p>
 
-                                    <p class="card-text">
-                                        <span class="text-muted">Стоимость:</span>
-                                        {{ order.price }} руб.
-                                    </p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text mb-1">
+                                                <span class="text-muted">Стоимость:</span>
+                                                {{ order.price }} руб.
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="card-text mb-1">
+                                                <span class="text-muted">Статус:</span>
+                                                <template v-if="order.is_paid == true">
+                                                    <span class="text-success">оплачен</span>
+                                                </template>
+                                                <template v-if="order.is_paid == false">
+                                                    <span class="text-danger">не оплачен</span>
+                                                </template>
+                                            </p>
+                                        </div>
+                                    </div>
                                     
-                                    <p class="card-text">
-                                        <span class="text-muted">Статус:</span>
-                                        <template v-if="order.is_paid == true">
-                                            <span class="text-success">оплачен</span>
-                                        </template>
-                                        <template v-if="order.is_paid == false">
-                                            <span class="text-danger">не оплачен</span>
-                                        </template>
-                                    </p>
-                                    
-                                    <p v-if="order.payment_id" class="card-text"><small class="text-muted">{{ order.payment_id }}</small></p>
+                                    <p v-if="order.payment_id" class="card-text mb-0"><small class="text-muted">{{ order.payment_id }}</small></p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
