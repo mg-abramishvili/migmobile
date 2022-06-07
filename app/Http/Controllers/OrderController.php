@@ -56,9 +56,9 @@ class OrderController extends Controller
             'cart' => 'required',
         ]);
 
-        if($request->cart["pretty"])
+        if($request["cart"]["pretty"])
         {
-            foreach($request->cart["pretty"]["numbers"] as $nm)
+            foreach($request["cart"]["pretty"]["numbers"] as $nm)
             {
                 $number = Number::where('number', $nm)->first();
     
@@ -81,15 +81,15 @@ class OrderController extends Controller
         $order = new Order();
         $order->name = $request->order["name"];
         $order->phone = $request->order["phone"];
-        $order->price = $request->cart["simple"]["price"] + $request->cart["pretty"]["price"];
+        $order->price = $request["cart"]["simple"]["price"] + $request["cart"]["pretty"]["price"];
 
-        $order->description = implode (", ", $request->cart["pretty"]["numbers"]);
+        $order->description = implode (", ", $request["cart"]["pretty"]["numbers"]);
         
-        if($request->cart["simple"]["plans"])
+        if($request["cart"]["simple"]["plans"])
         {
             $plans = array();
 
-            foreach($request->cart["simple"]["plans"] as $plan)
+            foreach($request["cart"]["simple"]["plans"] as $plan)
             {
                 if($plan["quantity"] > 0)
                 {
@@ -105,7 +105,7 @@ class OrderController extends Controller
         $order->is_paid = false;
         $order->save();
 
-        foreach($request->cart["pretty"]["numbers"] as $nm)
+        foreach($request["cart"]["pretty"]["numbers"] as $nm)
         {
             $number = Number::where('number', $nm)->first();
             $number->order_id = $order->id;
