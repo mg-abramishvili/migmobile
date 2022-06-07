@@ -171,4 +171,13 @@ class OrderController extends Controller
 
         return view('order-confirmed', compact('order'));
     }
+
+    public function notificationFromYookassa(Request $request)
+    {
+        $order = Order::where('uid', $request->object->id)->first();
+
+        $order->is_paid = true;
+
+        $order->save();
+    }
 }
