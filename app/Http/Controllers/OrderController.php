@@ -159,7 +159,10 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-        // print_r($res);
+        
+        $order->payment_id = $res['id'];
+        $order->save();
+
         return $res['confirmation']['confirmation_url'];
     }
 
@@ -174,10 +177,11 @@ class OrderController extends Controller
 
     public function notificationFromYookassa(Request $request)
     {
-        $order = Order::first();
+        $notification = $request->all();
 
-        // $order->is_paid = true;
-        $order->description = $request->all();
+        $order = Order::where('payment_id', $notification['id'])->first();
+
+        $order->is_paid = true;
 
         $order->save();
 

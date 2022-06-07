@@ -22,6 +22,7 @@
                                 <th>Заказ</th>
                                 <th>Стоимость</th>
                                 <th>Статус</th>
+                                <th>ID платежа</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +36,7 @@
                                     <template v-if="order.is_paid == true"><span class="text-success">оплачен</span></template>
                                     <template v-if="order.is_paid == false"><span class="text-danger">не оплачен</span></template>
                                 </td>
+                                <td>{{ order.payment_id }}</td>
                             </tr>
                         </tbody>
                     </table>
