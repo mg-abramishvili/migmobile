@@ -76,7 +76,7 @@ class OrderController extends Controller
 
         $cart = $request->cart;
 
-        if($cart['simple'])
+        if(isset($cart['simple']))
         {
             $plans = array();
 
