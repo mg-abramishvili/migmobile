@@ -67,7 +67,7 @@
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <div class="dropdown-item header-top-flags-item">
                                             <a href="{{ route('home') }}">
-                                                <img src="/img/flag_{{ app()->getLocale() }}.svg" alt="Русский язык">
+                                                <img src="/img/flag_{{ strtolower(app()->getLocale()) }}.svg" alt="Русский язык">
                                                 {{ strtoupper(app()->getLocale()) }}
                                             </a>
                                         </div>
