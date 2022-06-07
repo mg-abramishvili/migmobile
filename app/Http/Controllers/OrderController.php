@@ -51,25 +51,6 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'order' => 'required',
-            'cart' => 'required',
-        ]);
-
-        $cart = $request->cart;
-
-        if($cart['pretty'])
-        {
-            foreach($cart->pretty->numbers as $nm)
-            {
-                $number = Number::where('number', $nm)->first();
-    
-                if(isset($number->order_id)) {
-                    return response('Номер ' . $number->number . ' уже был кем-то куплен', 500);
-                }
-            }
-        }
-
         function gen_uuid() {
             return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
                 mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
@@ -80,23 +61,26 @@ class OrderController extends Controller
             );
         }
 
+        $this->validate($request, [
+            'order' => 'required',
+            'cart' => 'required',
+        ]);
+
         $order = new Order();
         $order->name = $request->order["name"];
         $order->phone = $request->order["phone"];
+        $order->uid = gen_uuid();
+        $order->is_paid = false;
+        $order->description = '';
+        $order->price = 0;
 
-        $order->price = $cart->simple->price;
-        if($cart->pretty)
-        {
-            $order->price += $cart->pretty->price;
-        }
+        $cart = $request->cart;
 
-        $order->description = implode (", ", $cart->pretty->numbers);
-        
-        if($cart->simple->plans)
+        if($cart['simple'])
         {
             $plans = array();
 
-            foreach($cart->simple->plans as $plan)
+            foreach($cart['simple']['plans'] as $plan)
             {
                 if($plan["quantity"] > 0)
                 {
@@ -104,12 +88,25 @@ class OrderController extends Controller
                 }
             }
 
-            $order->description .= ", ";
             $order->description .= implode (", ", $plans);
+            $order->price += $cart['simple']['price'];
         }
 
-        $order->uid = gen_uuid();
-        $order->is_paid = false;
+        if(isset($cart['pretty']))
+        {
+            foreach($cart['pretty']['numbers'] as $nm)
+            {
+                $number = Number::where('number', $nm)->first();
+    
+                if(isset($number->order_id)) {
+                    return response('Номер ' . $number->number . ' уже был кем-то куплен', 500);
+                }
+            }
+
+            $order->description .= implode (", ", $cart['pretty']['numbers']);
+            $order->price += $cart['pretty']['price'];
+        }
+        
         $order->save();
 
         foreach($cart->pretty->numbers as $nm)
