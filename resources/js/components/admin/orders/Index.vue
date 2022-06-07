@@ -31,10 +31,10 @@
                                         {{ order.price }} руб.
 
                                         <template v-if="order.is_paid == true">
-                                            <span class="text-success">оплачен</span>
+                                            <span class="text-success fw-bold">оплачен</span>
                                         </template>
                                         <template v-if="order.is_paid == false">
-                                            <span class="text-danger">не оплачен</span>
+                                            <span class="text-danger fw-bold">не оплачен</span>
                                         </template>
                                     </p>
                                     

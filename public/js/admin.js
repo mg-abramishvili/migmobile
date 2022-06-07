@@ -23492,11 +23492,11 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_13 = {
   key: 0,
-  "class": "text-success"
+  "class": "text-success fw-bold"
 };
 var _hoisted_14 = {
   key: 1,
-  "class": "text-danger"
+  "class": "text-danger fw-bold"
 };
 var _hoisted_15 = {
   key: 0,
