@@ -23456,7 +23456,7 @@ var _hoisted_3 = {
 };
 var _hoisted_4 = {
   key: 0,
-  "class": "box mb-4"
+  "class": "mb-4"
 };
 var _hoisted_5 = {
   "class": "row g-0"
