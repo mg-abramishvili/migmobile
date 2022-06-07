@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="title-head mb-4">Оформление заказа</h1>
 
-        <div class="row">
+        <div v-if="cart.simple || cart.pretty" class="row">
             <div class="col-12 col-lg-6">
                 <div class="complete-order-form">
                     <div v-if="errors.length" class="alert alert-danger" role="alert">
