@@ -195,7 +195,7 @@
         <script src="{{ asset('/js/flickity.pkgd.min.js') }}"></script>
         @yield('scripts')
 
-        @if(Route::is('aviaRu') || Route::is('aviaUz') || Route::is('aviaTj'))
+        @if(Route::is('avia'))
         @else
             <script src="{{ mix('/js/front.js') }}"></script>
         @endif
