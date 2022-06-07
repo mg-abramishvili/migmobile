@@ -18,27 +18,28 @@
                             <tr>
                                 <th>№</th>
                                 <th>Дата</th>
-                                <th>Имя</th>
-                                <th>Телефон</th>
+                                <th>Клиент</th>
                                 <th>Заказ</th>
                                 <th>Стоимость</th>
                                 <th>Статус</th>
-                                <th>ID платежа</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="order in orders" :key="order.id">
                                 <td>{{ order.id }}</td>
-                                <td class="w-25">{{ $filters.datetime(order.created_at) }}</td>
-                                <td>{{ order.name }}</td>
-                                <td>{{ order.phone }}</td>
+                                <td class="w-25">{{ $filters.date(order.created_at) }}</td>
+                                <td>{{ order.name }} <br>{{ order.phone }}</td>
                                 <td>{{ order.description }}</td>
                                 <td>{{ order.price }}</td>
                                 <td>
-                                    <template v-if="order.is_paid == true"><span class="text-success">оплачен</span></template>
-                                    <template v-if="order.is_paid == false"><span class="text-danger">не оплачен</span></template>
+                                    <template v-if="order.is_paid == true">
+                                        <span class="text-success">оплачен</span>
+                                        <span v-if="order.payment_id" class="d-block text-muted" style="font-size: 11px;">{{ order.payment_id }}</span>
+                                    </template>
+                                    <template v-if="order.is_paid == false">
+                                        <span class="text-danger">не оплачен</span>
+                                    </template>
                                 </td>
-                                <td>{{ order.payment_id }}</td>
                             </tr>
                         </tbody>
                     </table>
