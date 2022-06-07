@@ -13,36 +13,42 @@
         <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="w-100">
                 <div v-if="orders.length" class="box mb-4">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>№</th>
-                                <th>Дата</th>
-                                <th>Клиент</th>
-                                <th>Заказ</th>
-                                <th>Стоимость</th>
-                                <th>Статус</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="order in orders" :key="order.id">
-                                <td style="width: 7.5%;">{{ order.id }}</td>
-                                <td style="width: 10%;">{{ $filters.date(order.created_at) }}</td>
-                                <td style="width: 30%;">{{ order.name }} <br>{{ order.phone }}</td>
-                                <td style="width: 30%;">{{ order.description }}</td>
-                                <td style="width: 7.5%;">{{ order.price }}</td>
-                                <td style="width: 15%;">
-                                    <template v-if="order.is_paid == true">
-                                        <span class="text-success">оплачен</span>
-                                        <span v-if="order.payment_id" class="d-block text-muted" style="font-size: 11px;">{{ order.payment_id }}</span>
-                                    </template>
-                                    <template v-if="order.is_paid == false">
-                                        <span class="text-danger">не оплачен</span>
-                                    </template>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Заказ №{{ order.id }} от {{ $filters.date(order.created_at) }}
+                                    </h5>
+                                    
+                                    <p class="card-text">
+                                        <span class="text-muted">Клиент:</span>
+                                        {{ order.name }}, {{ order.phone }}
+                                    </p>
+
+                                    <p class="card-text">
+                                        <span class="text-muted">Стоимость:</span>
+                                        {{ order.price }} руб.
+                                    </p>
+                                    
+                                    <p class="card-text">
+                                        <span class="text-muted">Статус:</span>
+                                        <template v-if="order.is_paid == true">
+                                            <span class="text-success">оплачен</span>
+                                        </template>
+                                        <template v-if="order.is_paid == false">
+                                            <span class="text-danger">не оплачен</span>
+                                        </template>
+                                    </p>
+                                    
+                                    <p v-if="order.payment_id" class="card-text"><small class="text-muted">{{ order.payment_id }}</small></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                {{ order.description }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <p v-else>Заказов нет.</p>
             </div>
