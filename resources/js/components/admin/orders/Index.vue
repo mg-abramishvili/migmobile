@@ -34,7 +34,7 @@
                                             <span class="text-success fw-bold">оплачен</span>
                                         </template>
                                         <template v-if="order.is_paid == false">
-                                            <span class="text-danger fw-bold">не оплачен</span>
+                                            <span class="text-warning fw-bold">не оплачен</span>
                                         </template>
                                     </p>
                                     

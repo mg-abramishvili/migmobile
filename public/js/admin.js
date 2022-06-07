@@ -23496,7 +23496,7 @@ var _hoisted_13 = {
 };
 var _hoisted_14 = {
   key: 1,
-  "class": "text-danger fw-bold"
+  "class": "text-warning fw-bold"
 };
 var _hoisted_15 = {
   key: 0,
