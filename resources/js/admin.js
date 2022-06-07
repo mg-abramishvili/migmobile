@@ -17,6 +17,9 @@ app.config.globalProperties.$filters = {
     datetime(date) {
         return moment.utc(date).utcOffset(5).format('DD.MM.YYYY H:mm')
     },
+    date(date) {
+        return moment.utc(date).utcOffset(5).format('DD.MM.YYYY')
+    },
 }
 
 app.use(router).use(VueSweetalert2).use(CKEditor).mount('#app')

@@ -76,6 +76,9 @@ Route::post('_admin/about', [App\Http\Controllers\Admin\AboutController::class, 
 Route::get('_admin/leads', [App\Http\Controllers\Admin\LeadController::class, 'index']);
 Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class, 'lead']);
 
+// ADMIN NEWS
+Route::get('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'index']);
+
 // ADMIN NUMBERS
 Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index']);
 Route::post('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'store']);

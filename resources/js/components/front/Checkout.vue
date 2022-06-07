@@ -26,6 +26,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6">
+                <label>&nbsp;</label>
                 <div class="your-order mb-4">
                     <p>Ваш заказ:</p>
                     
