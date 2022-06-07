@@ -30,6 +30,10 @@ Route::get('/order', function() {
     return view('order');
 })->name('order');
 
+Route::get('/order-pretty', function() {
+    return view('order-pretty');
+})->name('order-pretty');
+
 Route::get('/numbers/{digits}', [App\Http\Controllers\NumberController::class, 'index']);
 Route::get('/_prices', [App\Http\Controllers\PriceController::class, 'index']);
 

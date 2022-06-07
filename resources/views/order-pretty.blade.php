@@ -4,6 +4,6 @@
 
 @section('content')
     <div class="order-page">
-        <order-simple></order-simple>
+        <order-pretty></order-pretty>
     </div>
 @endsection

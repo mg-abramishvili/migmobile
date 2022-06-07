@@ -46,7 +46,7 @@
                         <li>10 GB</li>
                         <li>30 дней</li>
                     </ul>
-                    <button class="btn btn-primary">{{ __('Order') }}</button>
+                    <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
                 </div>
                 <div class="main-sim-item main-sim-item-mts">
                     <p>{{ __('MTS plan') }}</p>
@@ -55,7 +55,7 @@
                         <li>10 GB</li>
                         <li>30 дней</li>
                     </ul>
-                    <button class="btn btn-primary">{{ __('Order') }}</button>
+                    <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
                 </div>
                 <div class="main-sim-item main-sim-item-megafon">
                     <p>{{ __('Megafon plan') }}</p>
@@ -64,7 +64,7 @@
                         <li>10 GB</li>
                         <li>30 дней</li>
                     </ul>
-                    <button class="btn btn-primary">{{ __('Order') }}</button>
+                    <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
                 </div>
                 <div class="main-sim-item main-sim-item-tele2">
                     <p>{{ __('Tele2 plan') }}</p>
@@ -73,7 +73,7 @@
                         <li>10 GB</li>
                         <li>30 дней</li>
                     </ul>
-                    <button class="btn btn-primary">{{ __('Order') }}</button>
+                    <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                         <p>{{ __('You can buy a beautiful phone number from us') }}</p>
                     </div>
                     <div class="col-12 col-lg-4 text-center">
-                        <a href="/order/" class="btn btn-primary btn-white">{{ __('Choose a number') }}</a>
+                        <a href="/order-pretty/" class="btn btn-primary btn-white">{{ __('Choose a number') }}</a>
                     </div>
                 </div>
             </div>

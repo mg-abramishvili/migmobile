@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <template v-if="views.step == 'searchNumbers'">
-            <h1 class="title-head mb-4">Заказ номера</h1>
+            <h1 class="title-head mb-4">Купить красивые номера</h1>
 
             <div class="order-numbers">
                 <div class="row">
@@ -101,41 +101,14 @@
                 </div>
             </div>
         </template>
-        <template v-if="views.step == 'completeOrder'">
-            <h1 class="title-head mb-4">Оформление заказа</h1>
-
-            <div class="row">
-                <div class="col-12 col-lg-6">
-                    <div class="complete-order-form">
-                        <div v-if="errors.length" class="alert alert-danger" role="alert">
-                            <p v-for="error in errors" class="m-0">{{ error }}</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <label>ФИО</label>
-                            <input v-model="order.name" type="text" class="form-control">
-                        </div>
-                        <div class="mb-4">
-                            <label>Телефон</label>
-                            <input v-model="order.phone" type="text" class="form-control">
-                        </div>
-                        <div class="mb-4">
-                            <p>Ваш заказ:</p>
-                            <ul>
-                                <li v-for="orderNumItem in order.selectedNumbers">{{ orderNumItem }}</li>
-                            </ul>
-                        </div>
-                        <div class="mb-4">
-                            <button @click="saveOrder()" class="btn btn-primary">Перейти к оплате</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
+        
+        <OrderFinish v-if="views.step == 'completeOrder'" />
     </div>
 </template>
 
 <script>
+import OrderFinish from './OrderFinish.vue'
+
 export default {
     props: ['lang'],
     data() {
@@ -277,6 +250,9 @@ export default {
                 this.errors.push(errors.response.data)
             })
         },
+    },
+    components: {
+        OrderFinish
     }
 }
 </script>
