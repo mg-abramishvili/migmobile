@@ -29,7 +29,7 @@
                                 <ul>
                                     <li v-for="beelineNumberItem in numbers.beeline">
                                         {{ beelineNumberItem }}
-                                        <button v-if="!order.selectedNumbers.includes(beelineNumberItem)" @click="addToCart(beelineNumberItem)" class="btn btn-sm btn-success">
+                                        <button v-if="!selected.numbers.includes(beelineNumberItem)" @click="addToCart(beelineNumberItem)" class="btn btn-sm btn-success">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                                             </svg>
@@ -42,7 +42,7 @@
                                 <ul>
                                     <li v-for="mtsNumberItem in numbers.mts">
                                         {{ mtsNumberItem }}
-                                        <button v-if="!order.selectedNumbers.includes(mtsNumberItem)" @click="addToCart(mtsNumberItem)" class="btn btn-sm btn-success">
+                                        <button v-if="!selected.numbers.includes(mtsNumberItem)" @click="addToCart(mtsNumberItem)" class="btn btn-sm btn-success">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                                             </svg>
@@ -55,7 +55,7 @@
                                 <ul>
                                     <li v-for="megafonNumberItem in numbers.megafon">
                                         {{ megafonNumberItem }}
-                                        <button v-if="!order.selectedNumbers.includes(megafonNumberItem)" @click="addToCart(megafonNumberItem)" class="btn btn-sm btn-success">
+                                        <button v-if="!selected.numbers.includes(megafonNumberItem)" @click="addToCart(megafonNumberItem)" class="btn btn-sm btn-success">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                                             </svg>
@@ -68,7 +68,7 @@
                                 <ul>
                                     <li v-for="tele2NumberItem in numbers.tele2">
                                         {{ tele2NumberItem }}
-                                        <button v-if="!order.selectedNumbers.includes(tele2NumberItem)" @click="addToCart(tele2NumberItem)" class="btn btn-sm btn-success">
+                                        <button v-if="!selected.numbers.includes(tele2NumberItem)" @click="addToCart(tele2NumberItem)" class="btn btn-sm btn-success">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                                             </svg>
@@ -80,10 +80,10 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
-                    <div v-if="order.selectedNumbers.length" class="order-page-cart">
+                    <div v-if="selected.numbers" class="order-page-cart">
                         <p class="fw-bold">Ваш заказ:</p>
                         <ul>
-                            <li v-for="orderNumItem in order.selectedNumbers">
+                            <li v-for="orderNumItem in selected.numbers">
                                 {{  orderNumItem }}
                                 <button @click="removeFromCart(orderNumItem)" class="btn btn-sm btn-outline-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -93,8 +93,8 @@
                                 </button>
                             </li>
                         </ul>
-                        <p v-if="price > 0">{{ price }} руб.</p>
-                        <a v-if="price > 0" href="/checkout" class="btn btn-primary btn-white">Оформить заказ</a>
+                        <p v-if="priceWithQuantity > 0">{{ priceWithQuantity }} руб.</p>
+                        <a v-if="priceWithQuantity > 0" @click="proceedToCheckout()" class="btn btn-primary btn-white">Оформить заказ</a>
                     </div>
                 </div>
             </div>
@@ -107,20 +107,14 @@ export default {
     props: ['lang'],
     data() {
         return {
-            searchInput: '',
-
             numbers: {},
-
             prices: [],
 
-            order: {
-                name: '',
-                phone: '',
-                selectedNumbers: [],
-                id: '',
-            },
+            searchInput: '',
 
-            errors: [],
+            selected: {
+                numbers: [],
+            },
 
             views: {
                 loading: false,
@@ -129,8 +123,16 @@ export default {
         }
     },
     computed: {
+        quantity() {
+            return this.selected.numbers.length
+        },
         price() {
-            let quantity = this.order.selectedNumbers.length
+            let quantity = this.selected.numbers.length
+
+            if(quantity == 0) {
+                return 0
+            }
+
             let conditions = this.prices.filter(price => price.type == 'pretty')
             let price = 0
 
@@ -142,6 +144,9 @@ export default {
 
             return price
         },
+        priceWithQuantity() {
+            return this.price * this.quantity
+        },
     },
     created() {
         this.loadCart()
@@ -152,7 +157,7 @@ export default {
             axios.get('/_cart', { params: { type: 'pretty' } })
             .then(response => {
                 if(response.data) {
-                    this.order.selectedNumbers = response.data
+                    this.selected.numbers = response.data.numbers
                 }
             })
         },
@@ -164,7 +169,7 @@ export default {
         },
         saveCart() {
             axios.post('/_pretty-cart', {
-                numbers: this.order.selectedNumbers
+                pretty_cart: { "numbers": this.selected.numbers, "price": this.priceWithQuantity }
             })
         },
         resultCounter() {
@@ -186,14 +191,14 @@ export default {
             return counter.reduce((a, b) => a + b, 0)
         },
         addToCart(number) {
-            this.order.selectedNumbers.push(number)
+            this.selected.numbers.push(number)
 
             this.saveCart()
         },
         removeFromCart(number) {
-            let index = this.order.selectedNumbers.indexOf(number)
+            let index = this.selected.numbers.indexOf(number)
             if (index > -1) {
-                this.order.selectedNumbers.splice(index, 1)
+                this.selected.numbers.splice(index, 1)
             }
             this.saveCart()
         },
@@ -213,6 +218,11 @@ export default {
                 this.views.searchResult = true
             })
         },
+        proceedToCheckout() {
+            this.saveCart()
+            
+            window.location.href = '/checkout'
+        }
     },
 }
 </script>

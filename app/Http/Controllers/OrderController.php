@@ -25,18 +25,18 @@ class OrderController extends Controller
 
     public function storeSimpleCart(Request $request)
     {
-        $plans = $request->plans;
+        $simple_cart = $request->simple_cart;
         
-        session()->put('simple-cart', $plans);
+        session()->put('simple-cart', $simple_cart);
     }
 
     public function storePrettyCart(Request $request)
     {
-        $numbers = $request->numbers;
+        $pretty_cart = $request->pretty_cart;
         
-        if($numbers)
+        if($pretty_cart["numbers"])
         {
-            foreach($numbers as $nm)
+            foreach($pretty_cart["numbers"] as $nm)
             {
                 $number = Number::where('number', $nm)->first();
     
@@ -46,7 +46,7 @@ class OrderController extends Controller
             }
         }
 
-        session()->put('pretty-cart', $numbers);
+        session()->put('pretty-cart', $pretty_cart);
     }
 
     public function store(Request $request)

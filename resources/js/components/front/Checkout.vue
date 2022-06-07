@@ -19,7 +19,22 @@
                     </div>
                     <div class="mb-4">
                         <p>Ваш заказ:</p>
-                        {{ order }}
+                        
+                        <ul v-if="cart.simple">
+                            <template v-for="plan in cart.simple.plans">
+                                <li v-if="plan.quantity > 0">
+                                    {{ plan.quantity }} &times; {{ plan.name_ru }}
+                                </li>
+                            </template>
+                        </ul>
+
+                        <ul v-if="cart.pretty">
+                            <li v-for="number in cart.pretty.numbers">
+                                {{ number }} (красивый номер)
+                            </li>
+                        </ul>
+
+                        {{ price }} руб.
                     </div>
                     <div class="mb-4">
                         <button @click="saveOrder()" :disabled="!views.saveButton" class="btn btn-primary">Перейти к оплате</button>
@@ -35,13 +50,33 @@ export default {
     props: ['lang'],
     data() {
         return {
-            order: {},
+            order: {
+                name: '',
+                phone: '',
+            },
+
+            cart: {},
 
             errors: [],
 
             views: {
                 saveButton: true,
             }
+        }
+    },
+    computed: {
+        price() {
+            let simplePrice = 0
+            let prettyPrice = 0
+
+            if(this.cart.simple && this.cart.simple.price) {
+                simplePrice = this.cart.simple.price
+            }
+            if(this.cart.pretty && this.cart.pretty.price) {
+                prettyPrice = this.cart.pretty.price
+            }
+
+            return simplePrice + prettyPrice
         }
     },
     created() {
@@ -53,7 +88,7 @@ export default {
             axios.get('/_cart', { params: { type: 'simple' } })
             .then(response => {
                 if(response.data) {
-                    this.order.plans = response.data
+                    this.cart.simple = response.data
                 }
             })
         },
@@ -61,7 +96,7 @@ export default {
             axios.get('/_cart', { params: { type: 'pretty' } })
             .then(response => {
                 if(response.data) {
-                    this.order.selectedNumbers = response.data
+                    this.cart.pretty = response.data
                 }
             })
         },
