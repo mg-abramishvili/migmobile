@@ -23,6 +23,13 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
+                    <div class="disclaimer mb-4">
+                        <p>Цена за 1 номер = 300 руб.</p>
+
+                        <p>При покупке 5 номеров и более, цена за 1 номер = 250 руб.</p>
+
+                        <p>При покупке 10 и более номеров, цена за 1 номер = 100 руб.</p>
+                    </div>
                     <div v-if="selected.plans" class="order-page-cart">
                         <p class="fw-bold">Ваш заказ:</p>
                         <ul>
