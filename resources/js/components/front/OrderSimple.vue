@@ -26,9 +26,9 @@
                     <div v-if="prices" class="disclaimer mb-4">
                         <p v-if="prices.filter(price => price.type == 'simple')[0]">Цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[0].price }} руб</strong>.</p>
 
-                        <p>При покупке 5 номеров и более, цена за 1 номер = <strong>250 руб</strong>.</p>
+                        <p v-if="prices.filter(price => price.type == 'simple')[1]">При покупке 5 номеров и более, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[1].price }} руб</strong>.</p>
 
-                        <p>При покупке 10 и более номеров, цена за 1 номер = <strong>100 руб</strong>.</p>
+                        <p v-if="prices.filter(price => price.type == 'simple')[2]">При покупке 10 и более номеров, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[2].price }} руб</strong>.</p>
                     </div>
                     <div v-if="priceWithQuantity > 0" class="order-page-cart">
                         <p class="fw-bold">Ваш заказ:</p>
