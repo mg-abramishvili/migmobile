@@ -30,7 +30,7 @@
 
                         <p>При покупке 10 и более номеров, цена за 1 номер = 100 руб.</p>
                     </div>
-                    <div v-if="selected.plans.length" class="order-page-cart">
+                    <div v-if="priceWithQuantity > 0" class="order-page-cart">
                         <p class="fw-bold">Ваш заказ:</p>
                         <ul>
                             <template v-for="orderItem in selected.plans">
