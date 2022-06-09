@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Number;
 use App\Models\Setting;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -67,8 +68,17 @@ class OrderController extends Controller
         ]);
 
         $order = new Order();
-        $order->name = $request->order["name"];
+        $order->first_name = $request->order["first_name"];
+        $order->middle_name = $request->order["middle_name"];
+        $order->last_name = $request->order["last_name"];
         $order->phone = $request->order["phone"];
+        $order->zip = $request->order["zip"];
+        $order->region = $request->order["region"];
+        $order->city = $request->order["city"];
+        $order->street = $request->order["street"];
+        $order->building = $request->order["building"];
+        $order->apartment = $request->order["apartment"];
+        $order->entrance = $request->order["entrance"];
         $order->uid = gen_uuid();
         $order->is_paid = false;
         $order->description = '';
@@ -84,8 +94,18 @@ class OrderController extends Controller
             {
                 if($plan["quantity"] > 0)
                 {
-                    array_push($plans, $plan['name_ru'] . ' (' . $plan['quantity'] . ' шт)');
+                    if(!$this->CheckStockQuantity($plan))
+                    {
+                        return response('Необходимого количество SIM-карт ' . $plan['name_ru'] . ' уже нет в наличии', 500);
+                    }
                 }
+            }
+
+            foreach($cart['simple']['plans'] as $plan)
+            {
+                $this->ProcessStockQuantity($plan);
+                        
+                array_push($plans, $plan['name_ru'] . ' (' . $plan['quantity'] . ' шт)');
             }
 
             $order->description .= implode (", ", $plans);
@@ -186,5 +206,31 @@ class OrderController extends Controller
         $order->save();
 
         return response('OK', 200);
+    }
+
+    public function CheckStockQuantity($planFromOrder)
+    {
+        $plan = Plan::where('name', $planFromOrder['name'])->first();
+
+        if($planFromOrder['quantity'] <= $plan->in_stock)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function ProcessStockQuantity($planFromOrder)
+    {
+        $plan = Plan::where('name', $planFromOrder['name'])->first();
+
+        if($planFromOrder['quantity'] <= $plan->in_stock)
+        {
+            $plan->in_stock = $plan->in_stock - $planFromOrder['quantity'];
+            $plan->save();
+            return true;
+        }
+
+        return false;
     }
 }

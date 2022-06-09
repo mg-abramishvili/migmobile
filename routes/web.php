@@ -56,6 +56,7 @@ Route::post('_pretty-cart', [App\Http\Controllers\OrderController::class, 'store
 Route::post('_order', [App\Http\Controllers\OrderController::class, 'store']);
 Route::get('order-confirmed/{uid}', [App\Http\Controllers\OrderController::class, 'orderConfirmed']);
 Route::post('order-notification-from-yookassa', [App\Http\Controllers\OrderController::class, 'notificationFromYookassa']);
+Route::get('_tracking', [App\Http\Controllers\TrackingController::class, 'index']);
 
 Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
 
