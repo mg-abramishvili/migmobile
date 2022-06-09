@@ -5,22 +5,24 @@
         <div class="order-numbers">
             <div class="row">
                 <div class="col-12 col-lg-8">
-                    <div v-for="plan in plans" class="card card-plan mb-3">
-                        <div class="card-plan-icon">
-                            <img :src="plan.icon" class="img-fluid rounded-start" alt="">
+                    <template v-for="plan in plans">
+                        <div v-if="plan.in_stock > 0" class="card card-plan mb-3">
+                            <div class="card-plan-icon">
+                                <img :src="plan.icon" class="img-fluid rounded-start" alt="">
+                            </div>
+                            <div class="card-plan-title">
+                                <h5 class="card-title m-0">{{ plan.name_ru }}</h5>
+                            </div>
+                            <div class="card-plan-buy">
+                                <input v-model="selected.plans.find(p => p.name == plan.name).quantity" @change="saveCart()" type="number" min="0" :max="plan.in_stock" class="form-control">
+                                <button class="btn btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
-                        <div class="card-plan-title">
-                            <h5 class="card-title m-0">{{ plan.name_ru }}</h5>
-                        </div>
-                        <div class="card-plan-buy">
-                            <input v-model="selected.plans.find(p => p.name == plan.name).quantity" @change="saveCart()" type="number" min="0" class="form-control">
-                            <button class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
+                    </template>
                 </div>
                 <div class="col-12 col-lg-4">
                     <div v-if="prices" class="disclaimer mb-4">
@@ -46,6 +48,7 @@
                             </template>
                         </ul>
                         <p v-if="priceWithQuantity > 0" class="price">{{ priceWithQuantity }} руб.</p>
+                        <p>{{ deliveryName }}</p>
                         <a v-if="priceWithQuantity > 0" @click="proceedToCheckout()" class="btn btn-primary btn-white">Оформить заказ</a>
                     </div>
                 </div>
@@ -96,6 +99,14 @@ export default {
         priceWithQuantity() {
             return this.price * this.quantity
         },
+        deliveryName() {
+            if(this.priceWithQuantity >= this.settings.free_delivery_from) {
+                return 'Бесплатная курьерская доставка до двери'
+            }
+            if(this.priceWithQuantity < this.settings.free_delivery_from) {
+                return 'Бесплатная доставка в отделение Почты России'
+            }
+        }
     },
     created() {
         this.loadPlans()

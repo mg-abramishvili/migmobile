@@ -21955,6 +21955,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     priceWithQuantity: function priceWithQuantity() {
       return this.price * this.quantity;
+    },
+    deliveryName: function deliveryName() {
+      if (this.priceWithQuantity >= this.settings.free_delivery_from) {
+        return 'Бесплатная курьерская доставка до двери';
+      }
+
+      if (this.priceWithQuantity < this.settings.free_delivery_from) {
+        return 'Бесплатная доставка в отделение Почты России';
+      }
     }
   },
   created: function created() {
@@ -22736,6 +22745,7 @@ var _hoisted_5 = {
   "class": "col-12 col-lg-8"
 };
 var _hoisted_6 = {
+  key: 0,
   "class": "card card-plan mb-3"
 };
 var _hoisted_7 = {
@@ -22751,7 +22761,7 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "card-plan-buy"
 };
-var _hoisted_12 = ["onUpdate:modelValue"];
+var _hoisted_12 = ["onUpdate:modelValue", "max"];
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-primary"
@@ -22838,7 +22848,7 @@ var _hoisted_31 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.plans, function (plan) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [plan.in_stock > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: plan.icon,
       "class": "img-fluid rounded-start",
       alt: ""
@@ -22857,12 +22867,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }),
       type: "number",
       min: "0",
+      max: plan.in_stock,
       "class": "form-control"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
     , _hoisted_12), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.selected.plans.find(function (p) {
       return p.name == plan.name;
-    }).quantity]]), _hoisted_13])]);
+    }).quantity]]), _hoisted_13])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+    /* STABLE_FRAGMENT */
+    );
   }), 256
   /* UNKEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [$data.prices ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [$data.prices.filter(function (price) {
@@ -22900,7 +22913,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* UNKEYED_FRAGMENT */
   ))]), $options.priceWithQuantity > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.priceWithQuantity) + " руб.", 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.priceWithQuantity > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.deliveryName), 1
+  /* TEXT */
+  ), $options.priceWithQuantity > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 1,
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.proceedToCheckout();
