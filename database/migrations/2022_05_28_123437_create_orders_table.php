@@ -12,13 +12,21 @@ return new class extends Migration
             $table->id();
             $table->string('uid');
             $table->string('name');
-            $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('region')->nullable();
+            $table->string('city')->nullable();
+            $table->string('street')->nullable();
+            $table->string('entrance')->nullable();
+            $table->string('building')->nullable();
+            $table->string('apartment')->nullable();
             $table->boolean('is_paid');
             $table->string('payment_id')->nullable();
             $table->longText('description');
             $table->integer('price');
+            $table->string('delivery_name')->nullable();
+            $table->string('delivery_track_number')->nullable();
             $table->timestamps();
         });
     }

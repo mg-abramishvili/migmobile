@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('gb')->nullable();
             $table->string('sms')->nullable();
             $table->string('days')->nullable();
+            $table->integer('in_stock')->default(0);
         });
     }
 

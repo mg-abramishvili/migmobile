@@ -18,6 +18,7 @@ class SettingController extends Controller
         $this->validate($request, [
             'yookassa_shop_id' => 'required',
             'yookassa_secret_key' => 'required',
+            'free_delivery_from' => 'required',
         ]);
 
         $settings = Setting::find(1);
@@ -29,6 +30,7 @@ class SettingController extends Controller
 
         $settings->yookassa_shop_id = $request->yookassa_shop_id;
         $settings->yookassa_secret_key = $request->yookassa_secret_key;
+        $settings->free_delivery_from = $request->free_delivery_from;
         
         $settings->save();
     }

@@ -22340,6 +22340,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       yookassa_shop_id: '',
       yookassa_secret_key: '',
+      free_delivery_from: 0,
       views: {
         loading: true,
         saveButton: true
@@ -22356,6 +22357,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/_admin/settings').then(function (response) {
         _this.yookassa_shop_id = response.data.yookassa_shop_id;
         _this.yookassa_secret_key = response.data.yookassa_secret_key;
+        _this.free_delivery_from = response.data.free_delivery_from;
         _this.views.loading = false;
       });
     },
@@ -22379,7 +22381,8 @@ __webpack_require__.r(__webpack_exports__);
       this.views.saveButton = false;
       axios.post('/_admin/settings', {
         yookassa_shop_id: this.yookassa_shop_id,
-        yookassa_secret_key: this.yookassa_secret_key
+        yookassa_secret_key: this.yookassa_secret_key,
+        free_delivery_from: this.free_delivery_from
       }).then(function (response) {
         _this2.views.saveButton = true;
 
@@ -23604,7 +23607,15 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_9 = ["disabled"];
+var _hoisted_9 = {
+  "class": "mb-4"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Бесплатная доставка (от)", -1
+/* HOISTED */
+);
+
+var _hoisted_11 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Loader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Loader");
 
@@ -23626,15 +23637,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.yookassa_secret_key]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[2] || (_cache[2] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.yookassa_secret_key]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.free_delivery_from = $event;
+    }),
+    type: "number",
+    min: "100",
+    "class": "form-control"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.free_delivery_from]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.save();
     }),
     disabled: !$data.views.saveButton,
     "class": "btn btn-primary"
   }, "Сохранить", 8
   /* PROPS */
-  , _hoisted_9)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  , _hoisted_11)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),

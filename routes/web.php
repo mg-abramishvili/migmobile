@@ -45,6 +45,7 @@ Route::get('/_plans', [App\Http\Controllers\PlanController::class, 'index']);
 Route::get('/_prices', [App\Http\Controllers\PriceController::class, 'index']);
 
 Route::get('_cart', [App\Http\Controllers\OrderController::class, 'getCart']);
+Route::get('_settings', [App\Http\Controllers\SettingController::class, 'index']);
 Route::post('_simple-cart', [App\Http\Controllers\OrderController::class, 'storeSimpleCart']);
 Route::post('_pretty-cart', [App\Http\Controllers\OrderController::class, 'storePrettyCart']);
 

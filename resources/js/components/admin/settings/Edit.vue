@@ -21,6 +21,10 @@
                         <label>Yookassa секретный ключ</label>
                         <input v-model="yookassa_secret_key" type="text" class="form-control">
                     </div>
+                    <div class="mb-4">
+                        <label>Бесплатная доставка (от)</label>
+                        <input v-model="free_delivery_from" type="number" min="100" class="form-control">
+                    </div>
                     <button @click="save()" :disabled="!views.saveButton" class="btn btn-primary">Сохранить</button>
                 </div>
             </div>
@@ -36,6 +40,7 @@ export default {
         return {
             yookassa_shop_id: '',
             yookassa_secret_key: '',
+            free_delivery_from: 0,
 
             views: {
                 loading: true,
@@ -52,6 +57,7 @@ export default {
             .then(response => {
                 this.yookassa_shop_id = response.data.yookassa_shop_id
                 this.yookassa_secret_key = response.data.yookassa_secret_key
+                this.free_delivery_from = response.data.free_delivery_from
 
                 this.views.loading = false
             })
@@ -75,6 +81,7 @@ export default {
             axios.post('/_admin/settings', {
                 yookassa_shop_id: this.yookassa_shop_id,
                 yookassa_secret_key: this.yookassa_secret_key,
+                free_delivery_from: this.free_delivery_from,
             })
             .then(response => {
                 this.views.saveButton = true

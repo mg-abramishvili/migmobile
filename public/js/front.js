@@ -21920,6 +21920,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       plans: [],
       prices: [],
+      settings: {},
       selected: {
         plans: []
       }
@@ -21960,6 +21961,7 @@ __webpack_require__.r(__webpack_exports__);
     this.loadPlans();
     this.loadPrices();
     this.loadCart();
+    this.loadSettings();
   },
   methods: {
     loadPlans: function loadPlans() {
@@ -21983,8 +21985,15 @@ __webpack_require__.r(__webpack_exports__);
         _this2.prices = response.data;
       });
     },
-    loadCart: function loadCart() {
+    loadSettings: function loadSettings() {
       var _this3 = this;
+
+      axios.get('/_settings').then(function (response) {
+        _this3.settings = response.data.data;
+      });
+    },
+    loadCart: function loadCart() {
+      var _this4 = this;
 
       axios.get('/_cart', {
         params: {
@@ -21992,7 +22001,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         if (response.data) {
-          _this3.selected.plans = response.data.plans;
+          _this4.selected.plans = response.data.plans;
         }
       });
     },

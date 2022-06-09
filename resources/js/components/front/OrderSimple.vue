@@ -61,6 +61,7 @@ export default {
         return {
             plans: [],
             prices: [],
+            settings: {},
 
             selected: {
                 plans: [],
@@ -100,6 +101,7 @@ export default {
         this.loadPlans()
         this.loadPrices()
         this.loadCart()
+        this.loadSettings()
     },
     methods: {
         loadPlans() {
@@ -116,6 +118,12 @@ export default {
             axios.get('/_prices')
             .then(response => {
                 this.prices = response.data
+            })
+        },
+        loadSettings() {
+            axios.get('/_settings')
+            .then(response => {
+                this.settings = response.data.data
             })
         },
         loadCart() {

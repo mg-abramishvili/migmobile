@@ -117,6 +117,9 @@
                                             <li class="nav-item">
                                                 <a href="/#about" class="nav-link">{{ __('About Us') }}</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a href="/tracking" class="nav-link">Отследить заказ</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </nav>

@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('yookassa_shop_id')->nullable();
             $table->string('yookassa_secret_key')->nullable();
+            $table->integer('free_delivery_from')->nullable();
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();
             $table->string('vkontakte')->nullable();
