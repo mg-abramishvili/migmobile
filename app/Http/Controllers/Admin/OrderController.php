@@ -17,4 +17,14 @@ class OrderController extends Controller
     {
         return Order::find($id);
     }
+
+    public function update($id, Request $request)
+    {
+        $order = Order::find($id);
+
+        $order->delivery_name = $request->delivery_name;
+        $order->delivery_track_number = $request->delivery_track_number;
+        
+        $order->save();
+    }
 }

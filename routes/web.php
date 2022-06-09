@@ -86,6 +86,7 @@ Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class
 // ADMIN ORDERS
 Route::get('_admin/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->middleware(['auth']);
 Route::get('_admin/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'order'])->middleware(['auth']);
+Route::put('_admin/order/{id}/update', [App\Http\Controllers\Admin\OrderController::class, 'update'])->middleware(['auth']);
 
 // ADMIN PLANS
 Route::get('_admin/plans', [App\Http\Controllers\Admin\PlanController::class, 'index'])->middleware(['auth']);

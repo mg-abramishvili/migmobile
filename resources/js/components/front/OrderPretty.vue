@@ -80,7 +80,12 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
-                    <div v-if="selected.numbers" class="order-page-cart">
+                    <div v-if="prices" class="disclaimer mb-4">
+                        <p v-if="prices.filter(price => price.type == 'pretty')[0]">Цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'pretty')[0].price }} руб</strong>.</p>
+
+                        <p v-if="prices.filter(price => price.type == 'pretty')[1]">При покупке 3 номеров и более, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'pretty')[1].price }} руб</strong>.</p>
+                    </div>
+                    <div v-if="priceWithQuantity > 0" class="order-page-cart">
                         <p class="fw-bold">Ваш заказ:</p>
                         <ul>
                             <li v-for="orderNumItem in selected.numbers">
@@ -94,6 +99,7 @@
                             </li>
                         </ul>
                         <p v-if="priceWithQuantity > 0">{{ priceWithQuantity }} руб.</p>
+                        <p>{{ deliveryName }}</p>
                         <a v-if="priceWithQuantity > 0" @click="proceedToCheckout()" class="btn btn-primary btn-white">Оформить заказ</a>
                     </div>
                 </div>
@@ -109,6 +115,7 @@ export default {
         return {
             numbers: {},
             prices: [],
+            settings: {},
 
             searchInput: '',
 
@@ -147,10 +154,19 @@ export default {
         priceWithQuantity() {
             return this.price * this.quantity
         },
+        deliveryName() {
+            if(this.priceWithQuantity >= this.settings.free_delivery_from) {
+                return 'Бесплатная курьерская доставка до двери'
+            }
+            if(this.priceWithQuantity < this.settings.free_delivery_from) {
+                return 'Бесплатная доставка в отделение Почты России'
+            }
+        }
     },
     created() {
         this.loadCart()
         this.loadPrices()
+        this.loadSettings()
     },
     methods: {
         loadCart() {
@@ -165,6 +181,12 @@ export default {
             axios.get('/_prices')
             .then(response => {
                 this.prices = response.data
+            })
+        },
+        loadSettings() {
+            axios.get('/_settings')
+            .then(response => {
+                this.settings = response.data.data
             })
         },
         saveCart() {

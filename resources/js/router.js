@@ -5,6 +5,7 @@ import Home from './components/admin/Home'
 import Leads from './components/admin/leads/Index'
 
 import Orders from './components/admin/orders/Index'
+import Order from './components/admin/orders/Order'
 
 import Numbers from './components/admin/numbers/Index'
 import NumberCreate from './components/admin/numbers/Create'
@@ -33,6 +34,11 @@ const routes = [
         path: '/admin/orders',
         name: 'Orders',
         component: Orders
+    },
+    {
+        path: '/admin/order/:id',
+        name: 'Order',
+        component: Order
     },
     {
         path: '/admin/numbers',

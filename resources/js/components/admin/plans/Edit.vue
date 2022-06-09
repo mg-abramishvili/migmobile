@@ -33,19 +33,19 @@
                             </div>
                             <div class="col-12 col-lg-3">
                                 <label>Минуты</label>
-                                <input v-model="min" type="number" class="form-control mb-3">
+                                <input v-model="min" type="number" min="0" class="form-control mb-3">
                             </div>
                             <div class="col-12 col-lg-3">
                                 <label>ГБ</label>
-                                <input v-model="gb" type="number" class="form-control mb-3">
+                                <input v-model="gb" type="number" min="0" class="form-control mb-3">
                             </div>
                             <div class="col-12 col-lg-3">
                                 <label>Дни</label>
-                                <input v-model="days" type="number" class="form-control mb-3">
+                                <input v-model="days" type="number" min="0" class="form-control mb-3">
                             </div>
                             <div class="col-12 col-lg-3">
                                 <label>Доступно к заказу</label>
-                                <input v-model="in_stock" type="number" class="form-control mb-3">
+                                <input v-model="in_stock" type="number" min="0" class="form-control mb-3">
                             </div>
                         </div>
                     </div>

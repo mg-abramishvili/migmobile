@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="mb-4">
-                            <label>ФИО (как в заказе)</label>
+                            <label>Фамилия (как в заказе)</label>
                             <input v-model="orderLastName" type="text" class="form-control">
                         </div>
                     </div>
@@ -22,8 +22,32 @@
                 <button @click="loadOrder()" class="btn btn-primary">Узнать статус</button>
             </div>
             <div class="col-12 col-lg-6">
-                <div class="tracking-result">
-                    {{ order }}
+                <div v-if="errors.length" class="alert alert-danger" role="alert">
+                    <p v-for="error in errors" class="m-0">{{ error }}</p>
+                </div>
+
+                <div v-if="order && order.id" class="tracking-result" style="background-color: rgba(255,255,255,0.5); padding: 15px; color: #777; border-radius: 8px;">
+                    <p class="mb-4">
+                        <strong>Заказ №{{ order.id }}</strong>
+                         на сумму {{ order.price }} руб.
+                    </p>
+                    <p class="mb-4">
+                        <strong>Статус: </strong>
+                        <template v-if="order.is_paid == true">
+                            <span class="text-success fw-bold">оплачен</span>
+                        </template>
+                        <template v-if="order.is_paid == false">
+                            <span class="text-warning fw-bold">не оплачен</span>
+                        </template>
+                    </p>
+                    <p v-if="order.delivery_name" class="mb-4">
+                        <strong>Доставка:</strong>
+                        {{ order.delivery_name }}
+                    </p>
+                    <p v-if="order.delivery_track_number" class="mb-0">
+                        <strong>Трек-номер:</strong>
+                        {{ order.delivery_track_number }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -38,13 +62,31 @@ export default {
             orderLastName: '',
 
             order: {},
+
+            errors: [],
         }
     },
     methods: {
         loadOrder() {
+            this.errors = []
+
+            if(!this.orderNumber) {
+                this.errors.push('Укажите номер заказа')
+            }
+            if(!this.orderLastName) {
+                this.errors.push('Укажите фамилию (как в заказе)')
+            }
+            if(this.errors.length) {
+                return
+            }
+
             axios.get('/_tracking', { params: { order_id: this.orderNumber, last_name: this.orderLastName } })
             .then(response => {
-                this.order = response.data
+                if(response.data) {
+                    this.order = response.data
+                } else {
+                    this.errors.push('Заказ с такими данными не найден')
+                }
             })
         }
     }

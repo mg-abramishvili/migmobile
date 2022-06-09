@@ -13,18 +13,13 @@
         <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="w-100">
                 <div v-if="orders.length" class="mb-4">
-                    <div v-for="order in orders" :key="order.id" class="card mb-3">
+                    <router-link :to="{ name: 'Order', params: { id: order.id } }" v-for="order in orders" :key="order.id" class="card pointer mb-3" style="text-decoration: none; color: #333;">
                         <div class="row g-0 align-items-center">
                             <div class="col-lg-6">
                                 <div class="card-body">
                                     <h5 class="card-title mt-0 mb-3">
                                         Заказ №{{ order.id }} от {{ $filters.date(order.created_at) }}
                                     </h5>
-                                    
-                                    <p class="card-text mb-1">
-                                        <span class="text-muted">Клиент:</span>
-                                        {{ order.name }}, {{ order.phone }}
-                                    </p>
     
                                     <p class="card-text mb-1">
                                         <span class="text-muted">Стоимость:</span>
@@ -50,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
                 <p v-else>Заказов нет.</p>
             </div>
