@@ -40,6 +40,10 @@ Route::get('/checkout', function() {
     return view('checkout');
 })->name('checkout');
 
+Route::get('/tracking', function() {
+    return view('tracking');
+})->name('tracking');
+
 Route::get('/numbers/{digits}', [App\Http\Controllers\NumberController::class, 'index']);
 Route::get('/_plans', [App\Http\Controllers\PlanController::class, 'index']);
 Route::get('/_prices', [App\Http\Controllers\PriceController::class, 'index']);
@@ -81,6 +85,11 @@ Route::get('_admin/lead/{id}', [App\Http\Controllers\Admin\LeadController::class
 // ADMIN ORDERS
 Route::get('_admin/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->middleware(['auth']);
 Route::get('_admin/order/{id}', [App\Http\Controllers\Admin\OrderController::class, 'order'])->middleware(['auth']);
+
+// ADMIN PLANS
+Route::get('_admin/plans', [App\Http\Controllers\Admin\PlanController::class, 'index'])->middleware(['auth']);
+Route::get('_admin/plan/{id}', [App\Http\Controllers\Admin\PlanController::class, 'plan'])->middleware(['auth']);
+Route::put('_admin/plan/{id}/update', [App\Http\Controllers\Admin\PlanController::class, 'update'])->middleware(['auth']);
 
 // ADMIN NEWS
 Route::get('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'index'])->middleware(['auth']);

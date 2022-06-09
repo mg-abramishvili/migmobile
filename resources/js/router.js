@@ -9,6 +9,9 @@ import Orders from './components/admin/orders/Index'
 import Numbers from './components/admin/numbers/Index'
 import NumberCreate from './components/admin/numbers/Create'
 
+import Plans from './components/admin/plans/Index'
+import PlanEdit from './components/admin/plans/Edit'
+
 import News from './components/admin/news/Index'
 import NewsItemEdit from './components/admin/news/Edit'
 
@@ -50,6 +53,16 @@ const routes = [
         path: '/admin/news-item/:id',
         name: 'NewsItemEdit',
         component: NewsItemEdit
+    },
+    {
+        path: '/admin/plans',
+        name: 'Plans',
+        component: Plans
+    },
+    {
+        path: '/admin/plan/:id',
+        name: 'PlanEdit',
+        component: PlanEdit
     },
     {
         path: '/admin/settings',
