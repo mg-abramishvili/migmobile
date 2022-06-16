@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Number;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Imports\NumberImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NumberController extends Controller
 {
@@ -31,5 +33,12 @@ class NumberController extends Controller
     
             $number->save();
         }
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new NumberImport, $request->file);
+
+        return 'success';
     }
 }

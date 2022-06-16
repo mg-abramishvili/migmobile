@@ -16,9 +16,9 @@ Route::get('/', function () {
     $loan = Loan::find(1);
 
     if($lang) {
-        $news = News::where('lang', $lang)->take(8)->get();
+        $news = News::where('lang', $lang)->orderBy('created_at', 'desc')->take(8)->get();
     } else {
-        $news = News::where('lang', 'ru')->take(8)->get();
+        $news = News::where('lang', 'ru')->orderBy('created_at', 'desc')->take(8)->get();
     }
 
     return view('home', compact('news', 'about', 'bankCard', 'loan', 'plans'));
@@ -101,6 +101,7 @@ Route::put('_admin/news-item/{id}/update', [App\Http\Controllers\Admin\NewsContr
 // ADMIN NUMBERS
 Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index'])->middleware(['auth']);
 Route::post('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'store'])->middleware(['auth']);
+Route::post('_admin/numbers-import', [App\Http\Controllers\Admin\NumberController::class, 'import'])->middleware(['auth']);
 Route::get('_admin/number/{id}', [App\Http\Controllers\Admin\NumberController::class, 'number'])->middleware(['auth']);
 
 
