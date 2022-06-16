@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        '/order-notification-from-yookassa'
+        '/order-notification-from-yookassa',
+        '/_admin/file/upload'
     ];
 }

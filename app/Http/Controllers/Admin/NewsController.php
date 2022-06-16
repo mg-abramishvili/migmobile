@@ -31,6 +31,7 @@ class NewsController extends Controller
         $newsItem->name = $request->name;
         $newsItem->lang = $request->lang;
         $newsItem->text = $request->text;
+        $newsItem->gallery = $request->gallery;
 
         $newsItem->save();
     }

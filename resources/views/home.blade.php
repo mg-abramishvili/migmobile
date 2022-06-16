@@ -10,7 +10,11 @@
                 @foreach($news as $newsItem)
                     <div class="main-news-item">
                         <a href="/news/{{$newsItem->id}}">
-                            <div class="main-news-item-image" style="background-image: url(https://www.tajembassy.ru/images/demo/gallery/gallery2.jpg);"></div>
+                            @if($newsItem->gallery)
+                                <div class="main-news-item-image" style="background-image: url({{ $newsItem->gallery }});"></div>
+                            @else
+                                <div class="main-news-item-image" style="background-image: url(/img/gallery2.jpg);"></div>
+                            @endif
                             <p>{{ $newsItem->name }}</p>
                         </a>
                     </div>
