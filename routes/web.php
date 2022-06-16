@@ -28,6 +28,11 @@ Route::get('/avia', function() {
     return view('avia');
 })->name('avia');
 
+Route::get('/news/{id}', function($id) {
+    $newsItem = News::find($id);
+    return view('newsItem', compact('newsItem'));
+});
+
 Route::get('/order', function() {
     return view('order');
 })->name('order');

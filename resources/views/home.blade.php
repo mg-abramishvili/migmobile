@@ -9,7 +9,7 @@
             <div class="main-news-slider">
                 @foreach($news as $newsItem)
                     <div class="main-news-item">
-                        <a href="#">
+                        <a href="/news/{{$newsItem->id}}">
                             <div class="main-news-item-image" style="background-image: url(https://www.tajembassy.ru/images/demo/gallery/gallery2.jpg);"></div>
                             <p>{{ $newsItem->name }}</p>
                         </a>
