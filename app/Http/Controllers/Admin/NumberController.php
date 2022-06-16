@@ -41,4 +41,20 @@ class NumberController extends Controller
 
         return 'success';
     }
+
+    public function filter(Request $request)
+    {
+        return Number::query()
+            ->where('number', 'LIKE', '%' . $request->number . '%')
+            if(isset($request->serial_number))
+            {
+                ->where('serial_number', $request->serial_number)
+            }
+            if(isset($request->plan_id))
+            {
+                ->where('plan_id', $request->plan_id)
+            }
+            ->with('plan')
+            ->get();
+    }
 }

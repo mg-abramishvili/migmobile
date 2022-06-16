@@ -169,6 +169,7 @@ body.admin_panel {
     font-weight: 600;
     text-transform: uppercase;
     font-size: 12px;
+    vertical-align: middle;
 }
 
 .admin_panel .table>:not(:first-child) {
@@ -310,4 +311,8 @@ body.admin_panel {
     border-radius: 5px;
     margin-top: 15px;
     margin-bottom: 25px;
+}
+
+.bg-selected {
+    background-color: rgba(13, 110, 253, 0.2);
 }
