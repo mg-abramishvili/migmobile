@@ -107,7 +107,7 @@ Route::put('_admin/news-item/{id}/update', [App\Http\Controllers\Admin\NewsContr
 Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index'])->middleware(['auth']);
 Route::post('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'store'])->middleware(['auth']);
 Route::post('_admin/numbers-import', [App\Http\Controllers\Admin\NumberController::class, 'import'])->middleware(['auth']);
-Route::get('_admin/numbers-export', [App\Http\Controllers\Admin\NumberController::class, 'export'])->middleware(['auth']);
+Route::get('_admin/numbers-export/{plan}', [App\Http\Controllers\Admin\NumberController::class, 'export'])->middleware(['auth']);
 Route::get('_admin/numbers-filter', [App\Http\Controllers\Admin\NumberController::class, 'filter'])->middleware(['auth']);
 Route::get('_admin/number/{id}', [App\Http\Controllers\Admin\NumberController::class, 'number'])->middleware(['auth']);
 

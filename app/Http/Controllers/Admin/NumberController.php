@@ -38,12 +38,14 @@ class NumberController extends Controller
 
     public function import(Request $request)
     {
-        return Excel::import(new NumberImport, $request->file);
+        Excel::import(new NumberImport, $request->file);
+
+        return response('Success', 200);
     }
 
-    public function export(Request $request)
+    public function export($plan)
     {
-        return Excel::download(new NumberExport, 'numbers.xlsx');
+        return (new NumberExport($plan))->download('numbers.xlsx');
     }
 
     public function filter(Request $request)

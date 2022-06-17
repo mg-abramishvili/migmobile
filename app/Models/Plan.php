@@ -10,4 +10,9 @@ class Plan extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function numbers()
+    {
+        return $this->hasMany(Number::class);
+    }
 }

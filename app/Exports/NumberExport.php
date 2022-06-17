@@ -16,9 +16,14 @@ class NumberExport extends DefaultValueBinder implements WithCustomValueBinder, 
 {
     use Exportable;
 
+    public function __construct(int $plan)
+    {
+        $this->plan = $plan;
+    }
+
     public function query()
     {
-        return Number::query();
+        return Number::query()->where('plan_id', $this->plan);
     }
 
     public function map($number): array
