@@ -6,6 +6,7 @@ use App\Models\Number;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\NumberImport;
+use App\Exports\NumberExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class NumberController extends Controller
@@ -37,9 +38,12 @@ class NumberController extends Controller
 
     public function import(Request $request)
     {
-        Excel::import(new NumberImport, $request->file);
+        return Excel::import(new NumberImport, $request->file);
+    }
 
-        return 'success';
+    public function export(Request $request)
+    {
+        return Excel::download(new NumberExport, 'numbers.xlsx');
     }
 
     public function filter(Request $request)

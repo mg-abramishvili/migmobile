@@ -10,6 +10,7 @@ import Order from './components/admin/orders/Order'
 import Numbers from './components/admin/numbers/Index'
 import NumberCreate from './components/admin/numbers/Create'
 import NumberImport from './components/admin/numbers/Import'
+import NumberExport from './components/admin/numbers/Export'
 
 import Plans from './components/admin/plans/Index'
 import PlanEdit from './components/admin/plans/Edit'
@@ -55,6 +56,11 @@ const routes = [
         path: '/admin/numbers/import',
         name: 'NumberImport',
         component: NumberImport
+    },
+    {
+        path: '/admin/numbers/export',
+        name: 'NumberExport',
+        component: NumberExport
     },
     {
         path: '/admin/news',

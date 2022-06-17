@@ -10,7 +10,8 @@
                 </div>
                 <div class="col-12 col-md-6 text-end">
                     <button @click="toggleFilter()" class="btn btn-outline-primary">Фильтр</button>
-                    <router-link :to="{ name: 'NumberImport' }" class="btn btn-primary ms-2">Загрузить XLSX</router-link>
+                    <router-link :to="{ name: 'NumberImport' }" class="btn btn-primary ms-2">Импорт</router-link>
+                    <router-link :to="{ name: 'NumberExport' }" class="btn btn-primary ms-2">Экспорт</router-link>
                     <!-- <router-link :to="{ name: 'NumberCreate' }" class="btn btn-primary ms-2">Добавить вручную</router-link> -->
                 </div>
             </div>
