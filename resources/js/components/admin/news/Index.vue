@@ -5,6 +5,9 @@
                 <div class="col-12 col-md-6">
                     <h1>Новости</h1>
                 </div>
+                <div class="col-12 col-lg-6 text-end">
+                    <router-link :to="{ name: 'NewsCreate' }" class="btn btn-primary">Добавить</router-link>
+                </div>
             </div>
         </div>
 

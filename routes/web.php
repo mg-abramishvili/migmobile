@@ -100,6 +100,7 @@ Route::put('_admin/plan/{id}/update', [App\Http\Controllers\Admin\PlanController
 
 // ADMIN NEWS
 Route::get('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'index'])->middleware(['auth']);
+Route::post('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'store'])->middleware(['auth']);
 Route::get('_admin/news-item/{id}', [App\Http\Controllers\Admin\NewsController::class, 'newsItem'])->middleware(['auth']);
 Route::put('_admin/news-item/{id}/update', [App\Http\Controllers\Admin\NewsController::class, 'update'])->middleware(['auth']);
 

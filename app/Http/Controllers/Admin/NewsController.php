@@ -18,6 +18,24 @@ class NewsController extends Controller
         return News::find($id);
     }
 
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'lang' => 'required',
+            'text' => 'required',
+        ]);
+
+        $newsItem = new News();
+
+        $newsItem->name = $request->name;
+        $newsItem->lang = $request->lang;
+        $newsItem->text = $request->text;
+        $newsItem->gallery = $request->gallery;
+
+        $newsItem->save();
+    }
+
     public function update($id, Request $request)
     {
         $this->validate($request, [
