@@ -15,6 +15,8 @@ import NumberExport from './components/admin/numbers/Export'
 import Plans from './components/admin/plans/Index'
 import PlanEdit from './components/admin/plans/Edit'
 
+import Prices from './components/admin/prices/Edit'
+
 import News from './components/admin/news/Index'
 import NewsCreate from './components/admin/news/Create'
 import NewsItemEdit from './components/admin/news/Edit'
