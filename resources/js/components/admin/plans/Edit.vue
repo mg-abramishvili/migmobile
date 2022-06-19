@@ -50,7 +50,7 @@
                                 <input v-model="in_stock" type="number" min="0" class="form-control mb-3">
                             </div>
                             <div class="col">
-                                <label>Цена</label>
+                                <label>Абонентская плата</label>
                                 <input v-model="price" type="number" min="0" class="form-control mb-3">
                             </div>
                         </div>
