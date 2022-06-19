@@ -31,21 +31,27 @@
                                 <label>Название (тадж)</label>
                                 <input v-model="name_tj" type="text" class="form-control mb-3">
                             </div>
-                            <div class="col-12 col-lg-3">
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <label>Минуты</label>
                                 <input v-model="min" type="number" min="0" class="form-control mb-3">
                             </div>
-                            <div class="col-12 col-lg-3">
+                            <div class="col">
                                 <label>ГБ</label>
                                 <input v-model="gb" type="number" min="0" class="form-control mb-3">
                             </div>
-                            <div class="col-12 col-lg-3">
+                            <div class="col">
                                 <label>SMS</label>
                                 <input v-model="sms" type="number" min="0" class="form-control mb-3">
                             </div>
-                            <div class="col-12 col-lg-3">
+                            <div class="col">
                                 <label>Доступно к заказу</label>
                                 <input v-model="in_stock" type="number" min="0" class="form-control mb-3">
+                            </div>
+                            <div class="col">
+                                <label>Цена</label>
+                                <input v-model="price" type="number" min="0" class="form-control mb-3">
                             </div>
                         </div>
                     </div>
@@ -71,6 +77,7 @@ export default {
             min: '',
             gb: '',
             sms: '',
+            price: '',
             in_stock: '',
 
             views: {
@@ -95,6 +102,7 @@ export default {
                 this.min = response.data.min
                 this.gb = response.data.gb
                 this.sms = response.data.sms
+                this.price = response.data.price
                 this.in_stock = response.data.in_stock
 
                 this.views.loading = false
@@ -143,6 +151,12 @@ export default {
                     icon: 'error',
                 })
             }
+            if(!this.price) {
+                return this.$swal({
+                    text: 'Укажите цену',
+                    icon: 'error',
+                })
+            }
             if(!this.in_stock) {
                 return this.$swal({
                     text: 'Укажите язык',
@@ -160,6 +174,7 @@ export default {
                 min: this.min,
                 gb: this.gb,
                 sms: this.sms,
+                price: this.price,
                 in_stock: this.in_stock,
             })
             .then(response => {

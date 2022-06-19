@@ -27,7 +27,8 @@ class PlanController extends Controller
             'name_tj' => 'required',
             'min' => 'required',
             'gb' => 'required',
-            'days' => 'required',
+            'sms' => 'required',
+            'price' => 'required',
             'in_stock' => 'required',
         ]);
 
@@ -39,7 +40,8 @@ class PlanController extends Controller
         $plan->name_tj = $request->name_tj;
         $plan->min = $request->min;
         $plan->gb = $request->gb;
-        $plan->days = $request->days;
+        $plan->sms = $request->sms;
+        $plan->price = $request->price;
         $plan->in_stock = $request->in_stock;
 
         $plan->save();
