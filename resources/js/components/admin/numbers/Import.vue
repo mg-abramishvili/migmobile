@@ -20,6 +20,8 @@
         <div class="w-100">
             <div class="box px-4 py-4 mb-4">
                 <div class="box-tab-content">
+                    <p class="mb-3"><strong class="text-danger">Файл XLSX должен содержать две колонки - серийный номер и номер. Строго в этой последовательности. Также в файле должен быть только 1 лист (страница) и не должно быть заголовков (названия столбцов)!</strong></p>
+
                     <div class="mb-3">
                         <label class="form-label">Укажите тариф</label>
                         <select v-model="plan_id" class="form-select">
