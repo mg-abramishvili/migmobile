@@ -91,6 +91,11 @@ const routes = [
         component: PlanEdit
     },
     {
+        path: '/admin/prices',
+        name: 'Prices',
+        component: Prices
+    },
+    {
         path: '/admin/settings',
         name: 'Settings',
         component: Settings
