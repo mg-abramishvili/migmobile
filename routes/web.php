@@ -98,6 +98,10 @@ Route::get('_admin/plans', [App\Http\Controllers\Admin\PlanController::class, 'i
 Route::get('_admin/plan/{id}', [App\Http\Controllers\Admin\PlanController::class, 'plan'])->middleware(['auth']);
 Route::put('_admin/plan/{id}/update', [App\Http\Controllers\Admin\PlanController::class, 'update'])->middleware(['auth']);
 
+// ADMIN PRICES
+Route::get('_admin/prices', [App\Http\Controllers\Admin\PriceController::class, 'index'])->middleware(['auth']);
+Route::put('_admin/price/{id}/update', [App\Http\Controllers\Admin\PriceController::class, 'update'])->middleware(['auth']);
+
 // ADMIN NEWS
 Route::get('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'index'])->middleware(['auth']);
 Route::post('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'store'])->middleware(['auth']);
