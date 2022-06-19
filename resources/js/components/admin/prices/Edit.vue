@@ -9,9 +9,13 @@
         </div>
 
         <Loader v-if="views.loading" />
-
+        
         <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="w-100">
+                <div v-if="views.success" class="alert alert-success" role="alert">
+                    Цены успешно обновлены!
+                </div>
+
                 <div v-if="prices.length" class="box mb-4">
                     <table class="table">
                         <thead>
@@ -22,8 +26,18 @@
                         </thead>
                         <tbody>
                             <tr v-for="priceItem in prices" :key="priceItem.id">
-                                <td>{{ priceItem.name }}</td>
-                                <td>{{ priceItem.price }}</td>
+                                <td>
+                                    <template v-if="priceItem.type == 'simple'">(Тарифы)</template>
+                                    <template v-if="priceItem.type == 'pretty'">(Красивые номера)</template>
+                                    
+                                    {{ priceItem.name }}
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <input v-model="priceItem.price" type="number" min="0" class="form-control">
+                                        <button @click="save(priceItem.id)" class="btn btn-sm btn-primary">Сохранить</button>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -44,6 +58,7 @@ export default {
 
             views: {
                 loading: true,
+                success: false,
             }
         }
     },
@@ -59,6 +74,20 @@ export default {
                 this.views.loading = false
             })
         },
+        save(id) {
+            axios.put(`/_admin/price/${id}/update`, {
+                price: this.prices.find(p => p.id === id).price
+            })
+            .then(response => {
+                this.loadPrices()
+
+                this.views.success = true
+
+                setTimeout(() => {
+                    this.views.success = false
+                }, 1500)
+            })
+        }
     },
     components: {
         Loader
