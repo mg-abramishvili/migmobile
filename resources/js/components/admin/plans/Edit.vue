@@ -40,8 +40,8 @@
                                 <input v-model="gb" type="number" min="0" class="form-control mb-3">
                             </div>
                             <div class="col-12 col-lg-3">
-                                <label>Дни</label>
-                                <input v-model="days" type="number" min="0" class="form-control mb-3">
+                                <label>SMS</label>
+                                <input v-model="sms" type="number" min="0" class="form-control mb-3">
                             </div>
                             <div class="col-12 col-lg-3">
                                 <label>Доступно к заказу</label>
@@ -70,7 +70,7 @@ export default {
             name_tj: '',
             min: '',
             gb: '',
-            days: '',
+            sms: '',
             in_stock: '',
 
             views: {
@@ -94,7 +94,7 @@ export default {
                 this.name_tj = response.data.name_tj
                 this.min = response.data.min
                 this.gb = response.data.gb
-                this.days = response.data.days
+                this.sms = response.data.sms
                 this.in_stock = response.data.in_stock
 
                 this.views.loading = false
@@ -137,9 +137,9 @@ export default {
                     icon: 'error',
                 })
             }
-            if(!this.days) {
+            if(!this.sms) {
                 return this.$swal({
-                    text: 'Заполните кол-во дней',
+                    text: 'Заполните кол-во SMS',
                     icon: 'error',
                 })
             }
@@ -159,7 +159,7 @@ export default {
                 name_tj: this.name_tj,
                 min: this.min,
                 gb: this.gb,
-                days: this.days,
+                sms: this.sms,
                 in_stock: this.in_stock,
             })
             .then(response => {
