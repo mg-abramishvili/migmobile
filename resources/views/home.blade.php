@@ -58,7 +58,8 @@
                         <ul>
                             <li>{{ $plan->min }} мин</li>
                             <li>{{ $plan->gb }} Гб</li>
-                            <li>{{ $plan->days }} дней</li>
+                            <li>{{ $plan->sms }} SMS</li>
+                            <li>{{ $plan->price }} руб.</li>
                         </ul>
                         <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
                     </div>

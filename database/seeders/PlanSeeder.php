@@ -21,7 +21,8 @@ class PlanSeeder extends Seeder
                 "icon" => "/img/beeline.svg",
                 "min" => "100",
                 "gb" => "10",
-                "days" => "30"
+                "sms" => "100",
+                "price" => "100"
             ],
             [
                 "id" => 2,
@@ -32,7 +33,8 @@ class PlanSeeder extends Seeder
                 "icon" => "/img/mts.svg",
                 "min" => "100",
                 "gb" => "10",
-                "days" => "30"
+                "sms" => "100",
+                "price" => "100"
             ],
             [
                 "id" => 3,
@@ -43,7 +45,8 @@ class PlanSeeder extends Seeder
                 "icon" => "/img/megafon.svg",
                 "min" => "100",
                 "gb" => "10",
-                "days" => "30"
+                "sms" => "100",
+                "price" => "100"
             ],
             [
                 "id" => 4,
@@ -54,7 +57,8 @@ class PlanSeeder extends Seeder
                 "icon" => "/img/tele2.svg",
                 "min" => "100",
                 "gb" => "10",
-                "days" => "30"
+                "sms" => "100",
+                "price" => "100"
             ],
         ]);
     }
