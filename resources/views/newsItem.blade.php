@@ -12,11 +12,11 @@
                         <img src="{{ $newsItem->gallery }}" alt="{{ $newsItem->name }}" class="w-100 mb-3 rounded">
                     </div>
                     <div class="col-12 col-lg-8">
-                        {{ $newsItem->text }}
+                        {!! $newsItem->text !!}
                     </div>
                 @else
                     <div class="col-12">
-                        {{ $newsItem->text }}
+                        {!! $newsItem->text !!}
                     </div>
                 @endif
             </div>
