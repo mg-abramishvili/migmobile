@@ -66,4 +66,15 @@ class NumberController extends Controller
 
         return $numbers->with('plan')->get();
     }
+
+    public function delete(Request $request)
+    {
+        $numbers = $request->numbers;
+
+        foreach($numbers as $nm)
+        {
+            $number = Number::find($nm);
+            $number->delete();
+        }
+    }
 }

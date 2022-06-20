@@ -9,7 +9,8 @@
                     </h1>
                 </div>
                 <div class="col-12 col-md-6 text-end">
-                    <button @click="toggleFilter()" class="btn btn-outline-primary">Фильтр</button>
+                    <button v-if="selected.numbers.length" @click="delNumbers()" class="btn btn-outline-danger">Удалить</button>
+                    <button @click="toggleFilter()" class="btn btn-outline-primary ms-2">Фильтр</button>
                     <router-link :to="{ name: 'NumberImport' }" class="btn btn-primary ms-2">Импорт</router-link>
                     <router-link :to="{ name: 'NumberExport' }" class="btn btn-primary ms-2">Экспорт</router-link>
                     <!-- <router-link :to="{ name: 'NumberCreate' }" class="btn btn-primary ms-2">Добавить вручную</router-link> -->
@@ -181,6 +182,14 @@ export default {
                 return this.selected.numbers = NumbersFlatArray
             }
         },
+        delNumbers() {
+            axios.delete('/_admin/numbers', { params: {
+                numbers: this.selected.numbers,
+            }})
+            .then(responsee => {
+                this.loadNumbers()
+            })
+        }
     },
     components: {
         Loader

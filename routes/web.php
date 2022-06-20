@@ -115,6 +115,7 @@ Route::post('_admin/numbers-import', [App\Http\Controllers\Admin\NumberControlle
 Route::get('_admin/numbers-export/{plan}', [App\Http\Controllers\Admin\NumberController::class, 'export'])->middleware(['auth']);
 Route::get('_admin/numbers-filter', [App\Http\Controllers\Admin\NumberController::class, 'filter'])->middleware(['auth']);
 Route::get('_admin/number/{id}', [App\Http\Controllers\Admin\NumberController::class, 'number'])->middleware(['auth']);
+Route::delete('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'delete'])->middleware(['auth']);
 
 // ADMIN FILE UPLOAD
 Route::post('_admin/file/upload', [App\Http\Controllers\Admin\FileController::class, 'store']);
