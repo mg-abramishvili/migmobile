@@ -1646,9 +1646,8 @@ html, body {
 /* ORDER */
 
 .your-order {
-    background-color: rgba(255,255,255,0.5);
+    background-color: #ffdd2d;
     padding: 25px;
-    color: #777;
     border-radius: 8px;
 }
 .your-order ul {
@@ -1661,7 +1660,7 @@ html, body {
     margin-bottom: 0;
 }
 .your-order-bottom {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: space-between;
 }
