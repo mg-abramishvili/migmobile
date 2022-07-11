@@ -1152,6 +1152,11 @@ footer {
     }
 }
 
+.news-page-list-item {
+    color: #333;
+    text-decoration: none;
+}
+
 .news-page-list-item-desc {
     padding: 15px;
 }
