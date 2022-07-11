@@ -8,7 +8,7 @@
             <h1 class="title-head mb-4">{{ __('News') }}</h1>
             
             @foreach($news as $newsItem)
-                <div class="news-page-list-item">
+                <a href="/news/{{ $newsItem->id }}" class="news-page-list-item">
                     @if($newsItem->gallery)
                         <div class="news-page-list-item-image" style="background-image: url({{ $newsItem->gallery }})"></div>
                     @else
@@ -18,7 +18,7 @@
                         <p>{{ $newsItem->created_at->format('d.m.Y') }}</span>
                         <h5>{{ $newsItem->name }}</h5>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
