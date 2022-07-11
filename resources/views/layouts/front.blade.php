@@ -114,9 +114,9 @@
                                             <li class="nav-item">
                                                 <a href="/#loan" class="nav-link">{{ __('Loans') }}</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <!-- <li class="nav-item">
                                                 <a href="/#about" class="nav-link">{{ __('About Us') }}</a>
-                                            </li>
+                                            </li> -->
                                             <li class="nav-item">
                                                 <a href="/tracking" class="nav-link">Отследить заказ</a>
                                             </li>
@@ -159,9 +159,9 @@
                                 <li>
                                     <a href="/#loan">{{ __('Loans') }}</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="/#about">{{ __('About Us') }}</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <div class="col-12 footer-social">

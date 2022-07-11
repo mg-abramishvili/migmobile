@@ -65,7 +65,12 @@
                         <div class="col-12 col-lg-5">
                             <div class="my-2">
                                 <label>Доставка (компания)</label>
-                                <input v-model="delivery_name" type="text" class="form-control">
+                                <select v-model="delivery_name" class="form-select">
+                                    <option value="КСЭ">КСЭ</option>
+                                    <option value="СДЭК">СДЭК</option>
+                                    <option value="Почта России">Почта России</option>
+                                    <option value="Ozon Rocket">Ozon Rocket</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-12 col-lg-5">
@@ -79,6 +84,20 @@
                                 <label>&nbsp;</label>
                                 <button @click="save()" :disabled="!views.saveButton" class="btn btn-primary w-100">OK</button>
                             </div>
+                        </div>
+                        <div class="col-12">
+                            <a v-if="order.delivery_name == 'КСЭ'" :href="'https://www.cse.ru/mow/track/?numbers=' + order.delivery_track_number" target="_blank" class="text-muted">
+                                <small>https://www.cse.ru/mow/track/?numbers={{order.delivery_track_number}}</small>
+                            </a>
+                            <a v-if="order.delivery_name == 'СДЭК'" :href="'https://www.cdek.ru/ru/tracking?order_id=' + order.delivery_track_number" target="_blank" class="text-muted">
+                                <small>https://www.cdek.ru/ru/tracking?order_id={{order.delivery_track_number}}</small>
+                            </a>
+                            <a v-if="order.delivery_name == 'Почта России'" :href="'https://www.pochta.ru/tracking#' + order.delivery_track_number" target="_blank" class="text-muted">
+                                <small>https://www.pochta.ru/tracking#{{order.delivery_track_number}}</small>
+                            </a>
+                            <a v-if="order.delivery_name == 'Ozon Rocket'" :href="'https://rocket.ozon.ru/tracking/?SearchId=' + order.delivery_track_number" target="_blank" class="text-muted">
+                                <small>https://rocket.ozon.ru/tracking/?SearchId={{order.delivery_track_number}}</small>
+                            </a>
                         </div>
                     </div>
                 </div>

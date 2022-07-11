@@ -44,9 +44,20 @@
                         <strong>Доставка:</strong>
                         {{ order.delivery_name }}
                     </p>
-                    <p v-if="order.delivery_track_number" class="mb-0">
+                    <p v-if="order.delivery_track_number" class="mb-4">
                         <strong>Трек-номер:</strong>
                         {{ order.delivery_track_number }}
+                    </p>
+                    <p v-if="order.delivery_track_number" class="mb-0">
+                        <strong>Ссылка для отслеживания:</strong><br>
+                        
+                        <a v-if="order.delivery_name == 'КСЭ'" :href="'https://www.cse.ru/mow/track/?numbers=' + order.delivery_track_number" target="_blank">https://www.cse.ru/mow/track/?numbers={{order.delivery_track_number}}</a>
+                        
+                        <a v-if="order.delivery_name == 'СДЭК'" :href="'https://www.cdek.ru/ru/tracking?order_id=' + order.delivery_track_number" target="_blank">https://www.cdek.ru/ru/tracking?order_id={{order.delivery_track_number}}</a>
+                        
+                        <a v-if="order.delivery_name == 'Почта России'" :href="'https://www.pochta.ru/tracking#' + order.delivery_track_number" target="_blank">https://www.pochta.ru/tracking#{{order.delivery_track_number}}</a>
+                        
+                        <a v-if="order.delivery_name == 'Ozon Rocket'" :href="'https://rocket.ozon.ru/tracking/?SearchId=' + order.delivery_track_number" target="_blank">https://rocket.ozon.ru/tracking/?SearchId={{order.delivery_track_number}}</a>
                     </p>
                 </div>
             </div>

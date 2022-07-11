@@ -132,7 +132,7 @@
         </div>
     </div>
 
-    <div class="main-about" id="about">
+    <!-- <div class="main-about" id="about">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-12">
@@ -148,7 +148,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
 
 @section('scripts')
