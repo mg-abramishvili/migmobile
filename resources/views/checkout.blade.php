@@ -4,6 +4,6 @@
 
 @section('content')
     <div class="order-page">
-        <checkout></checkout>
+        <checkout lang="{{app()->getLocale()}}"></checkout>
     </div>
 @endsection

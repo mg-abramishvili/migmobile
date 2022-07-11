@@ -22,8 +22,17 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
 
-        $order->delivery_name = $request->delivery_name;
-        $order->delivery_track_number = $request->delivery_track_number;
+        if(isset($request->status)) {
+            $order->status = $request->status;
+        }
+
+        if(isset($request->delivery_name)) {
+            $order->delivery_name = $request->delivery_name;
+        }
+
+        if(isset($request->delivery_track_number)) {
+            $order->delivery_track_number = $request->delivery_track_number;
+        }
         
         $order->save();
     }

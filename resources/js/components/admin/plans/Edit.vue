@@ -159,7 +159,7 @@ export default {
             }
             if(!this.in_stock) {
                 return this.$swal({
-                    text: 'Укажите язык',
+                    text: 'Укажите кол-во',
                     icon: 'error',
                 })
             }

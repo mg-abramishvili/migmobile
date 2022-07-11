@@ -5,20 +5,30 @@
 @section('content')
     <div class="order-page">
         <div class="container">
-            <h1 class="title-head mb-4">Заказ №{{ $order->id }}</h1>
-            
-            <p>Ваш заказ:</p>
-            
-            <p>{{ $order->description }}</p>
+            <h1 class="title-head mb-4">Заказ принят</h1>
 
-            <p>Статус:</p>
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <p><strong>Номер заказа:</strong> {{ $order->id }}</p>
+                    <p><strong>Фамилия:</strong> {{ $order->last_name }}</p>
 
-            @if($order->is_paid == true)
-                <p class="text-success">оплачен</p>
-            @endif
-            @if($order->is_paid == false)
-                <p class="text-danger">ожидает оплаты</p>
-            @endif
+                    <span class="text-danger">Пожалуйста, запомните эти данные для отслеживания вашего заказа в разделе «Отследить заказ»</span>
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="order-page-cart">
+                        <p class="fw-bold">Ваш заказ:</p>
+            
+                        <p>{{ $order->description }}</p>
+
+                        @if($order->is_paid == true)
+                            <p class="text-success fw-bold">оплачен</p>
+                        @endif
+                        @if($order->is_paid == false)
+                            <p class="text-success fw-bold">ожидает оплаты</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

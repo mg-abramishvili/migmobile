@@ -33,22 +33,29 @@
                     </p>
                     <p class="mb-4">
                         <strong>Статус: </strong>
+                        
+                        <span v-if="order.status == 'created'">Принят в работу</span>
+                        <span v-if="order.status == 'sent'">Отправлен</span>
+                        <span v-if="order.status == 'delivered'">Доставлен</span>
+                    </p>
+                    <p class="mb-4">
+                        <strong>Оплачен: </strong>
                         <template v-if="order.is_paid == true">
-                            <span class="text-success fw-bold">оплачен</span>
+                            <span class="text-success fw-bold">Да</span>
                         </template>
                         <template v-if="order.is_paid == false">
-                            <span class="text-warning fw-bold">не оплачен</span>
+                            <span class="text-danger fw-bold">Нет</span>
                         </template>
                     </p>
-                    <p v-if="order.delivery_name" class="mb-4">
+                    <p v-if="order.delivery_name && order.delivery_name != 'null'" class="mb-4">
                         <strong>Доставка:</strong>
                         {{ order.delivery_name }}
                     </p>
-                    <p v-if="order.delivery_track_number" class="mb-4">
+                    <p v-if="order.delivery_track_number && order.delivery_track_number.length > 2" class="mb-4">
                         <strong>Трек-номер:</strong>
                         {{ order.delivery_track_number }}
                     </p>
-                    <p v-if="order.delivery_track_number" class="mb-0">
+                    <p v-if="order.delivery_track_number && order.delivery_track_number.length > 2" class="mb-0">
                         <strong>Ссылка для отслеживания:</strong><br>
                         
                         <a v-if="order.delivery_name == 'КСЭ'" :href="'https://www.cse.ru/mow/track/?numbers=' + order.delivery_track_number" target="_blank">https://www.cse.ru/mow/track/?numbers={{order.delivery_track_number}}</a>

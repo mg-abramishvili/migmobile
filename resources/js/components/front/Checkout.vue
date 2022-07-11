@@ -161,6 +161,8 @@ export default {
     created() {
         this.loadSimpleCart()
         this.loadPrettyCart()
+
+        console.log(this.lang)
     },
     methods: {
         loadSimpleCart() {

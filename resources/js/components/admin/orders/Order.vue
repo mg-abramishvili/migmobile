@@ -29,20 +29,33 @@
                                 <strong>Отчество:</strong>
                                 {{ middle_name }}
                             </p>
-                        </div>
-                        <div class="col-12 col-lg-6">
+
                             <p class="my-2">
                                 <strong>Телефон:</strong>
                                 {{ phone }}
                             </p>
 
                             <p class="my-2">
+                                <strong>Адрес:</strong>
+                                {{ zip }}, {{ region }}, {{ city }}, {{ street }}, д. {{ building }}, под. {{ entrance }}, кв. {{ apartment }}
+                            </p>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <p v-if="status" class="my-2">
                                 <strong>Статус: </strong>
+                                
+                                <button @click="changeStatus('created')" class="btn btn-sm me-2" :class="{'btn-primary': status == 'created', 'btn-outline-primary': status != 'created'}">Принят в работу</button>
+                                <button @click="changeStatus('sent')" class="btn btn-sm me-2" :class="{'btn-primary': status == 'sent', 'btn-outline-primary': status != 'sent'}">Отправлен</button>
+                                <button @click="changeStatus('delivered')" class="btn btn-sm me-2" :class="{'btn-primary': status == 'delivered', 'btn-outline-primary': status != 'delivered'}">Доставлен</button>
+                            </p>
+
+                            <p class="my-2">
+                                <strong>Оплачен: </strong>
                                 <template v-if="is_paid == true">
-                                    <span class="text-success fw-bold">оплачен</span>
+                                    <span class="text-success fw-bold">Да</span>
                                 </template>
                                 <template v-if="is_paid == false">
-                                    <span class="text-warning fw-bold">не оплачен</span>
+                                    <span class="text-danger fw-bold">Нет</span>
                                 </template>
                             </p>
 
@@ -66,6 +79,7 @@
                             <div class="my-2">
                                 <label>Доставка (компания)</label>
                                 <select v-model="delivery_name" class="form-select">
+                                    <option value="null">-- Не выбрано --</option>
                                     <option value="КСЭ">КСЭ</option>
                                     <option value="СДЭК">СДЭК</option>
                                     <option value="Почта России">Почта России</option>
@@ -127,6 +141,7 @@ export default {
             building: '',
             entrance: '',
             is_paid: '',
+            status: '',
             payment_id: '',
 
             delivery_name: '',
@@ -161,6 +176,7 @@ export default {
                 this.building = response.data.building
                 this.entrance = response.data.entrance
                 this.is_paid = response.data.is_paid
+                this.status = response.data.status
                 this.payment_id = response.data.payment_id
 
                 this.delivery_name = response.data.delivery_name
@@ -168,6 +184,15 @@ export default {
 
                 this.views.loading = false
             })
+        },
+        changeStatus(status) {
+            if(confirm("Вы уверены, что хотите изменить статус?")) {
+                this.status = status
+    
+                axios.put(`/_admin/order/${this.$route.params.id}/update`, {
+                    status: this.status,
+                })
+            }
         },
         save() {
             this.views.saveButton = false

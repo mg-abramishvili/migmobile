@@ -4,6 +4,6 @@
 
 @section('content')
     <div class="order-page">
-        <order-pretty></order-pretty>
+        <order-pretty lang="{{app()->getLocale()}}"></order-pretty>
     </div>
 @endsection
