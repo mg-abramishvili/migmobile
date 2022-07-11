@@ -12,12 +12,12 @@
                         <img src="{{ $newsItem->gallery }}" alt="{{ $newsItem->name }}" class="w-100 mb-3 rounded">
                     </div>
                     <div class="col-12 col-lg-8">
-                        <span>{{ $newsItem->created_at->format('d.m.Y') }}</span>
+                        <span class="fw-bold">{{ $newsItem->created_at->format('d.m.Y') }}</span>
                         {!! $newsItem->text !!}
                     </div>
                 @else
                     <div class="col-12">
-                        <span>{{ $newsItem->created_at->format('d.m.Y') }}</span>
+                        <span class="fw-bold">{{ $newsItem->created_at->format('d.m.Y') }}</span>
                         {!! $newsItem->text !!}
                     </div>
                 @endif
