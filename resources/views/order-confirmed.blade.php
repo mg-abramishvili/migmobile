@@ -12,7 +12,7 @@
                     <p><strong>Номер заказа:</strong> {{ $order->id }}</p>
                     <p><strong>Фамилия:</strong> {{ $order->last_name }}</p>
 
-                    <span class="text-danger">Пожалуйста, запомните эти данные для отслеживания вашего заказа в разделе «Отследить заказ»</span>
+                    <span class="text-danger">{{ _('Please remember this order data') }}</span>
                 </div>
                 <div class="col-12 col-lg-5">
                     <div class="order-page-cart">

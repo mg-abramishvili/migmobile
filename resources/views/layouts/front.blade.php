@@ -100,7 +100,7 @@
                                     <div class="navbar-collapse justify-content-md-center collapse" id="navbarsExample10" style="">
                                         <ul class="navbar-nav">
                                             <li class="nav-item">
-                                                <a href="/#news" class="nav-link">{{ __('News') }}<a/>
+                                                <a href="/news-all" class="nav-link">{{ __('News') }}<a/>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="/avia/" class="nav-link">{{ __('Avia Tickets') }}<a/>
@@ -118,7 +118,7 @@
                                                 <a href="/#about" class="nav-link">{{ __('About Us') }}</a>
                                             </li> -->
                                             <li class="nav-item">
-                                                <a href="/tracking" class="nav-link">Отследить заказ</a>
+                                                <a href="/tracking" class="nav-link">{{ __('Order status') }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -145,7 +145,7 @@
                         <div class="col footer-menu">
                             <ul>
                                 <li>
-                                    <a href="/#news">{{ __('News') }}<a/>
+                                    <a href="/news-all">{{ __('News') }}<a/>
                                 </li>
                                 <li>
                                     <a href="/avia/">{{ __('Avia Tickets') }}<a/>
@@ -193,14 +193,14 @@
                 </div>
             </footer>
         </div>
-        
-        <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('/js/flickity.pkgd.min.js') }}"></script>
-        @yield('scripts')
 
         @if(Route::is('avia'))
         @else
             <script src="{{ mix('/js/front.js') }}"></script>
         @endif
+
+        <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('/js/flickity.pkgd.min.js') }}"></script>
+        @yield('scripts')
     </body>
 </html>

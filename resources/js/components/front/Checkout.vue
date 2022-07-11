@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <h1 class="title-head mb-4">Оформление заказа</h1>
+        <h1 v-if="lang == 'uz'" class="title-head mb-4">Буюртма бериш</h1>
+        <h1 v-else-if="lang == 'tj'" class="title-head mb-4">Тартиб додани фармоиш</h1>
+        <h1 v-else class="title-head mb-4">Оформление заказа</h1>
 
         <div v-if="cartIsNotEmpty()" class="row">
             <div class="col-12 col-lg-8">
@@ -18,13 +20,17 @@
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="mb-4">
-                                <label>Имя</label>
+                                <label v-if="lang == 'uz'">Исм</label>
+                                <label v-else-if="lang == 'tj'">Ном</label>
+                                <label v-else>Имя</label>
                                 <input v-model="order.first_name" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="mb-4">
-                                <label>Отчество</label>
+                                <label v-if="lang == 'uz'">Шариф</label>
+                                <label v-else-if="lang == 'tj'">Номи падар</label>
+                                <label v-else>Отчество</label>
                                 <input v-model="order.middle_name" type="text" class="form-control">
                             </div>
                         </div>
@@ -41,43 +47,57 @@
                     <div class="row">
                         <div class="col-12 col-lg-4">
                             <div class="mb-4">
-                                <label>Индекс</label>
+                                <label v-if="lang == 'uz'">Почта индекси</label>
+                                <label v-else-if="lang == 'tj'">Индекс</label>
+                                <label v-else>Индекс</label>
                                 <input v-model="order.zip" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
                             <div class="mb-4">
-                                <label>Регион</label>
+                                <label v-if="lang == 'uz'">Вилоят</label>
+                                <label v-else-if="lang == 'tj'">Минтақа</label>
+                                <label v-else>Регион</label>
                                 <input v-model="order.region" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
                             <div class="mb-4">
-                                <label>Город</label>
+                                <label v-if="lang == 'uz'">Шаҳар</label>
+                                <label v-else-if="lang == 'tj'">Шаҳр</label>
+                                <label v-else>Город</label>
                                 <input v-model="order.city" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="mb-4">
-                                <label>Улица</label>
+                                <label v-if="lang == 'uz'">Кўча</label>
+                                <label v-else-if="lang == 'tj'">Куча</label>
+                                <label v-else>Улица</label>
                                 <input v-model="order.street" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-lg-2">
                             <div class="mb-4">
-                                <label>Дом</label>
+                                <label v-if="lang == 'uz'">Уй</label>
+                                <label v-else-if="lang == 'tj'">Бино</label>
+                                <label v-else>Дом</label>
                                 <input v-model="order.building" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-lg-2">
                             <div class="mb-4">
-                                <label>Подъезд</label>
+                                <label v-if="lang == 'uz'">Подъезд</label>
+                                <label v-else-if="lang == 'tj'">Даромад</label>
+                                <label v-else>Подъезд</label>
                                 <input v-model="order.entrance" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-12 col-lg-2">
                             <div class="mb-4">
-                                <label>Квартира</label>
+                                <label v-if="lang == 'uz'">Квартира</label>
+                                <label v-else-if="lang == 'tj'">Хона</label>
+                                <label v-else>Квартира</label>
                                 <input v-model="order.apartment" type="text" class="form-control">
                             </div>
                         </div>
@@ -89,7 +109,9 @@
             <div class="col-12 col-lg-4">
                 <label>&nbsp;</label>
                 <div class="your-order mb-4">
-                    <p><strong>Ваш заказ:</strong></p>
+                    <p v-if="lang == 'uz'"><strong>Буюртмангиз:</strong></p>
+                    <p v-else-if="lang == 'tj'"><strong>Фармоиши Шумо:</strong></p>
+                    <p v-else><strong>Ваш заказ:</strong></p>
                     
                     <ul v-if="cart.simple">
                         <template v-for="plan in cart.simple.plans">
@@ -107,7 +129,10 @@
 
                     <ul v-if="cart.pretty">
                         <li v-for="number in cart.pretty.numbers">
-                            {{ number }} (красивый номер)
+                            <template v-if="lang == 'uz'">{{ number }} (чиройли рақам)</template>
+                            <template v-else-if="lang == 'tj'">{{ number }} (Рақами зебо)</template>
+                            <template v-else>{{ number }} (красивый номер)</template>
+
                             <a href="/order-pretty/" class="btn btn-sm btn-outline-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                                     <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
@@ -118,9 +143,10 @@
                     </ul>
                 </div>
                 <div class="your-order-bottom mb-4">
-                    <div class="price mb-4">
-                        Итого: {{ price }} руб.
-                    </div>
+                    <div v-if="lang == 'uz'" class="price mb-4">Жами: {{ price }} руб.</div>
+                    <div v-else-if="lang == 'tj'" class="price mb-4">Ҳамагӣ: {{ price }} руб.</div>
+                    <div v-else class="price mb-4">Итого: {{ price }} руб.</div>
+
                     <button @click="saveOrder()" :disabled="!views.saveButton" class="btn btn-primary">Перейти к оплате</button>
                 </div>
             </div>
@@ -206,8 +232,6 @@ export default {
             if(this.cart.pretty && this.cart.pretty.numbers && this.cart.pretty.numbers.length) {
                 numbersTotalQuantity = this.cart.pretty.numbers.length
             }
-
-            console.log(plansTotalQuantity, numbersTotalQuantity)
 
             if(plansTotalQuantity > 0 || numbersTotalQuantity > 0) {
                 return true

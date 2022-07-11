@@ -101,7 +101,7 @@
                     <create-lead service="bank_card" lang="{{ app()->getLocale() }}"></create-lead>
                 </div>
                 <div class="col-12 col-lg-5">
-                    <img src="/img/cards.png" alt="Банковская карта">
+                    <img src="/img/cards.jpg" alt="Банковская карта">
                 </div>
             </div>
         </div>

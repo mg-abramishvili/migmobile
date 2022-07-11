@@ -28,6 +28,18 @@ Route::get('/avia', function() {
     return view('avia');
 })->name('avia');
 
+Route::get('/news-all', function() {
+    $lang = session()->get('language');
+
+    if($lang) {
+        $news = News::where('lang', $lang)->orderBy('created_at', 'desc')->get();
+    } else {
+        $news = News::where('lang', 'ru')->orderBy('created_at', 'desc')->get();
+    }
+
+    return view('news', compact('news'));
+});
+
 Route::get('/news/{id}', function($id) {
     $newsItem = News::find($id);
     return view('newsItem', compact('newsItem'));

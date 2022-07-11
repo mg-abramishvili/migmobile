@@ -1,12 +1,16 @@
 <template>
     <div class="container">
-        <h1 class="title-head mb-4">Купить красивые номера</h1>
+        <h1 v-if="lang == 'uz'" class="title-head mb-4">Чиройли рақамларни сотиб олиш</h1>
+        <h1 v-else-if="lang == 'tj'" class="title-head mb-4">Хариди рақамҳои зебо</h1>
+        <h1 v-else class="title-head mb-4">Купить красивые номера</h1>
 
         <div class="order-numbers">
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <form @submit.prevent="search()">
-                        <input v-model="searchInput" placeholder="введите желаемые цифры, например 888" type="text" class="form-control">
+                        <input v-if="lang == 'uz'" v-model="searchInput" placeholder="Сизга керакли рақамларни киритинг, масалан 888" type="text" class="form-control">
+                        <input v-else-if="lang == 'tj'" v-model="searchInput" placeholder="Рақами дилхоҳро дохил кунед, масалан, 888" type="text" class="form-control">
+                        <input v-else v-model="searchInput" placeholder="введите желаемые цифры, например 888" type="text" class="form-control">
                         
                         <button v-if="!views.loading" type="submit" class="btn btn-secondary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -15,12 +19,23 @@
                         </button>
                         <button v-if="views.loading" class="btn btn-primary" type="button" disabled>
                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            <span class="visually-hidden">Поиск...</span>
+                            <span v-if="lang == 'uz'" class="visually-hidden">Қидирув...</span>
+                            <span v-else-if="lang == 'tj'" class="visually-hidden">Ҷустуҷӯ...</span>
+                            <span v-else class="visually-hidden">Поиск...</span>
                         </button>
                     </form>
 
-                    <p v-if="views.searchResult && resultCounter() > 0" class="text-muted">Найдено номеров: {{ resultCounter() }}</p>
-                    <p v-if="views.searchResult && resultCounter() == 0" class="text-muted">Ничего не найдено.</p>
+                    <p v-if="views.searchResult && resultCounter() > 0" class="text-muted">
+                        <template v-if="lang == 'uz'">Рақамлар топилди: {{ resultCounter() }}</template>
+                        <template v-else-if="lang == 'tj'">Рақамҳои ёфтшуда: {{ resultCounter() }}</template>
+                        <template v-else>Найдено номеров: {{ resultCounter() }}</template>
+                    </p>
+                    
+                    <p v-if="views.searchResult && resultCounter() == 0" class="text-muted">
+                        <template v-if="lang == 'uz'">Ҳеч нима топилмади.</template>
+                        <template v-else-if="lang == 'tj'">Ҳеҷ чиз ёфт нашуд.</template>
+                        <template v-else>Ничего не найдено.</template>
+                    </p>
                     
                     <div v-if="views.searchResult && resultCounter() > 0" class="order-numbers-results">
                         <div class="row">
@@ -81,12 +96,22 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div v-if="prices" class="disclaimer mb-4">
-                        <p v-if="prices.filter(price => price.type == 'pretty')[0]">Цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'pretty')[0].price }} руб</strong>.</p>
+                        <p v-if="prices.filter(price => price.type == 'pretty')[0]">
+                            <template v-if="lang == 'uz'">1 рақам учун нарх = <strong>{{ prices.filter(price => price.type == 'pretty')[0].price }} руб</strong>.</template>
+                            <template v-else-if="lang == 'tj'">Нарх барои 1 рақам = <strong>{{ prices.filter(price => price.type == 'pretty')[0].price }} руб</strong>.</template>
+                            <template v-else>Цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'pretty')[0].price }} руб</strong>.</template>
+                        </p>
 
-                        <p v-if="prices.filter(price => price.type == 'pretty')[1]">При покупке 3 номеров и более, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'pretty')[1].price }} руб</strong>.</p>
+                        <p v-if="prices.filter(price => price.type == 'pretty')[1]">
+                            <template v-if="lang == 'uz'">3 ёки ундан кўп рақам сотиб олинаётганда, 1 рақам учун нарх = <strong>{{ prices.filter(price => price.type == 'pretty')[1].price }} руб</strong>.</template>
+                            <template v-else-if="lang == 'tj'">Ҳангоми харидани 3 рақам ва зиёда аз он, нархи 1 рақам = <strong>{{ prices.filter(price => price.type == 'pretty')[1].price }} руб</strong>.</template>
+                            <template v-else>При покупке 3 номеров и более, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'pretty')[1].price }} руб</strong>.</template>
+                        </p>
                     </div>
                     <div v-if="priceWithQuantity > 0" class="order-page-cart">
-                        <p class="fw-bold">Ваш заказ:</p>
+                        <p v-if="lang == 'uz'" class="fw-bold">Буюртмангиз:</p>
+                        <p v-else-if="lang == 'tj'" class="fw-bold">Фармоиши Шумо:</p>
+                        <p v-else class="fw-bold">Ваш заказ:</p>
                         <ul>
                             <li v-for="orderNumItem in selected.numbers">
                                 {{  orderNumItem }}

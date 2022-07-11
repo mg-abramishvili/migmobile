@@ -7,7 +7,9 @@
         </div>
 
         <div v-if="views.success" class="alert alert-success">
-            Заявка успешно отправлена!
+            <template v-if="lang == 'uz'">Ариза!</template>
+            <template v-else-if="lang == 'tj'">Ариза бомуваффақият фиристода шуд!</template>
+            <template v-else>Заявка успешно отправлена!</template>
         </div>
 
         <div class="row">

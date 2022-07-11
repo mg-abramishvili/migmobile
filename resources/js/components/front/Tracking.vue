@@ -7,19 +7,27 @@
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="mb-4">
-                            <label>Номер заказа</label>
+                            <label v-if="lang == 'uz'">Буюртма рақами</label>
+                            <label v-else-if="lang == 'tj'">Рақами фармоиш</label>
+                            <label v-else>Номер заказа</label>
+
                             <input v-model="orderNumber" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="mb-4">
-                            <label>Фамилия (как в заказе)</label>
+                            <label v-if="lang == 'uz'">Фамилия (буюртмада каби)</label>
+                            <label v-else-if="lang == 'tj'">Фамилия (тавре ки дар фармоиш)</label>
+                            <label v-else>Фамилия (как в заказе)</label>
+
                             <input v-model="orderLastName" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
 
-                <button @click="loadOrder()" class="btn btn-primary">Узнать статус</button>
+                <button v-if="lang == 'uz'" @click="loadOrder()" class="btn btn-primary">Буюртма ҳолатини билиш</button>
+                <button v-else-if="lang == 'tj'" @click="loadOrder()" class="btn btn-primary">Тафтиши статуси фармоиш</button>
+                <button v-else @click="loadOrder()" class="btn btn-primary">Узнать статус</button>
             </div>
             <div class="col-12 col-lg-6">
                 <div v-if="errors.length" class="alert alert-danger" role="alert">
@@ -28,11 +36,14 @@
 
                 <div v-if="order && order.id" class="tracking-result" style="background-color: rgba(255,255,255,0.5); padding: 15px; color: #777; border-radius: 8px;">
                     <p class="mb-4">
-                        <strong>Заказ №{{ order.id }}</strong>
-                         на сумму {{ order.price }} руб.
+                        <template v-if="lang == 'uz'"><strong>Буюртма №{{ order.id }}</strong> миқдорга {{ order.price }} руб.</template>
+                        <template v-else-if="lang == 'tj'"><strong>Фармоиши №{{ order.id }}</strong> ба маблаги {{ order.price }} руб.</template>
+                        <template v-else><strong>Заказ №{{ order.id }}</strong> на сумму {{ order.price }} руб.</template>
                     </p>
                     <p class="mb-4">
-                        <strong>Статус: </strong>
+                        <strong v-if="lang == 'uz'">Буюртма ҳолати: </strong>
+                        <strong v-else-if="lang == 'tj'">Статус: </strong>
+                        <strong v-else>Статус: </strong>
                         
                         <span v-if="order.status == 'created'">Принят в работу</span>
                         <span v-if="order.status == 'sent'">Отправлен</span>
@@ -48,15 +59,22 @@
                         </template>
                     </p>
                     <p v-if="order.delivery_name && order.delivery_name != 'null'" class="mb-4">
-                        <strong>Доставка:</strong>
+                        <strong v-if="lang == 'uz'">Етказиб бериш:</strong>
+                        <strong v-else-if="lang == 'tj'">Бурда расонидан:</strong>
+                        <strong v-else>Доставка:</strong>
                         {{ order.delivery_name }}
                     </p>
                     <p v-if="order.delivery_track_number && order.delivery_track_number.length > 2" class="mb-4">
-                        <strong>Трек-номер:</strong>
+                        <strong v-if="lang == 'uz'">Трек-рақам:</strong>
+                        <strong v-else-if="lang == 'tj'">Трек-номер:</strong>
+                        <strong v-else>Трек-номер:</strong>
                         {{ order.delivery_track_number }}
                     </p>
                     <p v-if="order.delivery_track_number && order.delivery_track_number.length > 2" class="mb-0">
-                        <strong>Ссылка для отслеживания:</strong><br>
+                        <strong v-if="lang == 'uz'">Кузатиш учун ссылка:</strong>
+                        <strong v-else-if="lang == 'tj'">Ссылка пайгирӣ:</strong>
+                        <strong v-else>Ссылка для отслеживания:</strong>
+                        <br>
                         
                         <a v-if="order.delivery_name == 'КСЭ'" :href="'https://www.cse.ru/mow/track/?numbers=' + order.delivery_track_number" target="_blank">https://www.cse.ru/mow/track/?numbers={{order.delivery_track_number}}</a>
                         
@@ -74,6 +92,7 @@
 
 <script>
 export default {
+    props: ['lang'],
     data() {
         return {
             orderNumber: '',

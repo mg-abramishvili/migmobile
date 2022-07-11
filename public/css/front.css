@@ -1812,3 +1812,28 @@ footer {
     height: 26px;
 }
 /* FOOTER */
+
+.news-page-list-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+.news-page-list-item-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+@media (min-width: 992px) {
+    .news-page-list-item-image {
+        width: 30%;
+        margin-bottom: 0;
+    }
+}
+
+.news-page-list-item-desc {
+    padding: 15px;
+}

@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <h1 class="title-head mb-4">Купить SIM-карту</h1>
+        <h1 v-if="lang == 'uz'" class="title-head mb-4">SIM-карта сотиб олиш</h1>
+        <h1 v-else-if="lang == 'tj'" class="title-head mb-4">Хариди SIM-корт</h1>
+        <h1 v-else class="title-head mb-4">Купить SIM-карту</h1>
 
         <div class="order-numbers">
             <div class="row">
@@ -26,14 +28,29 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div v-if="prices" class="disclaimer mb-4">
-                        <p v-if="prices.filter(price => price.type == 'simple')[0]">Цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[0].price }} руб</strong>.</p>
+                        <p v-if="prices.filter(price => price.type == 'simple')[0]">
+                            <template v-if="lang == 'uz'">1 рақам учун нарх = <strong>{{ prices.filter(price => price.type == 'simple')[0].price }} руб</strong>.</template>
+                            <template v-else-if="lang == 'tj'">Нарх барои 1 рақам = <strong>{{ prices.filter(price => price.type == 'simple')[0].price }} руб</strong>.</template>
+                            <template v-else>Цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[0].price }} руб</strong>.</template>
+                        </p>
 
-                        <p v-if="prices.filter(price => price.type == 'simple')[1]">При покупке 5 номеров и более, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[1].price }} руб</strong>.</p>
+                        <p v-if="prices.filter(price => price.type == 'simple')[1]">
+                            <template v-if="lang == 'uz'">5 ёки ундан кўп рақам сотиб олинаётганда, 1 рақам учун нарх = <strong>{{ prices.filter(price => price.type == 'simple')[1].price }} руб</strong>.</template>
+                            <template v-else-if="lang == 'tj'">Ҳангоми харидани 5 рақам ва бештар аз он, нархи 1 рақам = <strong>{{ prices.filter(price => price.type == 'simple')[1].price }} руб</strong>.</template>
+                            <template v-else>При покупке 5 номеров и более, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[1].price }} руб</strong>.</template>
+                        </p>
 
-                        <p v-if="prices.filter(price => price.type == 'simple')[2]">При покупке 10 и более номеров, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[2].price }} руб</strong>.</p>
+                        <p v-if="prices.filter(price => price.type == 'simple')[2]">
+                            <template v-if="lang == 'uz'">10 ёки ундан кўп рақам сотиб олинаётганда, 1 рақам учун нарх = <strong>{{ prices.filter(price => price.type == 'simple')[2].price }} руб</strong>.</template>
+                            <template v-else-if="lang == 'tj'">Ҳангоми харидани 10 ва зиёда рақам, нархи 1 рақам = <strong>{{ prices.filter(price => price.type == 'simple')[2].price }} руб</strong>.</template>
+                            <template v-else>При покупке 10 и более номеров, цена за 1 номер = <strong>{{ prices.filter(price => price.type == 'simple')[2].price }} руб</strong>.</template>
+                        </p>
                     </div>
                     <div v-if="priceWithQuantity > 0" class="order-page-cart">
-                        <p class="fw-bold">Ваш заказ:</p>
+                        <p v-if="lang == 'uz'" class="fw-bold">Буюртмангиз:</p>
+                        <p v-else-if="lang == 'tj'" class="fw-bold">Фармоиши Шумо:</p>
+                        <p v-else class="fw-bold">Ваш заказ:</p>
+                        
                         <ul>
                             <template v-for="orderItem in selected.plans">
                                 <li v-if="orderItem.quantity > 0">
