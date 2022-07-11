@@ -86,10 +86,11 @@ class OrderController extends Controller
 
         $cart = $request->cart;
 
+        $plans = array();
+        $prettyNumbers = array();
+
         if(isset($cart['simple']))
         {
-            $plans = array();
-
             foreach($cart['simple']['plans'] as $plan)
             {
                 if($plan["quantity"] > 0)
@@ -103,9 +104,11 @@ class OrderController extends Controller
 
             foreach($cart['simple']['plans'] as $plan)
             {
-                $this->ProcessStockQuantity($plan);
-                        
-                array_push($plans, $plan['name_ru'] . ' (' . $plan['quantity'] . ' шт)');
+                if($plan['quantity'] > 0) {
+                    $this->ProcessStockQuantity($plan);
+
+                    array_push($plans, $plan['name_ru'] . ' (' . $plan['quantity'] . ' шт)');
+                }
             }
 
             $order->description .= implode (", ", $plans);
@@ -121,9 +124,15 @@ class OrderController extends Controller
                 if(isset($number->order_id)) {
                     return response('Номер ' . $number->number . ' уже был кем-то куплен', 500);
                 }
+
+                array_push($prettyNumbers, $number->number . ' ('. $number->plan->name_ru . ' красивый номер)');
             }
 
-            $order->description .= implode (", ", $cart['pretty']['numbers']);
+            if(count($plans)) {
+                $order->description .= ', ' . implode (", ", $prettyNumbers);
+            } else {
+                $order->description = implode (", ", $prettyNumbers);
+            }
             $order->price += $cart['pretty']['price'];
         }
         
