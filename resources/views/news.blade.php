@@ -15,7 +15,7 @@
                         <div class="news-page-list-item-image" style="background-image: url(/img/gallery2.jpg)"></div>
                     @endif
                     <div class="news-page-list-item-desc">
-                        <p>{{ $newsItem->created_at->format('d.m.Y') }}</span>
+                        <span>{{ $newsItem->created_at->format('d.m.Y') }}</span>
                         <h5>{{ $newsItem->name }}</h5>
                     </div>
                 </a>

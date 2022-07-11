@@ -5,6 +5,7 @@
 @section('content')
     <div class="news-page py-4">
         <div class="container">
+            <span>{{ $newsItem->created_at->format('d.m.Y') }}</span>
             <h1 class="title-head mb-4">{{ $newsItem->name }}</h1>
             <div class="row">
                 @if($newsItem->gallery)
