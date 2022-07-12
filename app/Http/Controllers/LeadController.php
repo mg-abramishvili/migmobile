@@ -32,7 +32,7 @@ class LeadController extends Controller
             $subject = 'Денежный займ';
         }
 
-        $url = "https://mobile.bitrix24.ru/rest/87/wwy6shmynfsjmxw6/crm.deal.add.json";
+        $url = "https://mobile.bitrix24.ru/rest/87/o7w21l3knwsfr655/crm.deal.add.json";
         
         $qr = array(
             'fields' => array(),
@@ -55,7 +55,7 @@ class LeadController extends Controller
         $dealID = $result["result"];
 
         // adding contact
-        $url = 'https://mobile.bitrix24.ru/rest/87/1qbd728a0q0gcc4i/crm.contact.add.json';
+        $url = 'https://mobile.bitrix24.ru/rest/87/e6msa3s3q1pv81rw/crm.contact.add.json';
         
         $qr = array(
             'fields' => array(),
@@ -78,7 +78,7 @@ class LeadController extends Controller
         $contactId = $result["result"];
 
         // assign contact to the deal
-        $url = 'https://mobile.bitrix24.ru/rest/87/gqpnhgu5bpymu296/crm.deal.contact.add.json';
+        $url = 'https://mobile.bitrix24.ru/rest/87/7wq4rejg97lcm6wu/crm.deal.contact.add.json';
         
         $qr = array(
             'id' => $dealID,
