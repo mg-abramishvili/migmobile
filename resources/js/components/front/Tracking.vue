@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <h1 class="title-head mb-4">Узнать статус заказа</h1>
+        <h1 v-if="lang == 'uz'" class="title-head mb-4">Буюртмани кузатиш</h1>
+        <h1 v-else-if="lang == 'tj'" class="title-head mb-4">Пайгирӣ тартибот</h1>
+        <h1 v-else class="title-head mb-4">Узнать статус заказа</h1>
 
         <div class="row">
             <div class="col-12 col-lg-6">

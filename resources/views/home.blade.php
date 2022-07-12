@@ -56,10 +56,10 @@
                             @endif
                         </p>
                         <ul>
-                            <li>{{ $plan->min }} мин</li>
-                            <li>{{ $plan->gb }} Гб</li>
+                            <li>{{ $plan->min }} {{ __('min') }}</li>
+                            <li>{{ $plan->gb }} {{ __('gb') }}</li>
                             <li>{{ $plan->sms }} SMS</li>
-                            <li><strong>{{ $plan->price }} руб. / мес.</strong></li>
+                            <li><strong>{{ $plan->price }} руб. / {{ __('month') }}.</strong></li>
                         </ul>
                         <a href="/order/" class="btn btn-primary">{{ __('Order') }}</a>
                     </div>

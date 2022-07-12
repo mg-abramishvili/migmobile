@@ -13,7 +13,9 @@
                                 <img :src="plan.icon" class="img-fluid rounded-start" alt="">
                             </div>
                             <div class="card-plan-title">
-                                <h5 class="card-title m-0">{{ plan.name_ru }}</h5>
+                                <h5 v-if="lang == 'uz'" class="card-title m-0">{{ plan.name_uz }}</h5>
+                                <h5 v-else-if="lang == 'tj'" class="card-title m-0">{{ plan.name_tj }}</h5>
+                                <h5 v-else class="card-title m-0">{{ plan.name_ru }}</h5>
                             </div>
                             <div class="card-plan-buy">
                                 <input v-model="selected.plans.find(p => p.name == plan.name).quantity" @change="saveCart()" type="number" min="0" :max="plan.in_stock" class="form-control">
@@ -54,7 +56,10 @@
                         <ul>
                             <template v-for="orderItem in selected.plans">
                                 <li v-if="orderItem.quantity > 0">
-                                    {{  orderItem.quantity }} &times; {{  orderItem.name_ru }}
+                                    <template v-if="lang == 'uz'">{{  orderItem.quantity }} &times; {{  orderItem.name_uz }}</template>
+                                    <template v-else-if="lang == 'tj'">{{  orderItem.quantity }} &times; {{  orderItem.name_tj }}</template>
+                                    <template v-else>{{  orderItem.quantity }} &times; {{  orderItem.name_ru }}</template>
+
                                     <button @click="removeFromCart(orderItem)" class="btn btn-sm btn-outline-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -66,7 +71,11 @@
                         </ul>
                         <p v-if="priceWithQuantity > 0" class="price">{{ priceWithQuantity }} руб.</p>
                         <p>{{ deliveryName }}</p>
-                        <a v-if="priceWithQuantity > 0" @click="proceedToCheckout()" class="btn btn-primary btn-white">Оформить заказ</a>
+                        <a v-if="priceWithQuantity > 0" @click="proceedToCheckout()" class="btn btn-primary btn-white">
+                            <template v-if="lang == 'uz'">Буюртма бериш</template>
+                            <template v-else-if="lang == 'tj'">Кассири</template>
+                            <template v-else>Оформить заказ</template>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -138,6 +147,14 @@ export default {
                 this.plans = response.data
 
                 response.data.forEach(plan => {
+                    if(this.lang == 'uz') {
+                        return this.selected.plans.push({ "name": plan.name, "name_uz": plan.name_uz, "quantity": 0 })
+                    }
+
+                    if(this.lang == 'tj') {
+                        return this.selected.plans.push({ "name": plan.name, "name_tj": plan.name_tj, "quantity": 0 })
+                    }
+
                     this.selected.plans.push({ "name": plan.name, "name_ru": plan.name_ru, "quantity": 0 })
                 })
             })

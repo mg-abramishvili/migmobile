@@ -125,7 +125,11 @@
                         </ul>
                         <p v-if="priceWithQuantity > 0">{{ priceWithQuantity }} руб.</p>
                         <p>{{ deliveryName }}</p>
-                        <a v-if="priceWithQuantity > 0" @click="proceedToCheckout()" class="btn btn-primary btn-white">Оформить заказ</a>
+                        <a v-if="priceWithQuantity > 0" @click="proceedToCheckout()" class="btn btn-primary btn-white">
+                            <template v-if="lang == 'uz'">Буюртма бериш</template>
+                            <template v-else-if="lang == 'tj'">Кассири</template>
+                            <template v-else>Оформить заказ</template>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -181,9 +185,23 @@ export default {
         },
         deliveryName() {
             if(this.priceWithQuantity >= this.settings.free_delivery_from) {
+                if(this.lang == 'uz') {
+                    return 'Бепул курер етказиб бериш'
+                }
+                if(this.lang == 'tj') {
+                    return 'Курьерская расонидани'
+                }
+
                 return 'Бесплатная курьерская доставка до двери'
             }
             if(this.priceWithQuantity < this.settings.free_delivery_from) {
+                if(this.lang == 'uz') {
+                    return 'Россия почтасига бепул етказиб бериш'
+                }
+                if(this.lang == 'tj') {
+                    return 'Бепул ьамлу дар шӯъбаи Почтаи Россия'
+                }
+
                 return 'Бесплатная доставка в отделение Почты России'
             }
         }
