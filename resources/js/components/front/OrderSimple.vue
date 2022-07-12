@@ -127,9 +127,23 @@ export default {
         },
         deliveryName() {
             if(this.priceWithQuantity >= this.settings.free_delivery_from) {
+                if(this.lang == 'uz') {
+                    return 'Бепул курер етказиб бериш'
+                }
+                if(this.lang == 'tj') {
+                    return 'Курьерская расонидани'
+                }
+
                 return 'Бесплатная курьерская доставка до двери'
             }
             if(this.priceWithQuantity < this.settings.free_delivery_from) {
+                if(this.lang == 'uz') {
+                    return 'Россия почтасига бепул етказиб бериш'
+                }
+                if(this.lang == 'tj') {
+                    return 'Бепул ьамлу дар шӯъбаи Почтаи Россия'
+                }
+
                 return 'Бесплатная доставка в отделение Почты России'
             }
         }
