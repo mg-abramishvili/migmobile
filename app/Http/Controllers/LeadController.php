@@ -40,7 +40,7 @@ class LeadController extends Controller
         );
         $qr['fields']['TITLE'] = "Заявка с migrantmobile.com" . " " . $subject;
         $qr['fields']['STAGE_ID'] = 'NEW';
-        $qr['fields']['ASSIGNED_BY_ID'] = 23;
+        $qr['fields']['ASSIGNED_BY_ID'] = 87;
         
         $queryData = json_encode($qr);
 
