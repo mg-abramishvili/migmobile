@@ -23,8 +23,38 @@ class LeadController extends Controller
 
         $lead->save();
 
-        $this->sendToBitrixAsDeal($lead);
-        // $this->sendToBitrixAsTask($lead->name, $lead->phone, $lead->subject);
+        // $this->sendToBitrixAsDeal($lead);
+        $this->sendToBitrixAsTask($lead);
+    }
+
+    public function sendToBitrixAsTask($lead)
+    {
+        if($lead->subject == 'bank_card') {
+            $subject = 'Банковская карта';
+        }
+        if($lead->subject == 'loan') {
+            $subject = 'Денежный займ';
+        }
+
+        $url = "https://mobile.bitrix24.ru/rest/87/kt7lft1djdws3r6z/task.item.add.json";
+
+        $qr = array(
+            'taskdata' => array(),
+        );
+        $qr['taskdata']['TITLE'] = "Заявка с migrantmobile.com" . " " . $subject;
+        $qr['taskdata']['DESCRIPTION'] = $subject . ', телефон: ' . $lead->phone . ', имя: ' . $lead->name;
+        $qr['taskdata']['RESPONSIBLE_ID'] = 87;
+        
+        $queryData = json_encode($qr);
+
+        $ch = curl_init($url); 
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $queryData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        // $result = json_decode($result, true);
     }
 
     public function sendToBitrixAsDeal($lead)
