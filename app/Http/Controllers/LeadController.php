@@ -23,7 +23,7 @@ class LeadController extends Controller
 
         $lead->save();
 
-        $this->sendToBitrixAsDeal($lead->name, $lead->phone, $lead->subject);
+        $this->sendToBitrixAsDeal($lead);
         // $this->sendToBitrixAsTask($lead->name, $lead->phone, $lead->subject);
     }
 
