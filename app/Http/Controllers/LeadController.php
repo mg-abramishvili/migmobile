@@ -23,12 +23,16 @@ class LeadController extends Controller
 
         $lead->save();
 
-        // send to bitrix24
+        $this->sendToBitrixAsDeal($lead->name, $lead->phone, $lead->subject);
+        // $this->sendToBitrixAsTask($lead->name, $lead->phone, $lead->subject);
+    }
 
-        if($request->subject == 'bank_card') {
+    public function sendToBitrixAsDeal($lead)
+    {
+        if($lead->subject == 'bank_card') {
             $subject = 'Банковская карта';
         }
-        if($request->subject == 'loan') {
+        if($lead->subject == 'loan') {
             $subject = 'Денежный займ';
         }
 
@@ -61,9 +65,9 @@ class LeadController extends Controller
             'fields' => array(),
             'params' => array()
         );
-        $qr['fields']['NAME'] = $request->name;
+        $qr['fields']['NAME'] = $lead->name;
         $qr['fields']['OPENED'] = 'Y';
-        $qr['fields']['PHONE']['n1'] = array("VALUE"=>$request->phone, "VALUE_TYPE"=>"WORK");
+        $qr['fields']['PHONE']['n1'] = array("VALUE"=>$lead->phone, "VALUE_TYPE"=>"WORK");
     
         $queryData = json_encode($qr);
 
