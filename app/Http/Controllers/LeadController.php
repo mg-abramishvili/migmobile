@@ -44,6 +44,7 @@ class LeadController extends Controller
         $qr['taskdata']['TITLE'] = "Заявка с migrantmobile.com" . " " . $subject;
         $qr['taskdata']['DESCRIPTION'] = $subject . ', телефон: ' . $lead->phone . ', имя: ' . $lead->name;
         $qr['taskdata']['RESPONSIBLE_ID'] = 23;
+        $qr['taskdata']['CREATED_BY'] = 23;
         
         $queryData = json_encode($qr);
 
