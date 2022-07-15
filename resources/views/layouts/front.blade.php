@@ -27,16 +27,6 @@
                             </div>
                             <div class="col header-top-socials">
                                 <ul>
-                                    <!-- <li>
-                                        <a href="https://instagram.com/migrant_mobile" target="_blank">
-                                            <img src="/img/instagram.svg" alt="">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.facebook.com/migrant.mobile" target="_blank">
-                                            <img src="/img/facebook.svg" alt="">
-                                        </a>
-                                    </li> -->
                                     <li>
                                         <a href="https://t.me/Migrant_mobile_bot" target="_blank">
                                             <img src="/img/telegram.svg" alt="">
@@ -114,11 +104,32 @@
                                             <li class="nav-item">
                                                 <a href="/#loan" class="nav-link">{{ __('Loans') }}</a>
                                             </li>
-                                            <!-- <li class="nav-item">
-                                                <a href="/#about" class="nav-link">{{ __('About Us') }}</a>
-                                            </li> -->
                                             <li class="nav-item">
                                                 <a href="/tracking" class="nav-link">{{ __('Order status') }}</a>
+                                            </li>
+                                            <li class="nav-item socials-menu-mobile">
+                                                <ul>
+                                                    <li>
+                                                        <a href="https://t.me/Migrant_mobile_bot" target="_blank">
+                                                            <img src="/img/telegram.svg" alt="">
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://youtube.com/channel/UCUyiF6u7V9gASr5wBEeqiKw" target="_blank">
+                                                            <img src="/img/youtube.svg" alt="">
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://vm.tiktok.com/ZSd28C4HB/" target="_blank">
+                                                            <img src="/img/tiktok.svg" alt="">
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://ok.ru/group/61666975613007" target="_blank">
+                                                            <img src="/img/ok.svg" alt="">
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </div>

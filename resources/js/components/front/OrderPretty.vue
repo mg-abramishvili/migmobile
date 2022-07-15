@@ -8,9 +8,9 @@
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <form @submit.prevent="search()">
-                        <input v-if="lang == 'uz'" v-model="searchInput" placeholder="Сизга керакли рақамларни киритинг, масалан 888" type="text" class="form-control">
-                        <input v-else-if="lang == 'tj'" v-model="searchInput" placeholder="Рақами дилхоҳро дохил кунед, масалан, 888" type="text" class="form-control">
-                        <input v-else v-model="searchInput" placeholder="введите желаемые цифры, например 888" type="text" class="form-control">
+                        <input v-if="lang == 'uz'" v-model="searchInput" placeholder="Сизга керакли рақамларни киритинг" type="text" class="form-control">
+                        <input v-else-if="lang == 'tj'" v-model="searchInput" placeholder="Рақами дилхоҳро дохил кунед" type="text" class="form-control">
+                        <input v-else v-model="searchInput" placeholder="введите желаемые цифры" type="text" class="form-control">
                         
                         <button v-if="!views.loading" type="submit" class="btn btn-secondary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
