@@ -188,7 +188,9 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-        return response($res, 500);
+
+        $this->createReceipt($order);
+
         if($res)
         {
             $order->payment_id = $res['id'];
@@ -216,8 +218,6 @@ class OrderController extends Controller
         $order->is_paid = true;
 
         $order->save();
-
-        $this->createReceipt($order);
 
         return response('OK', 200);
     }
