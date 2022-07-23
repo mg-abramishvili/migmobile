@@ -263,14 +263,14 @@ class OrderController extends Controller
             ),
             'settlements' => array(
                 array(
-                'type' => 'prepayment',
+                'type' => 'cashless',
                 'amount' => array(
                     'value' => '8000.00',
                     'currency' => 'RUB',
                 )
                 ),
                 array(
-                'type' => 'prepayment',
+                'type' => 'cashless',
                 'amount' => array(
                     'value' => '7000.00',
                     'currency' => 'RUB',
