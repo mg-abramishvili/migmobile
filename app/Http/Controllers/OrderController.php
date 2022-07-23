@@ -188,11 +188,16 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-        
-        $order->payment_id = $res['id'];
-        $order->save();
 
-        return $res['confirmation']['confirmation_url'];
+        if($res)
+        {
+            $order->payment_id = $res['id'];
+            $order->save();
+
+            $this->createReceipt($order, $res);
+    
+            return $res['confirmation']['confirmation_url'];
+        }  
     }
 
     public function orderConfirmed($uid)
@@ -215,6 +220,63 @@ class OrderController extends Controller
         $order->save();
 
         return response('OK', 200);
+    }
+
+    public function createReceipt($order, $res)
+    {
+        $data = array(
+            'customer' => array(
+                'full_name' => $order->last_name . ' ' . $order->middle_name . ' ' . $order->first_name,
+                'phone' => $order->phone,
+                'email' => 'mg@abramishvili.net',
+            ),
+            'payment_id' => $order->payment_id,
+            'type' => 'payment',
+            'send' => true,
+            'items' => array(
+                array(
+                    'description' => 'Наименование товара 1',
+                    'quantity' => '1.000',
+                    'amount' => array(
+                        'value' => '14000.00',
+                        'currency' => 'RUB',
+                    ),
+                    'vat_code' => 1,
+                    'payment_mode' => 'full_payment',
+                    'payment_subject' => 'commodity',
+                    'country_of_origin_code' => 'CN',
+                ),
+                array(
+                    'description' => 'Наименование товара 2',
+                    'quantity' => '1.000',
+                    'amount' => array(
+                        'value' => '1000.00',
+                        'currency' => 'RUB',
+                    ),
+                    'vat_code' => 2,
+                    'payment_mode' => 'full_payment',
+                    'payment_subject' => 'commodity',
+                    'country_of_origin_code' => 'CN',
+                )
+            ),
+            'settlements' => array(
+                array(
+                'type' => 'prepayment',
+                'amount' => array(
+                    'value' => '8000.00',
+                    'currency' => 'RUB',
+                )
+                ),
+                array(
+                'type' => 'prepayment',
+                'amount' => array(
+                    'value' => '7000.00',
+                    'currency' => 'RUB',
+                )
+                )
+            ),
+            uniqid('', true)
+        );
     }
 
     public function CheckStockQuantity($planFromOrder)
