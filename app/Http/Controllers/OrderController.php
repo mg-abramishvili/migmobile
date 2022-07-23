@@ -171,6 +171,59 @@ class OrderController extends Controller
             'description' => 'Заказ №' . $order->id,
             'metadata' => array(
                  'order_id' => $order->id,
+            ),
+            'receipt' => array(
+                'customer' => array(
+                    'full_name' => $order->last_name . ' ' . $order->middle_name . ' ' . $order->first_name,
+                    'phone' => $order->phone,
+                    // 'email' => 'email@email.net',
+                ),
+                'payment_id' => $order->payment_id,
+                'type' => 'payment',
+                'send' => true,
+                'items' => array(
+                    array(
+                        'description' => 'Наименование товара 1',
+                        'quantity' => '1.000',
+                        'amount' => array(
+                            'value' => '14000.00',
+                            'currency' => 'RUB',
+                        ),
+                        'vat_code' => 1,
+                        'payment_mode' => 'full_payment',
+                        'payment_subject' => 'commodity',
+                        'country_of_origin_code' => 'CN',
+                    ),
+                    array(
+                        'description' => 'Наименование товара 2',
+                        'quantity' => '1.000',
+                        'amount' => array(
+                            'value' => '1000.00',
+                            'currency' => 'RUB',
+                        ),
+                        'vat_code' => 2,
+                        'payment_mode' => 'full_payment',
+                        'payment_subject' => 'commodity',
+                        'country_of_origin_code' => 'CN',
+                    )
+                ),
+                'settlements' => array(
+                    array(
+                    'type' => 'cashless',
+                    'amount' => array(
+                        'value' => '8000.00',
+                        'currency' => 'RUB',
+                    )
+                    ),
+                    array(
+                    'type' => 'cashless',
+                    'amount' => array(
+                        'value' => '7000.00',
+                        'currency' => 'RUB',
+                    )
+                    )
+                ),
+                uniqid('', true)
             )
         );
          
@@ -222,78 +275,6 @@ class OrderController extends Controller
         $order->save();
 
         return response('OK', 200);
-    }
-
-    public function createReceipt($order)
-    {
-        $settings = Setting::find(1);
-
-        $data = array(
-            'customer' => array(
-                'full_name' => $order->last_name . ' ' . $order->middle_name . ' ' . $order->first_name,
-                'phone' => $order->phone,
-                // 'email' => 'email@email.net',
-            ),
-            'payment_id' => $order->payment_id,
-            'type' => 'payment',
-            'send' => true,
-            'items' => array(
-                array(
-                    'description' => 'Наименование товара 1',
-                    'quantity' => '1.000',
-                    'amount' => array(
-                        'value' => '14000.00',
-                        'currency' => 'RUB',
-                    ),
-                    'vat_code' => 1,
-                    'payment_mode' => 'full_payment',
-                    'payment_subject' => 'commodity',
-                    'country_of_origin_code' => 'CN',
-                ),
-                array(
-                    'description' => 'Наименование товара 2',
-                    'quantity' => '1.000',
-                    'amount' => array(
-                        'value' => '1000.00',
-                        'currency' => 'RUB',
-                    ),
-                    'vat_code' => 2,
-                    'payment_mode' => 'full_payment',
-                    'payment_subject' => 'commodity',
-                    'country_of_origin_code' => 'CN',
-                )
-            ),
-            'settlements' => array(
-                array(
-                'type' => 'cashless',
-                'amount' => array(
-                    'value' => '8000.00',
-                    'currency' => 'RUB',
-                )
-                ),
-                array(
-                'type' => 'cashless',
-                'amount' => array(
-                    'value' => '7000.00',
-                    'currency' => 'RUB',
-                )
-                )
-            ),
-            uniqid('', true)
-        );
-
-        $data = json_encode($data, JSON_UNESCAPED_UNICODE);
-             
-        $ch = curl_init('https://api.yookassa.ru/v3/receipts');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERPWD, "$settings->yookassa_shop_id:$settings->yookassa_secret_key");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Idempotence-Key: ' . $order->uid));
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 	
-        $res = curl_exec($ch);
-        curl_close($ch);
     }
 
     public function CheckStockQuantity($planFromOrder)
