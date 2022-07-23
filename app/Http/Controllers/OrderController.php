@@ -224,6 +224,8 @@ class OrderController extends Controller
 
     public function createReceipt($order, $res)
     {
+        $settings = Setting::find(1);
+        
         $data = array(
             'customer' => array(
                 'full_name' => $order->last_name . ' ' . $order->middle_name . ' ' . $order->first_name,
