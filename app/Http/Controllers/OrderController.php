@@ -229,8 +229,6 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-
-        return response($res, 500);
         
         if($res)
         {
