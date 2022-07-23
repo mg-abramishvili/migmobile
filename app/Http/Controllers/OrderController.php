@@ -242,8 +242,6 @@ class OrderController extends Controller
             
         $res = json_decode($res, true);
 
-        $this->createReceipt($order);
-
         return response($res, 500);
         
         if($res)
