@@ -193,8 +193,6 @@ class OrderController extends Controller
         {
             $order->payment_id = $res['id'];
             $order->save();
-
-            $this->createReceipt($order, $res);
     
             return $res['confirmation']['confirmation_url'];
         }  
@@ -219,10 +217,12 @@ class OrderController extends Controller
 
         $order->save();
 
+        $this->createReceipt($order);
+
         return response('OK', 200);
     }
 
-    public function createReceipt($order, $res)
+    public function createReceipt($order)
     {
         $settings = Setting::find(1);
 
