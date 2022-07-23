@@ -183,10 +183,10 @@ class OrderController extends Controller
                 'send' => true,
                 'items' => array(
                     array(
-                        'description' => 'Наименование товара 1',
+                        'description' => 'SIM-карта с доставкой',
                         'quantity' => '1.000',
                         'amount' => array(
-                            'value' => '14000.00',
+                            'value' => $order->price,
                             'currency' => 'RUB',
                         ),
                         'vat_code' => 1,
@@ -194,18 +194,6 @@ class OrderController extends Controller
                         'payment_subject' => 'commodity',
                         'country_of_origin_code' => 'CN',
                     ),
-                    array(
-                        'description' => 'Наименование товара 2',
-                        'quantity' => '1.000',
-                        'amount' => array(
-                            'value' => '1000.00',
-                            'currency' => 'RUB',
-                        ),
-                        'vat_code' => 2,
-                        'payment_mode' => 'full_payment',
-                        'payment_subject' => 'commodity',
-                        'country_of_origin_code' => 'CN',
-                    )
                 ),
                 'settlements' => array(
                     array(
