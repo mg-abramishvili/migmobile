@@ -188,7 +188,7 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-        return $res;
+        return response($res, 500);
         if($res)
         {
             $order->payment_id = $res['id'];
