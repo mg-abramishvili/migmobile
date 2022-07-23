@@ -277,6 +277,19 @@ class OrderController extends Controller
             ),
             uniqid('', true)
         );
+
+        $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+             
+        $ch = curl_init('https://api.yookassa.ru/v3/receipts');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_USERPWD, "$settings->yookassa_shop_id:$settings->yookassa_secret_key");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Idempotence-Key: ' . $order->uid));
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 	
+        $res = curl_exec($ch);
+        curl_close($ch);
     }
 
     public function CheckStockQuantity($planFromOrder)
