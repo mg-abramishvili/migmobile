@@ -191,6 +191,8 @@ class OrderController extends Controller
 
         $this->createReceipt($order);
 
+        return response($res, 500);
+        
         if($res)
         {
             $order->payment_id = $res['id'];
