@@ -161,15 +161,13 @@ export default {
                 this.plans = response.data
 
                 response.data.forEach(plan => {
-                    if(this.lang == 'uz') {
-                        return this.selected.plans.push({ "name": plan.name, "name_uz": plan.name_uz, "quantity": 0 })
-                    }
-
-                    if(this.lang == 'tj') {
-                        return this.selected.plans.push({ "name": plan.name, "name_tj": plan.name_tj, "quantity": 0 })
-                    }
-
-                    this.selected.plans.push({ "name": plan.name, "name_ru": plan.name_ru, "quantity": 0 })
+                    this.selected.plans.push({
+                        "name": plan.name,
+                        "name_ru": plan.name_ru,
+                        "name_uz": plan.name_uz,
+                        "name_tj": plan.name_tj,
+                        "quantity": 0
+                    })
                 })
             })
         },

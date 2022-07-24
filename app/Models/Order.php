@@ -9,6 +9,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'description' => 'json',
+    ];
+
     public function numbers()
     {
         return $this->hasMany(Number::class);

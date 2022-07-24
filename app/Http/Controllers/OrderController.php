@@ -81,13 +81,10 @@ class OrderController extends Controller
         $order->entrance = $request->order["entrance"];
         $order->uid = gen_uuid();
         $order->is_paid = false;
-        $order->description = '';
+        $order->description = $request->cart;
         $order->price = 0;
 
         $cart = $request->cart;
-
-        $plans = array();
-        $prettyNumbers = array();
 
         if(isset($cart['simple']))
         {
@@ -102,16 +99,6 @@ class OrderController extends Controller
                 }
             }
 
-            foreach($cart['simple']['plans'] as $plan)
-            {
-                if($plan['quantity'] > 0) {
-                    $this->ProcessStockQuantity($plan);
-
-                    array_push($plans, $plan['name_ru'] . ' (' . $plan['quantity'] . ' шт)');
-                }
-            }
-
-            $order->description .= implode (", ", $plans);
             $order->price += $cart['simple']['price'];
         }
 
@@ -124,15 +111,8 @@ class OrderController extends Controller
                 if(isset($number->order_id)) {
                     return response('Номер ' . $number->number . ' уже был кем-то куплен', 500);
                 }
-
-                array_push($prettyNumbers, $number->number . ' ('. $number->plan->name_ru . ' красивый номер)');
             }
 
-            if(count($plans)) {
-                $order->description .= ', ' . implode (", ", $prettyNumbers);
-            } else {
-                $order->description = implode (", ", $prettyNumbers);
-            }
             $order->price += $cart['pretty']['price'];
         }
         
