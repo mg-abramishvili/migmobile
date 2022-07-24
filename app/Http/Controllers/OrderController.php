@@ -205,7 +205,7 @@ class OrderController extends Controller
                     array(
                     'type' => 'cashless',
                     'amount' => array(
-                        'value' => '8000.00',
+                        'value' => $order->price,
                         'currency' => 'RUB',
                     )
                     )
@@ -228,7 +228,7 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-        return response($data, 500);
+        return response($res, 500);
         if($res)
         {
             $order->payment_id = $res['id'];
