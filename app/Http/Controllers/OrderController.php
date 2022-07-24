@@ -151,7 +151,7 @@ class OrderController extends Controller
                 'description' => 'SIM-карта с доставкой',
                 'quantity' => $sumQuantity,
                 'amount' => array(
-                    'value' => $order->description['simple']['price'],
+                    'value' => $order->description['simple']['price'] / $sumQuantity,
                     'currency' => 'RUB',
                 ),
                 'vat_code' => 1,
@@ -165,9 +165,9 @@ class OrderController extends Controller
         {
             array_push($receiptData, array(
                 'description' => 'SIM-карта с доставкой',
-                'quantity' => count($order->description['pretty']['numbers']) + '.000',
+                'quantity' => count($order->description['pretty']['numbers']),
                 'amount' => array(
-                    'value' => $order->description['pretty']['price'],
+                    'value' => $order->description['pretty']['price'] / count($order->description['pretty']['numbers']),
                     'currency' => 'RUB',
                 ),
                 'vat_code' => 1,
@@ -228,7 +228,7 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-        return response($data, 500);
+        return response($res, 500);
         if($res)
         {
             $order->payment_id = $res['id'];
