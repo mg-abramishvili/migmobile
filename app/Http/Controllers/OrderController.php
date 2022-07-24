@@ -149,7 +149,7 @@ class OrderController extends Controller
 
             array_push($receiptData, array(
                 'description' => 'SIM-карта с доставкой',
-                'quantity' => '2.000',
+                'quantity' => $sumQuantity,
                 'amount' => array(
                     'value' => $order->description['simple']['price'],
                     'currency' => 'RUB',
