@@ -69,7 +69,20 @@
                 <div class="box px-4 py-4 mb-4">
                     <p class="mb-0 my-2">
                         <strong>Заказ:</strong>
-                        {{ description }}
+                        <template v-if="order.description.simple">
+                            <ul>
+                                <template v-for="plan in order.description.simple.plans">
+                                    <li v-if="plan.quantity > 0">{{ plan.quantity }} &times; {{ plan.name_ru }}</li>
+                                </template>
+                            </ul>
+                        </template>
+                        <template v-if="order.description.pretty">
+                            <ul>
+                                <li v-for="number in order.description.pretty.numbers">
+                                    {{ number }} (красивый номер)
+                                </li>
+                            </ul>
+                        </template>
                     </p>
                 </div>
 
