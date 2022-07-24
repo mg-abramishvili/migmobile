@@ -62,11 +62,11 @@
                                 <div class="card-body">
                                     <p class="card-text mb-0">
                                         <span class="text-muted">Заказ:</span>
-                                        <template v-if="order.simple">
-                                            {{ order.simple }}
+                                        <template v-if="order.description.simple">
+                                            {{ order.description.simple }}
                                         </template>
-                                        <template v-if="order.pretty">
-                                            {{ order.pretty }}
+                                        <template v-if="order.description.pretty">
+                                            {{ order.description.pretty }}
                                         </template>
                                     </p>
                                 </div>

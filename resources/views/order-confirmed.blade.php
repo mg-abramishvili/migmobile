@@ -19,7 +19,7 @@
                         <p class="fw-bold">{{ __('Your order') }}:</p>
             
                         <p>
-                            @if($order->description['simple'])
+                            @if(isset($order->description['simple']))
                                 @foreach($order->description['simple']['plans'] as $plan)
                                     @if($plan['quantity'] > 0)
                                         @if(app()->getLocale() == 'uz')
@@ -35,7 +35,7 @@
                             @endif
                         </p>
                         <p>
-                            @if($order->description['pretty'])
+                            @if(isset($order->description['pretty']))
                                 @foreach($order->description['pretty']['numbers'] as $number)
                                     {{ $number }} ({{ __('pretty number') }})
                                     <br>
