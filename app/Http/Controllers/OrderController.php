@@ -151,7 +151,7 @@ class OrderController extends Controller
                 'description' => 'SIM-карта с доставкой',
                 'quantity' => $sumQuantity,
                 'amount' => array(
-                    'value' => $order->price,
+                    'value' => $order->description['simple']['price'],
                     'currency' => 'RUB',
                 ),
                 'vat_code' => 1,
@@ -167,7 +167,7 @@ class OrderController extends Controller
                 'description' => 'SIM-карта с доставкой',
                 'quantity' => count($order->description['pretty']['numbers']),
                 'amount' => array(
-                    'value' => $order->price,
+                    'value' => $order->description['pretty']['price'],
                     'currency' => 'RUB',
                 ),
                 'vat_code' => 1,
