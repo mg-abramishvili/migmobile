@@ -18,7 +18,21 @@
                     <div class="order-page-cart">
                         <p class="fw-bold">Ваш заказ:</p>
             
-                        <p>{{ $order->description }}</p>
+                        <p>
+                            @foreach($order->description as $orderDescItem)
+                                @if($orderDescItem->simple)
+                                    @foreach($orderDescItem->simple->plans as $plan)
+                                        @if(app()->getLocale() == 'uz')
+                                            {{ $plan->quantity }} &times; {{ $plan->name_uz }}
+                                        @elseif(app()->getLocale() == 'tj')
+                                            {{ $plan->quantity }} &times; {{ $plan->name_tj }}
+                                        @else
+                                            {{ $plan->quantity }} &times; {{ $plan->name_ru }}
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        </p>
 
                         @if($order->is_paid == true)
                             <p class="text-success fw-bold">оплачен</p>
