@@ -64,9 +64,9 @@
                                         <span class="text-muted">Заказ:</span>
                                         <template v-if="order.description.simple">
                                             <ul>
-                                                <li v-for="plan in order.description.simple.plans">
-                                                    {{ plan.quantity }} &times; {{ plan.name_ru }}
-                                                </li>
+                                                <template v-for="plan in order.description.simple.plans">
+                                                    <li v-if="plan.quantity > 0">{{ plan.quantity }} &times; {{ plan.name_ru }}</li>
+                                                </template>
                                             </ul>
                                         </template>
                                         <template v-if="order.description.pretty">
