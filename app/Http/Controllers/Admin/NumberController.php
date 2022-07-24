@@ -45,7 +45,7 @@ class NumberController extends Controller
 
     public function export($plan)
     {
-        return (new NumberExport($plan))->download('numbers_' . $plan->name . '.xlsx');
+        return (new NumberExport($plan))->download('numbers_export_' . $plan . '.xlsx');
     }
 
     public function filter(Request $request)
