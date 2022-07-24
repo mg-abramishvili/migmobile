@@ -215,7 +215,7 @@ export default {
         },
         del() {
             if(confirm("Точно удалить новость?")) {
-                axios.delete(`_admin/news`, {
+                axios.delete(`/_admin/news`, {
                     id: this.$route.params.id
                 })
                 .then(response => {
