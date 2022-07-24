@@ -20,7 +20,7 @@
             
                         <p>
                             @foreach($order->description as $orderDescItem)
-                                @if($orderDescItem->simple)
+                                @if($orderDescItem['simple'])
                                     @foreach($orderDescItem->simple->plans as $plan)
                                         @if(app()->getLocale() == 'uz')
                                             {{ $plan->quantity }} &times; {{ $plan->name_uz }}
