@@ -46,7 +46,9 @@
                         <label>Текст</label>
                         <ckeditor :editor="editor" v-model="text" :config="editorConfig"></ckeditor>
                     </div>
+
                     <button @click="save()" :disabled="!views.saveButton" class="btn btn-primary">Сохранить</button>
+                    <button @click="del()" class="btn btn-outline-danger">Удалить</button>
                 </div>
             </div>
         </div>
@@ -210,6 +212,14 @@ export default {
                     icon: 'error',
                 })
             })
+        },
+        del() {
+            if(confirm("Точно удалить новость?")) {
+                axios.delete(`_admin/news-item/${this.$route.params.id}/delete`)
+                .then(response => {
+                    this.$router.push({ name: 'News' })
+                })
+            }
         },
     },
     components: {
