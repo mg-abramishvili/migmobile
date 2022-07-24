@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-12 col-lg-5">
                     <div class="order-page-cart">
-                        <p class="fw-bold">Ваш заказ:</p>
+                        <p class="fw-bold">{{__('Your order')}}:</p>
             
                         <p>
                             @if($order->description['simple'])
