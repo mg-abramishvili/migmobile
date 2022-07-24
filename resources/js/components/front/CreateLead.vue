@@ -60,7 +60,7 @@
                 <template v-else>
                     Согласен с обработкой персональных данных
                 </template>
-                <a href="/policy" target="_blank">&rarr;</a>
+                <a href="/policy" target="_blank">(!)</a>
             </label>
         </div>
         <button @click="save()" class="btn btn-primary">
