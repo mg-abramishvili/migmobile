@@ -149,7 +149,7 @@ class OrderController extends Controller
 
             array_push($receiptData, array(
                 'description' => 'SIM-карта с доставкой',
-                'quantity' => $sumQuantity,
+                'quantity' => $sumQuantity + '.000',
                 'amount' => array(
                     'value' => $order->description['simple']['price'],
                     'currency' => 'RUB',
@@ -165,7 +165,7 @@ class OrderController extends Controller
         {
             array_push($receiptData, array(
                 'description' => 'SIM-карта с доставкой',
-                'quantity' => count($order->description['pretty']['numbers']),
+                'quantity' => count($order->description['pretty']['numbers']) + '.000',
                 'amount' => array(
                     'value' => $order->description['pretty']['price'],
                     'currency' => 'RUB',
@@ -200,20 +200,7 @@ class OrderController extends Controller
                 'payment_id' => $order->payment_id,
                 'type' => 'payment',
                 'send' => true,
-                'items' => array(
-                    array(
-                        'description' => 'SIM-карта с доставкой',
-                        'quantity' => '1.000',
-                        'amount' => array(
-                            'value' => $order->price,
-                            'currency' => 'RUB',
-                        ),
-                        'vat_code' => 1,
-                        'payment_mode' => 'full_payment',
-                        'payment_subject' => 'commodity',
-                        'country_of_origin_code' => 'CN',
-                    ),
-                ),
+                'items' => $receiptData,
                 'settlements' => array(
                     array(
                     'type' => 'cashless',
@@ -241,7 +228,7 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-        
+        return response($res, 500);
         if($res)
         {
             $order->payment_id = $res['id'];
