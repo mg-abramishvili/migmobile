@@ -34,6 +34,14 @@
                                 @endforeach
                             @endif
                         </p>
+                        <p>
+                            @if($order->description['pretty'])
+                                @foreach($order->description['pretty']['numbers'] as $number)
+                                    {{ $number }} ({{ __('pretty number') }})
+                                    <br>
+                                @endforeach
+                            @endif
+                        </p>
 
                         @if($order->is_paid == true)
                             <p class="text-success fw-bold">оплачен</p>

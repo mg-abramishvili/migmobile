@@ -24,5 +24,6 @@
     "gb": "Гб",
     "month": "мес",
     "Your order": "Ваш заказ",
-    "Order number": "Номер заказа"
+    "Order number": "Номер заказа",
+    "pretty number": "красивый номер"
 }
