@@ -138,6 +138,45 @@ class OrderController extends Controller
     {
         $settings = Setting::find(1);
         
+        $receiptData = array();
+
+        if(isset($order->description['simple']))
+        {
+            $sumQuantity = 0;
+            foreach($order->description['simple']['plans'] as $plan) {
+                $sumQuantity += $plan['quantity'];
+            }
+
+            array_push($receiptData, array(
+                'description' => 'SIM-карта с доставкой',
+                'quantity' => $sumQuantity,
+                'amount' => array(
+                    'value' => $order->price,
+                    'currency' => 'RUB',
+                ),
+                'vat_code' => 1,
+                'payment_mode' => 'full_payment',
+                'payment_subject' => 'commodity',
+                'country_of_origin_code' => 'RU',
+            ));
+        }
+
+        if(isset($order->description['pretty']))
+        {
+            array_push($receiptData, array(
+                'description' => 'SIM-карта с доставкой',
+                'quantity' => count($order->description['pretty']['numbers']),
+                'amount' => array(
+                    'value' => $order->price,
+                    'currency' => 'RUB',
+                ),
+                'vat_code' => 1,
+                'payment_mode' => 'full_payment',
+                'payment_subject' => 'commodity',
+                'country_of_origin_code' => 'RU',
+            ));
+        }
+
         $data = array(
             'amount' => array(
                 'value' => $order->price,
@@ -161,32 +200,12 @@ class OrderController extends Controller
                 'payment_id' => $order->payment_id,
                 'type' => 'payment',
                 'send' => true,
-                'items' => array(
-                    array(
-                        'description' => 'SIM-карта с доставкой',
-                        'quantity' => '1.000',
-                        'amount' => array(
-                            'value' => $order->price,
-                            'currency' => 'RUB',
-                        ),
-                        'vat_code' => 1,
-                        'payment_mode' => 'full_payment',
-                        'payment_subject' => 'commodity',
-                        'country_of_origin_code' => 'CN',
-                    ),
-                ),
+                'items' => $receiptData,
                 'settlements' => array(
                     array(
                     'type' => 'cashless',
                     'amount' => array(
                         'value' => '8000.00',
-                        'currency' => 'RUB',
-                    )
-                    ),
-                    array(
-                    'type' => 'cashless',
-                    'amount' => array(
-                        'value' => '7000.00',
                         'currency' => 'RUB',
                     )
                     )
