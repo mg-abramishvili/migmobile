@@ -9,7 +9,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-7">
-                    <p><strong>Номер заказа:</strong> {{ $order->id }}</p>
+                    <p><strong>{{ __('Order number') }}:</strong> {{ $order->id }}</p>
                     <p><strong>Фамилия:</strong> {{ $order->last_name }}</p>
 
                     <span class="text-danger">{{ __('Please remember this order data') }}</span>

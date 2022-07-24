@@ -23,5 +23,6 @@
     "min": "мин",
     "gb": "Гб",
     "month": "мес",
-    "Your order": "Ваш заказ"
+    "Your order": "Ваш заказ",
+    "Order number": "Номер заказа"
 }
