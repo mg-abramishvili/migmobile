@@ -119,7 +119,7 @@ Route::get('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'in
 Route::post('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'store'])->middleware(['auth']);
 Route::get('_admin/news-item/{id}', [App\Http\Controllers\Admin\NewsController::class, 'newsItem'])->middleware(['auth']);
 Route::put('_admin/news-item/{id}/update', [App\Http\Controllers\Admin\NewsController::class, 'update'])->middleware(['auth']);
-Route::delete('_admin/news-item/{id}/delete', [App\Http\Controllers\Admin\NewsController::class, 'delete'])->middleware(['auth']);
+Route::delete('_admin/news', [App\Http\Controllers\Admin\NewsController::class, 'delete'])->middleware(['auth']);
 
 // ADMIN NUMBERS
 Route::get('_admin/numbers', [App\Http\Controllers\Admin\NumberController::class, 'index'])->middleware(['auth']);

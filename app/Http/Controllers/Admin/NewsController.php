@@ -54,9 +54,9 @@ class NewsController extends Controller
         $newsItem->save();
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        $newsItem = News::find($id);
+        $newsItem = News::find($request->id);
         
         $newsItem->delete();
     }
