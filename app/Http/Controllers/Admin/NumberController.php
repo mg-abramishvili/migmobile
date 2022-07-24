@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Number;
+use App\Models\Plan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\NumberImport;
@@ -45,7 +46,9 @@ class NumberController extends Controller
 
     public function export($plan)
     {
-        return (new NumberExport($plan))->download('numbers_export_' . $plan . '.xlsx');
+        $planName = Plan::find($plan)->name;
+
+        return (new NumberExport($plan))->download('numbers_export_' . $planName . '.xlsx');
     }
 
     public function filter(Request $request)
