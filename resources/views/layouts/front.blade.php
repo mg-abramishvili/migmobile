@@ -151,7 +151,7 @@
                             <a href="#">
                                 <img src="/img/logo-w.svg" alt="Паритет-Телеком">
                             </a>
-                            <a href="#">{{ __('Privacy policy') }}</a>
+                            <a href="/policy">{{ __('Privacy policy') }}</a>
                         </div>
                         <div class="col footer-menu">
                             <ul>
