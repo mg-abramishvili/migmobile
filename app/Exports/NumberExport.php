@@ -23,7 +23,7 @@ class NumberExport extends DefaultValueBinder implements WithCustomValueBinder, 
 
     public function query()
     {
-        return Number::query()->where('plan_id', $this->plan);
+        return Number::query()->where('plan_id', $this->plan)->where('order_id', null);
     }
 
     public function map($number): array
