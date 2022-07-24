@@ -149,7 +149,7 @@ class OrderController extends Controller
 
             array_push($receiptData, array(
                 'description' => 'SIM-карта с доставкой',
-                'quantity' => $sumQuantity + '.000',
+                'quantity' => strval($sumQuantity) + '.000',
                 'amount' => array(
                     'value' => $order->description['simple']['price'],
                     'currency' => 'RUB',
@@ -228,7 +228,7 @@ class OrderController extends Controller
         curl_close($ch);	
             
         $res = json_decode($res, true);
-        return response($data, 500);
+        return response($res, 500);
         if($res)
         {
             $order->payment_id = $res['id'];
