@@ -200,7 +200,20 @@ class OrderController extends Controller
                 'payment_id' => $order->payment_id,
                 'type' => 'payment',
                 'send' => true,
-                'items' => $receiptData,
+                'items' => array(
+                    array(
+                        'description' => 'SIM-карта с доставкой',
+                        'quantity' => '1.000',
+                        'amount' => array(
+                            'value' => $order->price,
+                            'currency' => 'RUB',
+                        ),
+                        'vat_code' => 1,
+                        'payment_mode' => 'full_payment',
+                        'payment_subject' => 'commodity',
+                        'country_of_origin_code' => 'CN',
+                    ),
+                ),
                 'settlements' => array(
                     array(
                     'type' => 'cashless',
