@@ -51,15 +51,17 @@
         <div class="form-check">
             <input v-model="policy" class="form-check-input" type="checkbox" :id="'check_' + service">
             <label class="form-check-label" :for="'check_' + service">
-                <template v-if="lang == 'uz'">
-                    Шахсий маълумотларни қайта ишлашга розиман
-                </template>
-                <template v-else-if="lang == 'tj'">
-                    Ман барои коркарди маълумоти шахсӣ розӣ ҳастам
-                </template>
-                <template v-else>
-                    Согласен с обработкой персональных данных
-                </template>
+                <a href="/policy" target="_blank">
+                    <template v-if="lang == 'uz'">
+                        Шахсий маълумотларни қайта ишлашга розиман
+                    </template>
+                    <template v-else-if="lang == 'tj'">
+                        Ман барои коркарди маълумоти шахсӣ розӣ ҳастам
+                    </template>
+                    <template v-else>
+                        Согласен с обработкой персональных данных
+                    </template>
+                </a>
             </label>
         </div>
         <button @click="save()" class="btn btn-primary">
