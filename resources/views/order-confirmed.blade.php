@@ -19,19 +19,17 @@
                         <p class="fw-bold">Ваш заказ:</p>
             
                         <p>
-                            @foreach($order->description as $orderDescItem)
-                                @if($orderDescItem['simple'])
-                                    @foreach($orderDescItem->simple->plans as $plan)
-                                        @if(app()->getLocale() == 'uz')
-                                            {{ $plan->quantity }} &times; {{ $plan->name_uz }}
-                                        @elseif(app()->getLocale() == 'tj')
-                                            {{ $plan->quantity }} &times; {{ $plan->name_tj }}
-                                        @else
-                                            {{ $plan->quantity }} &times; {{ $plan->name_ru }}
-                                        @endif
-                                    @endforeach
-                                @endif
-                            @endforeach
+                            @if($order->description['simple'])
+                                @foreach($order->description['simple']['plans'] as $plan)
+                                    @if(app()->getLocale() == 'uz')
+                                        {{ $plan->quantity }} &times; {{ $plan->name_uz }}
+                                    @elseif(app()->getLocale() == 'tj')
+                                        {{ $plan->quantity }} &times; {{ $plan->name_tj }}
+                                    @else
+                                        {{ $plan->quantity }} &times; {{ $plan->name_ru }}
+                                    @endif
+                                @endforeach
+                            @endif
                         </p>
 
                         @if($order->is_paid == true)
