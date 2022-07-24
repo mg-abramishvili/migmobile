@@ -63,10 +63,18 @@
                                     <p class="card-text mb-0">
                                         <span class="text-muted">Заказ:</span>
                                         <template v-if="order.description.simple">
-                                            {{ order.description.simple }}
+                                            <ul>
+                                                <li v-for="plan in order.description.simple.plans">
+                                                    {{ plan.quantity }} &times; {{ plan.name_ru }}
+                                                </li>
+                                            </ul>
                                         </template>
                                         <template v-if="order.description.pretty">
-                                            {{ order.description.pretty }}
+                                            <ul>
+                                                <li v-for="number in order.description.pretty.numbers">
+                                                    {{ number }} (красивый номер)
+                                                </li>
+                                            </ul>
                                         </template>
                                     </p>
                                 </div>
