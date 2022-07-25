@@ -47,17 +47,35 @@
                         <strong v-else-if="lang == 'tj'">Статус: </strong>
                         <strong v-else>Статус: </strong>
                         
-                        <span v-if="order.status == 'created'">Принят в работу</span>
-                        <span v-if="order.status == 'sent'">Отправлен</span>
-                        <span v-if="order.status == 'delivered'">Доставлен</span>
+                        <span v-if="order.status == 'created'">
+                            <template v-if="lang == 'uz'">Ишга қабул қилинган</template>
+                            <template v-else-if="lang == 'tj'">Ќабул ба кор</template>
+                            <template v-else>Принят в работу</template>
+                        </span>
+                        <span v-if="order.status == 'sent'">
+                            <template v-if="lang == 'uz'">Юборилган</template>
+                            <template v-else-if="lang == 'tj'">Фиристода</template>
+                            <template v-else>Отправлен</template>
+                        </span>
+                        <span v-if="order.status == 'delivered'">
+                            <template v-if="lang == 'uz'">Етказиб</template>
+                            <template v-else-if="lang == 'tj'">Расиданаш</template>
+                            <template v-else>Доставлен</template>
+                        </span>
                     </p>
                     <p class="mb-4">
-                        <strong>Оплачен: </strong>
+                        <strong v-if="lang == 'uz'">Учун тўланган: </strong>
+                        <strong v-else-if="lang == 'tj'">Пардохта шавад: </strong>
+                        <strong v-else>Оплачен: </strong>
                         <template v-if="order.is_paid == true">
-                            <span class="text-success fw-bold">Да</span>
+                            <span v-if="lang == 'uz'" class="text-success fw-bold">Да</span>
+                            <span v-else-if="lang == 'tj'" class="text-success fw-bold">Ҳа</span>
+                            <span v-else class="text-success fw-bold">Ҳа</span>
                         </template>
                         <template v-if="order.is_paid == false">
-                            <span class="text-danger fw-bold">Нет</span>
+                            <span v-if="lang == 'uz'" class="text-danger fw-bold">Йўқ</span>
+                            <span v-else-if="lang == 'tj'" class="text-danger fw-bold">Не</span>
+                            <span v-else class="text-danger fw-bold">Нет</span>
                         </template>
                     </p>
                     <p v-if="order.delivery_name && order.delivery_name != 'null'" class="mb-4">
