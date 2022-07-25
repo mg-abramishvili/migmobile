@@ -37,7 +37,9 @@
                         <div class="col-12 col-lg-6">
                             <div class="mb-4">
                                 <label>Телефон</label>
-                                <input v-model="order.phone" type="text" class="form-control">
+                                <div class="d-flex align-items-center">
+                                +&nbsp;<input v-model="order.phone" type="text" class="form-control">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -204,6 +206,14 @@ export default {
 
             return simplePrice + prettyPrice
         }
+    },
+    watch: {
+        order: {
+            deep: true,
+            handler() {
+                this.order.phone = this.order.phone.replace(/[^\d]+/g, "")
+            }
+        },
     },
     created() {
         this.loadSimpleCart()
