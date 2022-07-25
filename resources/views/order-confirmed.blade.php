@@ -5,7 +5,7 @@
 @section('content')
     <div class="order-page">
         <div class="container">
-            <h1 class="title-head mb-4">Заказ принят</h1>
+            <h1 class="title-head mb-4">{{ __('Order confirmed') }}</h1>
 
             <div class="row">
                 <div class="col-12 col-lg-7">
@@ -43,12 +43,12 @@
                             @endif
                         </p>
 
-                        @if($order->is_paid == true)
+                        <!-- @if($order->is_paid == true)
                             <p class="text-success fw-bold">оплачен</p>
                         @endif
                         @if($order->is_paid == false)
                             <p class="text-success fw-bold">ожидает оплаты</p>
-                        @endif
+                        @endif -->
                     </div>
                 </div>
             </div>
