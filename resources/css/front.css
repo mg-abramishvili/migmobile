@@ -1006,6 +1006,15 @@ html, body {
     display: flex;
     align-items: center;
 }
+.order-numbers input::-webkit-outer-spin-button,
+.order-numbers input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.order-numbers input[type=number] {
+  -moz-appearance: textfield;
+}
 .order-page-cart {
     background-color: #ffdd2d;
     padding: 25px;
@@ -1082,24 +1091,28 @@ html, body {
     height: 100%;
 }
 .card-plan-title {
-    width: 68%;
-    padding-left: 20px;
+    width: 60%;
+}
+@media (min-width: 992px) {
+    .card-plan-title {
+        width: 68%;
+        padding-left: 20px;
+    }
 }
 .card-plan-buy {
     display: flex;
     align-items: center;
-    width: 25%;
-    justify-content: flex-end;
-}
-.card-plan-buy button {
-    margin-left: 5px;
-    box-shadow: none;
-    display: none;
+    width: 40%;
 }
 @media (min-width: 992px) {
-    .card-plan-buy button {
-        display: block;
+    .card-plan-buy {
+        width: 25%;
+        justify-content: flex-end;
     }
+}
+.card-plan-buy button {
+    box-shadow: none;
+    padding: 10px 20px;
 }
 .card-plan-buy button svg {
     display: block;
