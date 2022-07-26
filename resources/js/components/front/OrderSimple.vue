@@ -203,6 +203,8 @@ export default {
             } else {
                 selectedPlan.quantity = 0
             }
+
+            this.saveCart()
         },
         changeQuantityPlus(plan) {
             let selectedPlan = this.selected.plans.find(p => p.name == plan.name)
@@ -212,8 +214,10 @@ export default {
             } else {
                 selectedPlan.quantity = plan.in_stock
             }
+
+            this.saveCart()
         },
-        saveCart(planQuantity, maxQuantity, event) {
+        saveCart() {
             axios.post('/_simple-cart', {
                 simple_cart: { "plans": this.selected.plans, "price": this.priceWithQuantity }
             })
