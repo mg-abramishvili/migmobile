@@ -170,9 +170,9 @@
                                 <li>
                                     <a href="/#loan">{{ __('Loans') }}</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="/#about">{{ __('About Us') }}</a>
-                                </li> -->
+                                <li>
+                                    <a href="/company">{{ __('Company details') }}</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-12 footer-social">
