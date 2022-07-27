@@ -173,6 +173,9 @@
                                 <li>
                                     <a href="/company">{{ __('Company details') }}</a>
                                 </li>
+                                <li>
+                                    <a href="/delivery">{{ __('Delivery') }}</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-12 footer-social">
