@@ -65,6 +65,10 @@ Route::get('/policy', function() {
     return view('policy');
 })->name('policy');
 
+Route::get('/company', function() {
+    return view('company-details');
+})->name('company');
+
 Route::get('/numbers/{digits}', [App\Http\Controllers\NumberController::class, 'index']);
 Route::get('/_plans', [App\Http\Controllers\PlanController::class, 'index']);
 Route::get('/_prices', [App\Http\Controllers\PriceController::class, 'index']);
